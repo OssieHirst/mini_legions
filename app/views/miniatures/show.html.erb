@@ -1,0 +1,14 @@
+<% provide(:title, @miniature.name) %>
+<h1><%= @miniature.name %></h1>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      
+       <%= @miniature.name %><br>
+       Material: <%= @miniature.material %><br>
+       Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %>
+    
+    </section>
+  </aside>
+</div>
