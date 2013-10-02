@@ -7,7 +7,8 @@
       
        <%= @miniature.name %><br>
        Material: <%= @miniature.material %><br>
-       Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %>
+       Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br>
+       <%= link_to "Edit this miniature listing", edit_miniature_path %>
     
     </section>
   </aside>

@@ -18,6 +18,6 @@ FactoryGirl.define do
   factory :miniature do
     sequence(:name)  { |n| "Person #{n}" }
     sequence(:material) { ["Metal", "Hard Plastic", "Soft Plastic", "Resin", "Card"].sample }
-    release_date { rand(1..100).days.from_now }
+    release_date { "01/12/2001" }
   end
 end
