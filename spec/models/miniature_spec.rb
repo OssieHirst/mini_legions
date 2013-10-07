@@ -9,6 +9,8 @@ describe Miniature do
   it { should respond_to(:name) }
   it { should respond_to(:material) }
   it { should respond_to(:release_date) }
+  it { should respond_to(:productions) }
+  it { should respond_to(:manufacturers) }
 
   it { should be_valid }
 

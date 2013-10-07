@@ -1,0 +1,4 @@
+<% provide(:title, @manufacturer.name) %>
+<h1><%= @manufacturer.name %></h1>
+
+<%= @manufacturer.miniatures.map(&:name).join(', ') %>

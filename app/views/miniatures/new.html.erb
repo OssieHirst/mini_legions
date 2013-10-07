@@ -7,10 +7,14 @@
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name %>
-
       <%= f.label :material %>
       <%= f.select :material, options_for_select(["Metal", "Resin", "Hard Plastic", "Soft Plastic", "Card"]) %>
-
+      <%= f.label :scale %>
+      <%= f.select :scale, options_for_select(["28mm", "6mm", "1/175", "54mm", "10mm"]) %>
+       <%= f.fields_for :production do |production_fields| %>
+      <%= production_fields.label :manufacturer_id, "Manufacturer" %>
+      <%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name) %>
+      <% end %>
       <%= f.label :release_date %>
       <%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %>
 

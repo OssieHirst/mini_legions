@@ -1,7 +1,6 @@
-<li>
-  <%= link_to miniature.name, miniature %>
-  <% if current_user.admin? %>
-    | <%= link_to "delete", miniature, method: :delete,
+<tr>
+  <td><%= link_to miniature.name, miniature %></td>  <td><%= miniature.material %></td> <td><%= miniature.scale %></td> <td><%= miniature.release_date %></td>
+  <td><% if current_user.admin? %>
+     <%= link_to "delete", miniature, method: :delete,
                                   data: { confirm: "You sure?" } %>
-  <% end %>
-</li>
+  <% end %></td></tr>

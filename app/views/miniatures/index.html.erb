@@ -3,8 +3,13 @@
 
 <%= will_paginate %>
 
-<ul class="miniatures">
+<table border="0" cellpadding="10">
+<th>Name</th>
+<th>Cast in</th>
+<th>Scale</th>
+<th>Release date</th>
+<% if current_user.admin? %><th>Admin</th><% end %>
   <%= render @miniatures %>
-</ul>
+</table>
 
 <%= will_paginate %>

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927160008) do
+ActiveRecord::Schema.define(version: 20131003105105) do
+
+  create_table "manufacturers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -28,10 +34,21 @@ ActiveRecord::Schema.define(version: 20130927160008) do
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "scale"
   end
 
   add_index "miniatures", ["created_at"], name: "index_miniatures_on_created_at"
   add_index "miniatures", ["release_date"], name: "index_miniatures_on_release_date"
+
+  create_table "productions", force: true do |t|
+    t.integer  "miniature_id"
+    t.integer  "manufacturer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "productions", ["manufacturer_id"], name: "index_productions_on_manufacturer_id"
+  add_index "productions", ["miniature_id"], name: "index_productions_on_miniature_id"
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"

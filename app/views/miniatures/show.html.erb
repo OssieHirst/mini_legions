@@ -5,11 +5,12 @@
   <aside class="span4">
     <section>
       
-       <%= @miniature.name %><br>
-       Material: <%= @miniature.material %><br>
-       Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br>
+       <%= @miniature.name %><br />
+       Material: <%= @miniature.material %><br />   
+       Scale: <%= @miniature.scale %><br />
+       Manufacturer: <%= @miniature.manufacturers.map(&:name).join(', ') %><br />
+       Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
        <%= link_to "Edit this miniature listing", edit_miniature_path %>
-    
     </section>
   </aside>
 </div>
