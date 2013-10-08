@@ -105,7 +105,7 @@ describe "index" do
 
       it "should list each miniature" do
         Miniature.paginate(page: 1).each do |miniature|
-          expect(page).to have_selector('li', text: miniature.name)
+          expect(page).to have_selector('td', text: miniature.name)
         end
       end
     end

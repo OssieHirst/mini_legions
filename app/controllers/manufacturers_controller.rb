@@ -2,7 +2,7 @@ class ManufacturersController < ApplicationController
 	before_action :signed_in_user, only: [:new, :create, :edit, :update]
 	before_action :admin_user,     only: :destroy
 
-def show
+  def show
     @manufacturer = Manufacturer.find(params[:id])
   end
 

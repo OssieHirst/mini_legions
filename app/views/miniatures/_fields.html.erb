@@ -1,0 +1,15 @@
+<%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :material %>
+      <%= f.select 'material', options_from_collection_for_select(Miniature.select("DISTINCT material"), :material, 'material', @miniature.material) %>
+      <%= f.fields_for :sizes do |size_fields| %>
+      <%= size_fields.label :scale_id, "Scale".pluralize %>
+      <%= size_fields.select :scale_id, options_from_collection_for_select(Scale.all, :id, :name) %>
+      <% end %>
+       <%= f.fields_for :productions do |production_fields| %>
+      <%= production_fields.label :manufacturer_id, "Manufacturer".pluralize %>
+      <%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, @miniature.manufacturers) %>
+      <% end %>
+      <%= f.label :release_date %>
+      <%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %>

@@ -1,6 +1,6 @@
 <tr>
-  <td><%= link_to miniature.name, miniature %></td>  <td><%= miniature.material %></td> <td><%= miniature.scale %></td> <td><%= miniature.release_date %></td>
-  <td><% if current_user.admin? %>
+  <td><%= link_to miniature.name, miniature %></td>  <td><%= miniature.material %></td><td><%= link_to raw miniature.manufacturers.map(&:name).join('<br />') %></td> <td><%= link_to  miniature.scales.map(&:name).join(', ') %></td> <td><%= miniature.release_date %></td>
+  <td><% if current_user.try(:admin?) %>
      <%= link_to "delete", miniature, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %></td></tr>

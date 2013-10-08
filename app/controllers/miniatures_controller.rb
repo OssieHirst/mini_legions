@@ -2,9 +2,6 @@ class MiniaturesController < ApplicationController
    before_action :signed_in_user, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
-  def productions
-    @production = @miniature.productions
-  end
 
   def show
     @miniature = Miniature.find(params[:id])
@@ -12,6 +9,8 @@ class MiniaturesController < ApplicationController
 
   def new
   	@miniature = Miniature.new 
+    @miniature.productions.build
+    @miniature.sizes.build
   end
 
   def edit
@@ -34,6 +33,7 @@ class MiniaturesController < ApplicationController
   def create
   	@miniature = Miniature.new(miniature_params)
     @production = @miniature.productions.build
+    @size = @miniature.sizes.build
     if @miniature.save
       redirect_to @miniature
     else
@@ -49,7 +49,7 @@ class MiniaturesController < ApplicationController
 
 private
     def miniature_params
-      params.require(:miniature).permit(:name, :release_date, :material, :scale, production_attributes: [:manufacturer_id])
+      params.require(:miniature).permit(:name, :release_date, :material, productions_attributes: [:manufacturer_id], sizes_attributes: [:scale_id])
     end
 
     def admin_user

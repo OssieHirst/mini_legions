@@ -18,7 +18,8 @@ MiniLegions::Application.routes.draw do
       get :miniatures
     end
   end
-  resources :productions, :only => [:create, :destroy]
+  resources :productions
+  resources :sizes
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

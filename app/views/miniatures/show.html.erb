@@ -7,8 +7,8 @@
       
        <%= @miniature.name %><br />
        Material: <%= @miniature.material %><br />   
-       Scale: <%= @miniature.scale %><br />
-       Manufacturer: <%= @miniature.manufacturers.map(&:name).join(', ') %><br />
+       <%= simple_pluralize(@miniature.scales.count, 'Scale')%>: <%= @miniature.scales.map(&:name).join(', ') %><br />
+       <%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer')%>: <%= @miniature.manufacturers.map(&:name).join(', ') %><br />
        Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
        <%= link_to "Edit this miniature listing", edit_miniature_path %>
     </section>

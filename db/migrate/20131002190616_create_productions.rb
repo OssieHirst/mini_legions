@@ -8,5 +8,6 @@ class CreateProductions < ActiveRecord::Migration
     end
     add_index :productions, [:miniature_id]
     add_index :productions, [:manufacturer_id]
+    add_index :productions, [:miniature_id, :manufacturer_id], unique: true
   end
 end

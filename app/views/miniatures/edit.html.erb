@@ -4,20 +4,7 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@miniature) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :material %>
-      <%= f.select :material, options_for_select(["Metal", "Resin", "Hard Plastic", "Soft Plastic", "Card"]) %>
-      <%= f.label :scale %>
-      <%= f.select :scale, options_for_select(["28mm", "6mm", "1/175", "54mm", "10mm"]) %>
-      <%= f.fields_for :production do |builder| %>
-      <%= builder.label :manufacturer_id, "Manufacturer" %>
-      <%= builder.select :manufacturer_id, options_for_select(["Games Workshop", "Marauder Miniatures", "Fantasy Flight Games"]) %>
-      <% end %>
-            <%= f.label :release_date %>
-      <%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970 %>
-
+                <%= render 'fields', f: f %>
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

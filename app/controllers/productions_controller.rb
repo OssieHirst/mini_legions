@@ -9,7 +9,7 @@ class ProductionsController < ApplicationController
   end
 
   def update
-    @production.update_attributes(production_params)
+    @production = Production.finde(params[:id])
   end
 
 end
