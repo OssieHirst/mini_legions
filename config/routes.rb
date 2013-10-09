@@ -11,6 +11,7 @@ MiniLegions::Application.routes.draw do
   resources :miniatures do
     collection do
     get :manufacturers
+    get :scales
     end
   end
   resources :manufacturers do
@@ -20,6 +21,8 @@ MiniLegions::Application.routes.draw do
   end
   resources :productions
   resources :sizes
+  resources :scales
+  resources :manufacturers
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

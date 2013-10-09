@@ -24,10 +24,6 @@ describe Miniature do
     before { @miniature.material = " " }
     it { should_not be_valid }
   end
-  describe "when scale is not present" do
-    before { @miniature.scale = " " }
-    it { should_not be_valid }
-  end
   describe "when release date is not valid" do
     before { @miniature.release_date = "ddddddd" }
     it { should_not be_valid }

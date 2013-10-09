@@ -34,7 +34,6 @@ describe "Miniature pages" do
     describe "with valid information" do
       before do
         fill_in "Name",         with: "Example Miniature"
-        select("Metal", :from => "Material")
       end
 
       it "should create a miniature" do
@@ -51,16 +50,13 @@ describe "Miniature pages" do
 
      describe "with valid information" do
       let(:new_name)  { "New Name" }
-      let(:new_material) { "Resin" }
       before do
         fill_in "Name",         with: "new_name"
-        select("Resin", :from => "Material")
         click_button "Save changes"
       end
       it { should have_title(new_name) }
       it { should have_selector('div.alert.alert-success') }
       specify { expect(miniature.reload.name).to  eq new_name }
-      specify { expect(miniature.reload.material).to eq new_material }
     end
   end
 
