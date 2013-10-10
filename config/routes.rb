@@ -22,7 +22,11 @@ MiniLegions::Application.routes.draw do
   resources :productions
   resources :sizes
   resources :scales
-  resources :manufacturers
+  resources :sculptors do
+    collection do
+      get :miniatures
+    end
+  end
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

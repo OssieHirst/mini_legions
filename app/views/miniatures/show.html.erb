@@ -6,11 +6,17 @@
     <section>
       
        <%= @miniature.name %><br />
-       Material: <%= @miniature.material %><br />   
-       <%= simple_pluralize(@miniature.scales.count, 'Scale')%>: <%= @miniature.scales.map(&:name).join(', ') %><br />
-       <%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer')%>: <%= @miniature.manufacturers.map(&:name).join(', ') %><br />
+       Material: <%= @miniature.material %><br /> 
+       <%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>: <%= link_to @miniature.manufacturers.map(&:name).join(', '), miniatures_manufacturers_path %><br /> 
+       <%= simple_pluralize(@miniature.scales.count, 'Scale')%>: <%= link_to @miniature.scales.map(&:name).join(', '), scale_path %><br />
+       Product code: <%= @miniature.pcode %><br />
+       Sculpted by: <%= link_to @miniature.sculptors.map(&:fullname).join(', '), sculptor_path %><br />
        Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
-       <%= link_to "Edit this miniature listing", edit_miniature_path %>
+       <%= link_to "Edit this miniature listing", edit_miniature_path %><br />
+       Notes:<br />
+       <%= @miniature.notes %>
+       <br /><br /><br /><br /><br /><br />
+       <%= @sculptor %>
     </section>
   </aside>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008132858) do
+ActiveRecord::Schema.define(version: 20131010102205) do
 
   create_table "manufacturers", force: true do |t|
     t.string   "name"
@@ -34,7 +34,8 @@ ActiveRecord::Schema.define(version: 20131008132858) do
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "scale"
+    t.string   "pcode"
+    t.string   "notes"
   end
 
   add_index "miniatures", ["created_at"], name: "index_miniatures_on_created_at"
@@ -63,6 +64,25 @@ ActiveRecord::Schema.define(version: 20131008132858) do
 
   create_table "scales", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sculptings", force: true do |t|
+    t.integer  "sculptor_id"
+    t.integer  "miniature_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sculptings", ["miniature_id", "sculptor_id"], name: "index_sculptings_on_miniature_id_and_sculptor_id", unique: true
+  add_index "sculptings", ["miniature_id"], name: "index_sculptings_on_miniature_id"
+  add_index "sculptings", ["sculptor_id"], name: "index_sculptings_on_sculptor_id"
+
+  create_table "sculptors", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "biog"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

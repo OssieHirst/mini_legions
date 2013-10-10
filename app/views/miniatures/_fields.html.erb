@@ -4,14 +4,25 @@
       <%= f.label :material %>
       <%= f.select 'material', options_from_collection_for_select(Miniature.select("DISTINCT material"), :material, 'material', @miniature.material) %>
       <%= f.fields_for :sizes do |size_fields| %>
-      <%= size_fields.label :scale_id, "Scale".pluralize %>
+      <%= size_fields.label :scale_id, simple_pluralize(@miniature.scales.count, 'Scale') %>
       <%= hidden_field "Miniature Scale", @miniature.sizes %>
-      <%= size_fields.select :scale_id, options_from_collection_for_select(Scale.all, :id, :name) %>
+      <%= size_fields.select :scale_id, options_from_collection_for_select(Scale.all, :id, :name, {:selected => @miniature.scales.map(&:id)}) %>
       <% end %>
        <%= f.fields_for :productions do |production_fields| %>
-      <%= production_fields.label :manufacturer_id, "Manufacturer".pluralize %>
-      <%= hidden_field "Miniature Manufacturer", @miniature.productions %>
-      <%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, @miniature.manufacturers) %>
+      <%= production_fields.label :manufacturer_id, simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>
+      <%= hidden_field "Miniature Manufacturer", :manufacturer_id %>
+      <%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, {:selected => @miniature.manufacturers.map(&:id)}) %>    
       <% end %>
+      <%= f.label :pcode, 'Product Code' %>
+      <%= f.text_field :pcode %>
+
+      <%= f.fields_for :sculptings do |sculpting_fields| %>
+      <%= sculpting_fields.label :sculptor_id, 'Sculpted by' %>
+      <%= hidden_field "Miniature Sculptor", :sculptor_id %>
+      <%= sculpting_fields.select :sculptor_id, options_from_collection_for_select(Sculptor.all, :id, :fullname, {:selected => @miniature.sculptors.map(&:id)}) %>    
+      <% end %>
+
       <%= f.label :release_date %>
       <%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %>
+      <%= f.label :notes %>
+      <%= f.text_area :notes %>
