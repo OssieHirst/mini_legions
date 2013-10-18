@@ -1,5 +1,4 @@
 MiniLegions::Application.routes.draw do
-  get "miniatures/new"
   resources :users do
     member do
       get :following, :followers
@@ -12,6 +11,7 @@ MiniLegions::Application.routes.draw do
     collection do
     get :manufacturers
     get :scales
+    get :sculptors
     end
   end
   resources :manufacturers do
@@ -25,6 +25,12 @@ MiniLegions::Application.routes.draw do
   resources :sculptors do
     collection do
       get :miniatures
+    end
+  end
+  resources :collections do
+    member do
+      get :miniatures
+      get :users
     end
   end
 

@@ -1,4 +1,6 @@
 class Miniature < ActiveRecord::Base
+  has_many :collections, dependent: :destroy
+  has_many :users, :through => :collections
   has_many :productions, dependent: :destroy
   has_many :manufacturers, :through => :productions
   has_many :sizes, dependent: :destroy

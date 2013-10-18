@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Miniature do
 
-  before do  @miniature = Miniature.new(name: "Example Miniature", material: "Metal", release_date: "25/03/1981", scale: "28mm")
+  before do  @miniature = Miniature.new(name: "Example Miniature", material: "Metal", release_date: "25/03/1981")
   end
    subject { @miniature }
  
@@ -10,9 +10,11 @@ describe Miniature do
   it { should respond_to(:name) }
   it { should respond_to(:material) }
   it { should respond_to(:release_date) }
-  it { should respond_to(:scale) }
+  it { should respond_to(:sizes) }
   it { should respond_to(:productions) }
   it { should respond_to(:manufacturers) }
+  it { should respond_to(:collections) }
+  it { should respond_to(:users) }
 
   it { should be_valid }
 

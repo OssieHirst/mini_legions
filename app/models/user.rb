@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :collections, dependent: :destroy
+  has_many :miniatures, through: :collections
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -16,6 +18,14 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def add!(miniature)
+    collections.create!(miniature_id: miniature.id)
+  end
+
+  def remove!(miniature)
+    collections.find_by(miniature_id: miniature.id).destroy!
+  end
+  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
