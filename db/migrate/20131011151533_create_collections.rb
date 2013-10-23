@@ -12,6 +12,6 @@ class CreateCollections < ActiveRecord::Migration
     add_index :collections, [:miniature_id]
     add_index :collections, [:status]
     add_index :collections, [:progress]
-    add_index :collections, [:user_id, :miniature_id], unique: true
+    add_index :collections, [:user_id, :miniature_id]
   end
 end

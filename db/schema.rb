@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131011151533) do
+ActiveRecord::Schema.define(version: 20131018131118) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131011151533) do
   add_index "collections", ["miniature_id"], name: "index_collections_on_miniature_id"
   add_index "collections", ["progress"], name: "index_collections_on_progress"
   add_index "collections", ["status"], name: "index_collections_on_status"
-  add_index "collections", ["user_id", "miniature_id"], name: "index_collections_on_user_id_and_miniature_id", unique: true
+  add_index "collections", ["user_id", "miniature_id"], name: "index_collections_on_user_id_and_miniature_id"
   add_index "collections", ["user_id"], name: "index_collections_on_user_id"
 
   create_table "manufacturers", force: true do |t|
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20131011151533) do
   end
 
   add_index "productions", ["manufacturer_id"], name: "index_productions_on_manufacturer_id"
+  add_index "productions", ["miniature_id", "manufacturer_id"], name: "index_productions_on_miniature_id_and_manufacturer_id", unique: true
   add_index "productions", ["miniature_id"], name: "index_productions_on_miniature_id"
 
   create_table "relationships", force: true do |t|

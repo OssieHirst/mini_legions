@@ -16,7 +16,7 @@ describe "Miniature pages" do
    it { should have_content(miniature.release_date.strftime("%d %b %Y")) }
    it { should have_content(miniature.material)}
    it { should have_content("01 Dec 2001")}
-   it {should have_link('Edit this miniature listing', href: edit_miniature_path(miniature)) }
+   it {should have_link('Edit', href: edit_miniature_path(miniature)) }
  end
 
   describe "add miniature" do
@@ -34,6 +34,10 @@ describe "Miniature pages" do
     describe "with valid information" do
       before do
         fill_in "Name",         with: "Example Miniature"
+        select("Resin", :from => "material")
+        select("28mm", :from => "scale_id")
+        select("Games Workshop", :from => "manufacturer_id")
+        select("Alan Perry", :from => "sculptor_id")
       end
 
       it "should create a miniature" do

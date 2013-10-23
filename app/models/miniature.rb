@@ -19,4 +19,10 @@ class Miniature < ActiveRecord::Base
     super s.titleize
   end
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      Miniature.create! row.to_hash
+    end
+  end
+
 end
