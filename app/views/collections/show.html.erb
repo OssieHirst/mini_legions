@@ -1,0 +1,21 @@
+<% provide(:title, [@miniature.name, @user.name].join(' by ')) %>
+
+<h1><%= @collection.miniature.name %> </h1>
+
+<%= image_tag @collection.photo.url(:small) %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%= @collection.progress %> by <%= link_to @collection.user.name, @user %><br /><br />
+
+     <% if current_user?(@user) %>Add photo
+     
+     	<%= form_for @collection, :html => { :multipart => true } do |f| %>
+     	<%= f.file_field :photo %>
+     	<%= f.submit "Add Photo" %>
+     	<% end %>
+     <% end %>
+    </section>
+  </aside>
+</div>

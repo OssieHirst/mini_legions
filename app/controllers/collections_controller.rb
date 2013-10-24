@@ -3,12 +3,25 @@ class CollectionsController < ApplicationController
 
   respond_to :html, :js
 
-  def create
-    @collection = @miniature.collections.build
-    current_user.add!(@miniature)
-    if @collection.save
-      redirect_to @miniature
+  def update
+    @collection = Collection.find(params[:id])
+    if @collection.update_attributes(collection_params)
+      flash[:notice] = "Successfully updated collection item."
+      redirect_to @collection
+    else
+      flash[:notice] = "That update did not work."
+      render @collection
     end
+  end
+
+  def show
+    @collection = Collection.find(params[:id])
+    @miniature = @collection.miniature
+    @user = @collection.user
+  end
+
+  def create
+    @collection = Collection.create(collection_params)
   end
 
   def destroy
@@ -16,4 +29,12 @@ class CollectionsController < ApplicationController
     current_user.remove!(@miniature)
     redirect_to @miniature
   end
+
+  private
+
+    def collection_params
+      params.require(:collection).permit(:user_id, :miniature_id, :status, :progress, :photo)
+    end
 end
+
+

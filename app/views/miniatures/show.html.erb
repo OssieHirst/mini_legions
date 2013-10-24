@@ -15,11 +15,14 @@
        Notes:<br />
        <%= @miniature.notes %>
        <br /><br />
+       <%= link_to "Edit", edit_miniature_path %><br />
+       <br /><br />
+       You have <%= @miniature.collections.where(status: 'Got').count %>
+       <br /><br />
       <%= @miniature.collections.where(status: 'Got').count %> have this<br />
       <%= @miniature.collections.where(status: 'Want').count %> want this
        <br /><br />
-       <%= link_to "Edit", edit_miniature_path %><br />
-       <br /><br />
+       
        <%= render  'shared/collection' %>
     </section>
   </aside>
