@@ -12,6 +12,7 @@ MiniLegions::Application.routes.draw do
     get :manufacturers
     get :scales
     get :sculptors
+    get :collection
     post :import
     end
   end

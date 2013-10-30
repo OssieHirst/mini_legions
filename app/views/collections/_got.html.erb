@@ -1,0 +1,14 @@
+
+<strong>You own this miniature</strong><br /><br />Progress: <%= @collection.progress %><br /><br />
+
+
+<% if @collection.photo? %>
+    <%= render 'replace_photo' %>
+    <% else %>
+    <%= render 'add_photo' %>
+    <% end %>
+
+
+
+
+     	

@@ -6,8 +6,8 @@ class Collection < ActiveRecord::Base
 	validates :status, presence: true
 	validates :progress, presence: true
 
-	has_attached_file :photo, :styles => { :small => "500x500>" }
-	:url  => "/assets/collections/:user_id/:id/:style/:basename.:extension",
-    :path => ":rails_root/public/assets/collections/:user_id/:id/:style/:basename.:extension"
+	has_attached_file :photo, :styles => { 
+		:original => "2048x2048", 
+		:medium => "620x620" }
 
 end

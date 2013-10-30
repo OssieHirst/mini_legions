@@ -3,6 +3,15 @@ class CollectionsController < ApplicationController
 
   respond_to :html, :js
 
+  def new
+    @collection = Collection.new(@miniature)
+    @miniature_id = params[:miniature_id]
+  end
+
+  def destroy_original
+    File.unlink(self.photo.path)
+  end
+
   def update
     @collection = Collection.find(params[:id])
     if @collection.update_attributes(collection_params)
@@ -21,7 +30,14 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.create(collection_params)
+    @collection = Collection.new(collection_params)
+    if @collection.save
+      flash[:success] = "Miniature added"
+      redirect_to @collection
+    else
+      flash[:success] = "Did not work!!!"
+      render 'new'
+    end
   end
 
   def destroy

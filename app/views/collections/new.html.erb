@@ -1,0 +1,16 @@
+<% provide(:title, 'Add to Collection or wantlist') %>
+<h1>Add to collection or wantlist</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@collection) do |f| %>
+  	<div><%= f.hidden_field :user_id, :value => current_user.id %></div>
+ 	<div><%= f.hidden_field :miniature_id, :value => @miniature_id %></div>
+   <%= f.label :status %>
+  <%= f.select :status, options_for_select(["Got", "Want", "Had"]) %>
+   <%= f.label :progress %>
+  <%= f.select :progress, options_for_select(["Painted", "Unpainted", "Assembled", "Unassambled", "Work In progress", "N/A"]) %>
+  <%= f.submit "Add", class: "btn btn-large btn-primary" %>
+<% end %>
+  </div>
+</div>

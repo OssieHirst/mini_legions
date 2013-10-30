@@ -1,0 +1,8 @@
+<% @miniature %>
+
+    <strong id="got" class="stat">
+      <%= @miniature.collections.where(status: 'Got').count %></strong> have this |
+        <strong id="got" class="stat">
+
+    
+      <%= @miniature.collections.where(status: 'Want').count %></strong> want this

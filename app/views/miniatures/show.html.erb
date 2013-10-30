@@ -17,13 +17,18 @@
        <br /><br />
        <%= link_to "Edit", edit_miniature_path %><br />
        <br /><br />
-       You have <%= @miniature.collections.where(status: 'Got').count %>
-       <br /><br />
-      <%= @miniature.collections.where(status: 'Got').count %> have this<br />
-      <%= @miniature.collections.where(status: 'Want').count %> want this
-       <br /><br />
-       
-       <%= render  'shared/collection' %>
+       You have <%= current_user.collections.where(status: 'Got').count %>
+       </section>
+      <section>
+        <%= render 'stats' %>
+      </section>
+      <section>
+       <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %>
     </section>
   </aside>
+   <div class="span8">
+    <ul class="photos"><% @miniature.collections(:photo).each do |photo| %>
+    <li><%= image_tag @miniature.collections.last.photo(:medium) %></li>
+    <% end %></ul>
+   </div>
 </div>
