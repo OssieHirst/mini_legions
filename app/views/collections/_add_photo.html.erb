@@ -1,5 +1,5 @@
     Upload a photo of your painting
     <%= form_for @collection, :html => { :multipart => true } do |f| %>
      	<%= f.file_field :photo %>
-     	<%= f.submit "Add Photo", data: { confirm: "You sure?" }, class: "btn btn-large btn-primary" %>
+     	<%= f.submit "Add Photo", class: "btn btn-large btn-primary" %>
      <% end %>

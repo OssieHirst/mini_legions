@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require retina
 
 /* Count the number of characters in a micropost. */
 function countCharacters(textField, charCountLabel, maxLength) {
