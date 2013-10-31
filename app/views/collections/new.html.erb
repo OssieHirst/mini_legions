@@ -9,7 +9,7 @@
    <%= f.label :status %>
   <%= f.select :status, options_for_select(["Got", "Want", "Had"]) %>
    <%= f.label :progress %>
-  <%= f.select :progress, options_for_select(["Painted", "Unpainted", "Assembled", "Unassambled", "Work In progress", "N/A"]) %>
+  <%= f.select :progress, options_for_select(["Unpainted", "Painted", "Assembled", "Unassambled", "Work In progress", "N/A"]) %>
   <%= f.submit "Add", class: "btn btn-large btn-primary" %>
 <% end %>
   </div>

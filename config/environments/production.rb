@@ -1,6 +1,17 @@
 MiniLegions::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['minilegions'],
+    :access_key_id => ENV['AKIAISXNMHPOPOLTCQ2A'],
+    :secret_access_key => ENV['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']
+  }
+}
+
+
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to miniature.name, miniature %></td>  
   <td><%= miniature.material %></td>
-  <td><%= link_to raw miniature.manufacturers.map(&:name).join('<br />') %></td> 
+  <td><%= link_to miniature.manufacturer.name, miniature.manufacturer %></td> 
   <td><%= link_to  miniature.scales.map(&:name).join(', ') %></td> 
   <td><%= miniature.pcode %></td>
   <td><%= link_to  miniature.sculptors.map(&:fullname).join(', ') %></td>

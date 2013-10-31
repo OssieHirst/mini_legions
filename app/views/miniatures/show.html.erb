@@ -5,19 +5,30 @@
   <aside class="span4">
     <section>
       
-       <%= @miniature.name %><br />
+       <strong><%= @miniature.name %><br /></strong>
        Material: <%= @miniature.material %><br /> 
-       <%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>: <%= link_to @miniature.manufacturers.map(&:name).join(', '), miniatures_manufacturers_path %><br /> 
-       <%= simple_pluralize(@miniature.scales.count, 'Scale')%>: <%= link_to @miniature.scales.map(&:name).join(', '), scale_path %><br />
+
+       <%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>: 
+       <% @miniature.manufacturers.each do |manufacturer| %>
+        <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
+          <% end %><br /> 
+
+       <%= simple_pluralize(@miniature.scales.count, 'Scale')%>: <% @miniature.scales.each do |scale| %>
+        <%= link_to scale.name, scale_path(scale) %>
+          <% end %><br />
        Product code: <%= @miniature.pcode %><br />
-       Sculpted by: <%= link_to @miniature.sculptors.map(&:fullname).join(', '), sculptor_path %><br />
+       Sculpted by: <% @miniature.sculptors.each do |sculptor| %>
+        <%= link_to sculptor.fullname, sculptor_path(sculptor) %>
+          <% end %><br />
        Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
        Notes:<br />
        <%= @miniature.notes %>
        <br /><br />
        <%= link_to "Edit", edit_miniature_path %><br />
        <br /><br />
-       You have <%= current_user.collections.where(status: 'Got').count %>
+       You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
+       <br />
+       You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist
        </section>
       <section>
         <%= render 'stats' %>
@@ -27,8 +38,8 @@
     </section>
   </aside>
    <div class="span8">
-    <ul class="photos"><% @miniature.collections(:photo).each do |photo| %>
-    <li><%= image_tag @miniature.collections.last.photo(:medium) %></li>
+    <ul class="photos"><% @miniature.collections(:photo).each do |collection| %>
+    <li><%= image_tag collection.photo.url(:medium) %></li>
     <% end %></ul>
    </div>
 </div>
