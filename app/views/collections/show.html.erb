@@ -6,7 +6,7 @@
       <h3><%= @collection.miniature.name %> </h3>
       <% if @collection.photo? %>
 
-      <%= link_to image_tag(@collection.photo.url(:medium)), @collection.photo.url(:original) %><br />
+      <%= link_to image_tag(@collection.photo.url(:medium)), @collection.photo.url(:original), :retina => true %><br />
       Painted by <%= link_to @collection.user.name, @user %>
       <% end %>
 

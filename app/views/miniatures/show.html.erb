@@ -39,7 +39,7 @@
   </aside>
    <div class="span8">
     <ul class="photos"><% @miniature.collections(:photo).each do |collection| %>
-    <li><%= image_tag collection.photo.url(:medium) %></li>
+    <li><%= image_tag collection.photo.url(:medium), :retina => true %></li>
     <% end %></ul>
    </div>
 </div>
