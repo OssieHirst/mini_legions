@@ -17,3 +17,6 @@
 
 # Ignore keys
 /*.pub
+
+# Ignore images folder
+/public/system/
