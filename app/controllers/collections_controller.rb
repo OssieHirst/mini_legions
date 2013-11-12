@@ -3,6 +3,12 @@ class CollectionsController < ApplicationController
 
   respond_to :html, :js
 
+  def index
+    @user = User.find(params[:user_id])
+    @collections = @user.collections.where(:status => "Got").paginate(page: params[:page])
+  end
+
+
   def new
     @collection = Collection.new(@miniature)
     @miniature_id = params[:miniature_id]

@@ -1,5 +1,6 @@
 MiniLegions::Application.routes.draw do
   resources :users do
+    resources :collections
     member do
       get :following, :followers
     end

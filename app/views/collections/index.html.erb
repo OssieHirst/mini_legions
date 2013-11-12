@@ -1,0 +1,11 @@
+<% provide(:title, @user.name ) %>
+<h1><% if current_user?(@user) %>Your<% else %>
+	<%= @user.name %>'s<% end %> collection</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @collections %>
+</ul>
+
+<%= will_paginate %>

@@ -1,0 +1,6 @@
+<li>
+  <%= image_tag collection.photo.url(:icon), :retina => true %>
+
+  <%= link_to collection.miniature.name, collection %>
+  <%= collection.progress %>
+</li>

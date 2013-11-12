@@ -26,20 +26,24 @@
        <br /><br />
        <%= link_to "Edit", edit_miniature_path %><br />
        <br /><br />
-       You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
-       <br />
-       You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist
        </section>
       <section>
         <%= render 'stats' %>
       </section>
       <section>
-       <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %>
+       <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %></section>
+      <section>
+ You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist
+       <br />
+       You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
     </section>
+    <ul class="photos"><% current_user.collections.where(miniature_id: @miniature).where(status: 'Got').each do |collection| %>
+    <li><%= image_tag collection.photo.url(:icon), :retina => true %> <%= collection.progress %></li><% end %></ul>
   </aside>
    <div class="span8">
     <ul class="photos"><% @miniature.collections(:photo).each do |collection| %>
-    <li><%= image_tag collection.photo.url(:medium), :retina => true %></li>
-    <% end %></ul>
+    <li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %>
+    </ul>
    </div>
 </div>
+
