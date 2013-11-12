@@ -1,1 +1,2 @@
-Could not find generator add_index.
+[1m[37m      invoke[0m  active_record
+[1m[32m      create[0m    db/migrate/20131112184600_add_index.rb
