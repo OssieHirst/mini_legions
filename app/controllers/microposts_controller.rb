@@ -2,6 +2,14 @@ class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def reply_form
+
+    respond_to do |format|
+
+      format.js
+    end
+  end
+
   def create
   	@micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
@@ -21,7 +29,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :reply_to)
     end
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])

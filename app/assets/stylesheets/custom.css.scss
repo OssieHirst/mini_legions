@@ -241,12 +241,28 @@ input {
 .content {
   display: block;
 }
-.timestamp {
+.postinfo {
+  color: $grayLight;
+  a {
+   color: $grayLight;
+  }
+}
+  
+
+
+.timestamp{
   color: $grayLight;
 }
 .gravatar {
   float: left;
   margin-right: 10px;
+}
+.user {
+  a {
+    color: $black;
+    font-weight: bold;
+  } 
+
 }
 aside {
   textarea {
