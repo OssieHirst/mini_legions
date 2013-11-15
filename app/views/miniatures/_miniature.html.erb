@@ -1,10 +1,14 @@
 <tr>
   <td><%= link_to miniature.name, miniature %></td>  
   <td><%= miniature.material %></td>
-  <td><%= miniature.manufacturers.name %></td> 
-  <td><%= link_to  miniature.scales.map(&:name).join(', ') %></td> 
+  <td><% miniature.manufacturers.each do |manufacturer| %>
+        <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
+      <% end %></td> 
+  <td><% miniature.scales.each do |scale| %>
+        <%= link_to scale.name, scale_path(scale) %><br /><% end %></td> 
   <td><%= miniature.pcode %></td>
-  <td><%= link_to  miniature.sculptors.map(&:fullname).join(', ') %></td>
+  <td><% miniature.sculptors.each do |sculptor| %>
+        <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br /><% end %></td>
   <td><%= miniature.release_date %></td>
   <td><% if current_user.try(:admin?) %>
   <%= link_to "delete", miniature, method: :delete,

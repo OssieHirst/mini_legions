@@ -5,6 +5,7 @@ class CollectionsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
+    @search = @user.collections.search(params[:q])
     @collections = @user.collections.where(status: params[:status]).paginate(page: params[:page])
   end
 

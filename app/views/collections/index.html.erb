@@ -2,13 +2,21 @@
 <h1><% if current_user?(@user) %>Your<% else %>
 	<%= @user.name %>'s<% end %> collection</h1>
 
+<%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, "Name contains" %>
+    <%= f.text_field :name_cont %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
 <%= will_paginate %>
 <table border="0" cellpadding="10" class="table table-hover">
 <th align="left"><i class="fa fa-camera fa-2x"></i></th>
-<th align="left">Miniature</th>
-<th align="left">Name</th>
-<th align="left">Manufacturer</th>
-<th align="left">Progress</th>
+<th align="left"><%= sort_link(@search, :miniature_name, "Miniature") %></th>
+<th align="left"><%= sort_link(@search, :name, "Name") %></th>
+<th align="left"><%= sort_link(@search, :manufacturer, "Manufacturer") %></th>
+<th align="left"><%= sort_link(@search, :progress, "Progress") %></th>
 
   <%= render @collections %>
 </table>
