@@ -4,11 +4,15 @@
 
   <div class="span8">
       <h3><%= @collection.miniature.name %> </h3>
-      <% if @collection.photo? %>
+      <% if @collection.photo.exists? %>
 
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true %><br />
-      Painted by <%= link_to @collection.user.name, @user %>
-      <% end %>
+      "<%= @collection.name %>" Painted by <%= link_to @collection.user.name, @user %>
+      <% end %><br /><br />
+
+        <%= @collection.notes %>
+
+
 
     </div>
   <aside class="span4">

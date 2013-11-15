@@ -10,6 +10,10 @@
   <%= f.select :status, options_for_select(["Got", "Want", "Had"]) %>
    <%= f.label :progress %>
   <%= f.select :progress, options_for_select(["Unpainted", "Painted", "Assembled", "Unassambled", "Work In progress", "N/A"]) %>
+  <%= f.label :name, 'Name or Number (optional) for identifying your individual miniatures' %>
+  <%= f.text_field :name %>
+  <%= f.label :notes, 'Notes (optional) on the painting or tabletop prowess of miniature' %>
+  <%= f.text_area :notes %>
   <%= f.submit "Add", class: "btn btn-large btn-primary" %>
 <% end %>
   </div>

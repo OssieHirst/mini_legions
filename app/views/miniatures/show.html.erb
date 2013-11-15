@@ -38,11 +38,14 @@
        You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
     </section>
     <ul class="photos"><% current_user.collections.where(miniature_id: @miniature).where(status: 'Got').each do |collection| %>
-    <li><%= image_tag collection.photo.url(:icon), :retina => true %> <%= collection.progress %></li><% end %></ul>
+      
+    <li><% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true), collection %><% end %>
+<%= collection.name %>
+   <%= collection.progress %></li><% end %></ul>
   </aside>
    <div class="span8">
     <ul class="photos"><% @miniature.collections(:photo).each do |collection| %>
-    <li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %>
+    <% if collection.photo.exists? %><li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %><% end %>
     </ul>
    </div>
 </div>

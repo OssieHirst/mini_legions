@@ -5,15 +5,17 @@ class Collection < ActiveRecord::Base
 	validates :miniature_id, presence: true
 	validates :status, presence: true
 	validates :progress, presence: true
+	validates :name, length: { maximum: 25 }
+	validates :notes, length: { maximum: 280 }
 	retina!
 
 	has_attached_file :photo,  :styles => { 
 		:original => "1024x1024", 
 		:medium => "620x620",
 		:icon => " " },
-		:retina => true,
 		:convert_options => {
     	:icon => '-resize "140x140^" +repage -gravity Center -crop "64x64+0-5"' },
+    	:retina => true,
 		:url => "/system/collections/photos/:id/:style/mlc_:id.:extension",
   		:path => ":rails_root/public/system/collections/photos/:id/:style/mlc_:id.:extension" 
 

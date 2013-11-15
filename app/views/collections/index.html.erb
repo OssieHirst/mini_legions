@@ -3,9 +3,14 @@
 	<%= @user.name %>'s<% end %> collection</h1>
 
 <%= will_paginate %>
+<table border="0" cellpadding="10" class="table table-hover">
+<th align="left"><i class="fa fa-camera fa-2x"></i></th>
+<th align="left">Miniature</th>
+<th align="left">Name</th>
+<th align="left">Manufacturer</th>
+<th align="left">Progress</th>
 
-<ul class="users">
   <%= render @collections %>
-</ul>
+</table>
 
 <%= will_paginate %>

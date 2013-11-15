@@ -10,10 +10,10 @@
       <%= @user.followers.count %>
     </strong>
   </a>
-  <a href="<%= user_collections_path(@user) %>">collection<strong id="collection" class="stat">
+  <a href="<%= user_collections_path(@user, :status => "Got") %>">collection<strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Got').count %>
     </strong></a>
-    <a href="<%= collections_path(@user) %>">wantlist<strong id="collection" class="stat">
+    <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist<strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Want').count %>
     </strong></a>
 </div>

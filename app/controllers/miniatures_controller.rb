@@ -109,7 +109,8 @@ class MiniaturesController < ApplicationController
   end
 
   def index
-    @miniatures = Miniature.paginate(page: params[:page])
+    @search = Miniature.search(params[:q])
+    @miniatures = @search.result.paginate(page: params[:page])
   end
 
   def destroy

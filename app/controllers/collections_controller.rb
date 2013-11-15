@@ -5,7 +5,7 @@ class CollectionsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @collections = @user.collections.where(:status => "Got").paginate(page: params[:page])
+    @collections = @user.collections.where(status: params[:status]).paginate(page: params[:page])
   end
 
 
@@ -55,7 +55,7 @@ class CollectionsController < ApplicationController
   private
 
     def collection_params
-      params.require(:collection).permit(:user_id, :miniature_id, :status, :progress, :photo)
+      params.require(:collection).permit(:user_id, :miniature_id, :status, :progress, :photo, :name, :notes, :video)
     end
 end
 

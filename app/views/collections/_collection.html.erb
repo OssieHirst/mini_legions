@@ -1,6 +1,11 @@
-<li>
-  <%= image_tag collection.photo.url(:icon), :retina => true %>
-
-  <%= link_to collection.miniature.name, collection %>
-  <%= collection.progress %>
-</li>
+<tr>
+  <td>
+  <% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true), collection %><% end %></td>
+  <td><%= link_to collection.miniature.name, collection %></td>
+   <td><%= collection.name %></td>
+   <td><% collection.miniature.manufacturers.each do |manufacturer| %>
+        <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
+          <% end %></td>
+  <td><%= collection.progress %></td>
+  
+  </td></tr>
