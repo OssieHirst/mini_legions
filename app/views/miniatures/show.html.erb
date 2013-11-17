@@ -1,47 +1,43 @@
 <% provide(:title, @miniature.name) %>
-<h1><%= @miniature.name %></h1>
 
 <div class="row">
   <aside class="span4">
     <section>
       
-       <strong><%= @miniature.name %><br /></strong>
-       Material: <%= @miniature.material %><br /> 
+       <h1><%= @miniature.name %><br /></h1><br />
+       <div class="minilabel">Material:</div> <%= @miniature.material %><br /> 
 
-       <%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>: 
+       <div class="minilabel"><%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>:</div> 
        <% @miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
           <% end %><br /> 
 
-       <%= simple_pluralize(@miniature.scales.count, 'Scale')%>: <% @miniature.scales.each do |scale| %>
+       <div class="minilabel"><%= simple_pluralize(@miniature.scales.count, 'Scale')%>:</div> <% @miniature.scales.each do |scale| %>
         <%= link_to scale.name, scale_path(scale) %>
           <% end %><br />
-       Product code: <%= @miniature.pcode %><br />
-       Sculpted by: <% @miniature.sculptors.each do |sculptor| %>
+       <div class="minilabel">Product code:</div> <%= @miniature.pcode %><br />
+       <div class="minilabel">Sculpted by:</div> <% @miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %>
           <% end %><br />
-       Release date: <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
-       Notes:<br />
+       <div class="minilabel">Release date:</div> <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br /><br />
+       <div class="minilabel">Notes:</div><br />
        <%= @miniature.notes %>
        <br /><br />
        <%= link_to "Edit", edit_miniature_path %><br />
-       <br /><br />
+       <br />
        </section>
       <section>
         <%= render 'stats' %>
       </section>
       <section>
-       <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %></section>
-      <section>
- You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist
-       <br />
-       You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
-    </section>
+       <i class="fa fa-check-square-o"></i> <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %></section>
+ <div class="gotwant">You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist</div>
+       <div class="gotwant">You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
     <ul class="photos"><% current_user.collections.where(miniature_id: @miniature).where(status: 'Got').each do |collection| %>
       
-    <li><% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true), collection %><% end %>
+    <li><% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true, :class => "curvedicon"), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvedicon"), collection %><% end %>
 <%= collection.name %>
-   <%= collection.progress %></li><% end %></ul>
+   <%= collection.progress %></li><% end %></ul></div>
   </aside>
    <div class="span8">
     <ul class="photos"><% @miniature.collections(:photo).each do |collection| %>

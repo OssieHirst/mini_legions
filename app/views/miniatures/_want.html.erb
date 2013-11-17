@@ -1,0 +1,4 @@
+<% @miniature.collections.where(status: 'Want').each do |collection| %>
+        <tr>
+  		<td><%= link_to collection.user.name, collection.user %></td></tr>
+      <% end %>

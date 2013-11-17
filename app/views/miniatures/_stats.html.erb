@@ -1,8 +1,5 @@
 <% @miniature %>
 
-    <strong id="got" class="stat">
-      <%= @miniature.collections.where(status: 'Got').count(:user_id, distinct: true) %></strong> have this |
-        <strong id="got" class="stat">
-
-    
-      <%= @miniature.collections.where(status: 'Want').count(:user_id, distinct: true) %></strong> want this
+      <%= link_to [@miniature.collections.where(status: 'Got').count(:user_id, distinct: true), 'have this'].join(' '), in_collection_path(:miniature_id => @miniature) %> |
+        
+      <%= link_to [@miniature.collections.where(status: 'Want').count(:user_id, distinct: true), 'want this'].join(' '), in_collection_path(:miniature_id => @miniature) %>

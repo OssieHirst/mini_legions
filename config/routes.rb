@@ -46,6 +46,7 @@ MiniLegions::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/new',     to: 'miniatures#new',       via: 'get'
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
+  match 'in_collection', to: 'miniatures#in_collection', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,9 +1,8 @@
-<% @user ||= current_user %>
-
+<div class="sitestats">
 <strong>Site stats</strong><br />
 <%= @miniatures.count %> miniatures listed<br />
 <%= @users.count %> users<br />
 <%= @manufacturers.count %> manufacturers<br />
 <%= @sculptors.count %> sculptors<br />
 <%= @collections.where("photo_file_size IS NOT NULL").count %> photos uploaded
-
+</div>

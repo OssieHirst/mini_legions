@@ -2,6 +2,10 @@ class MiniaturesController < ApplicationController
    before_action :signed_in_user, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
+   def in_collection
+    @miniature = Miniature.find(params[:miniature_id])
+   end
+
    def import
      Miniature.import(params[:file])
      redirect_to root_url, notice: "Miniatures imported."
