@@ -20,8 +20,10 @@ MiniLegions::Application.routes.draw do
   resources :manufacturers do
     collection do
       get :miniatures
+      get :lines
     end
   end
+  resources :lines
   resources :productions
   resources :sizes
   resources :scales

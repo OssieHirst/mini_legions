@@ -1,4 +1,14 @@
 <% provide(:title, @manufacturer.name) %>
 <h1><%= @manufacturer.name %></h1>
 
-<%= @manufacturer.miniatures.map(&:name).join(', ') %>
+<h4>Miniature product lines</h4>
+<% @manufacturer.lines.roots.each do |line| %>
+<%= link_to_unless_current line.name, line %>
+<br />
+<% end %>
+
+<br /><br /><br />
+<h4>Miniatures</h4>
+<% @manufacturer.miniatures.each do |miniature| %>
+<%= link_to miniature.name, miniature %><br />
+<% end %>

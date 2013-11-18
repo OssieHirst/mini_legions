@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118114501) do
+ActiveRecord::Schema.define(version: 20131118141758) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 20131118114501) do
   add_index "collections", ["status"], name: "index_collections_on_status"
   add_index "collections", ["user_id", "miniature_id"], name: "index_collections_on_user_id_and_miniature_id"
   add_index "collections", ["user_id"], name: "index_collections_on_user_id"
+
+  create_table "lines", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "ancestry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "manufacturer_id"
+    t.string   "slug"
+  end
+
+  add_index "lines", ["ancestry"], name: "index_lines_on_ancestry"
+  add_index "lines", ["manufacturer_id"], name: "index_lines_on_manufacturer_id"
+  add_index "lines", ["slug"], name: "index_lines_on_slug"
 
   create_table "manufacturers", force: true do |t|
     t.string   "name"

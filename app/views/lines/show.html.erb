@@ -1,0 +1,22 @@
+<% provide(:title, @line.name) %>
+<h1><%= @line.name %></h1>
+<div id="breadcrumbs">
+  <%= @line.manufacturer_id %> &gt;
+  <% @line.ancestors.each do |line| %> 
+    <%= link_to line.name, line %> &gt;
+  <% end %> <%= @line.name %>
+</div>
+<div class="row">
+  <div class="span4">
+<br /><br />
+<% @line.children.each do |line| %>
+<%= link_to line.name, line %>
+<br />
+<% end %>
+<br /><br />
+Depth = <%= @line.depth %>
+</div>
+<div class="span8">
+	<%= @line.description %>
+</div>
+</div>
