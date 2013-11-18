@@ -3,15 +3,15 @@ class ManufacturersController < ApplicationController
 	before_action :admin_user,     only: :destroy
 
   def show
-    @manufacturer = Manufacturer.find(params[:id])
+    @manufacturer = Manufacturer.find_by_slug(params[:id])
   end
 
   def edit
-    @manufacturer = Manufacturer.find(params[:id])
+    @manufacturer = Manufacturer.find_by_slug(params[:id])
   end
 
   def update
-    @manufacturer = Manufacturer.find(params[:id])
+    @manufacturer = Manufacturer.find_by_slug(params[:id])
     if @manufacturer.update_attributes(manufacturer_params)
       flash[:success] = "Manufacturer updated"
       redirect_to @manufacturer

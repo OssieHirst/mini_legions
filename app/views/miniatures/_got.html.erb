@@ -1,5 +1,5 @@
 
-  		<% @miniature.collections.where(status: 'Got').each do |collection| %>
-        <tr><td><%= gravatar_for collection.user, size: 30 %></td>
-        	<td><%= link_to collection.user.name, collection.user %></td></tr>
+  		<% @usergot.each do |user| %>
+        <tr><td><%= gravatar_for user, size: 30 %>
+        	<%= link_to user.name, user %></td></tr>
       <% end %>

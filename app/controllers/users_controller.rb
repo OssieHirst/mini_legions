@@ -4,7 +4,7 @@ class UsersController < ApplicationController
    before_action :admin_user,     only: :destroy
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
   end
   
@@ -40,21 +40,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.find_by_username(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
 
   def following
     @title = "Following"
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 # Before filters
 
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.find_by_username(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
 end

@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def to_param
+    username
+  end
+
   def add!(miniature)
     collections.create!(miniature_id: miniature.id)
   end

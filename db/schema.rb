@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114161947) do
+ActiveRecord::Schema.define(version: 20131118114501) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(version: 20131114161947) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "manufacturers", ["slug"], name: "index_manufacturers_on_slug"
 
   create_table "microposts", force: true do |t|
     t.string   "content"

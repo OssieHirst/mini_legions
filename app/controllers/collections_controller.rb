@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @user = User.find(params[:user_id])
+    @user = User.find_by_username(params[:user_id])
     @search = @user.collections.search(params[:q])
     @collections = @user.collections.where(status: params[:status]).paginate(page: params[:page])
   end
