@@ -1,8 +1,9 @@
 <h1>Listing lines</h1>
 
-<table>
+<table border="0" cellpadding="10" class="table table-condensed table-hover">
   <tr>
     <th>Name</th>
+    <th>Manufacturer</th>
     <th>Description</th>
     <th>Ancestry</th>
     <th></th>
@@ -13,6 +14,7 @@
 <% @lines.each do |line| %>
   <tr>
     <td><%= line.name %></td>
+    <td><%= line.manufacturer.name %></td>
     <td><%= line.description %></td>
     <td><%= line.ancestry %></td>
     <td><%= link_to 'Show', line %></td>

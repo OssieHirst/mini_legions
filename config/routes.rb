@@ -1,3 +1,4 @@
+
 MiniLegions::Application.routes.draw do
   resources :users do
     resources :collections
@@ -13,7 +14,8 @@ MiniLegions::Application.routes.draw do
     get :manufacturers
     get :scales
     get :sculptors
-    get :collection
+    get :collections
+    get :lines
     post :import
     end
   end
@@ -23,7 +25,12 @@ MiniLegions::Application.routes.draw do
       get :lines
     end
   end
-  resources :lines
+  resources :lines do
+   collection do
+    get :manufacturers
+    get :miniatures
+   end
+  end
   resources :productions
   resources :sizes
   resources :scales
@@ -49,6 +56,7 @@ MiniLegions::Application.routes.draw do
   match '/new',     to: 'miniatures#new',       via: 'get'
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

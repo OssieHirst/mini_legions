@@ -1,6 +1,6 @@
 class Line < ActiveRecord::Base  
+  belongs_to :manufacturer
   has_ancestry
-  belongs_to :manufacturers
 
   def to_param
 	slug

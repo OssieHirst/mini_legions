@@ -1,7 +1,7 @@
 <% provide(:title, @line.name) %>
 <h1><%= @line.name %></h1>
 <div id="breadcrumbs">
-  <%= @line.manufacturer_id %> &gt;
+  <%= link_to @line.manufacturer.name, @line.manufacturer %> &gt;
   <% @line.ancestors.each do |line| %> 
     <%= link_to line.name, line %> &gt;
   <% end %> <%= @line.name %>
