@@ -13,7 +13,7 @@
           <% end %><br /> 
 
        <div class="minilabel"><%= simple_pluralize(@miniature.scales.count, 'Scale')%>:</div> <% @miniature.scales.each do |scale| %>
-        <%= link_to scale.name, scale_path(scale) %>
+        <%= scale.name %>
           <% end %><br />
        <div class="minilabel">Product code:</div> <%= @miniature.pcode %><br />
        <div class="minilabel">Sculpted by:</div> <% @miniature.sculptors.each do |sculptor| %>

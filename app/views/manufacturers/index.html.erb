@@ -1,12 +1,25 @@
 <% provide(:title, 'All Manufacturers') %>
 <h1>All Manufacturers</h1>
 
+<%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, "Name contains" %>
+    <%= f.text_field :name_cont %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
 <%= will_paginate %>
 
-<ul class="users">
- <%= render @manufacturers %>
-</ul>
+<table border="0" cellpadding="10" class="table table-hover">
+<th align="left"><%= sort_link(@search, :name, "Manufacturer") %></th>
+<% if current_user.try(:admin?) %><th></th>
+    <th></th><% end %>
 
+
+ <%= render @manufacturers %>
+
+</table>
 <%= will_paginate %>
 
 <% if current_user.try(:admin?) %>

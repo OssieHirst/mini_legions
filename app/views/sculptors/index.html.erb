@@ -1,0 +1,37 @@
+<% provide(:title, 'All sculptors') %>
+
+<h1>Sculptors</h1>
+
+<%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :first_name_or_last_name_cont, "Name contains" %>
+    <%= f.text_field :first_name_or_last_name_cont %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<%= will_paginate %>
+
+<table border="0" cellpadding="10" class="table table-condensed table-hover">
+  <tr>
+    <th><%= sort_link(@search, :last_name, "Name") %></th>
+    <th>Biog</th>
+    <% if current_user.try(:admin?) %><th>Admin</th>
+    <th>Admin</th><% end %>
+  </tr>
+
+<% @sculptors.each do |sculptor| %>
+  <tr>
+    <td><%= link_to sculptor.fullname, sculptor %> (<%= sculptor.miniatures.count %>) miniatures</td>
+    <td><%= sculptor.biog %></td>
+    <% if current_user.try(:admin?) %><td><%= link_to 'Edit', edit_sculptor_path(sculptor) %></td>
+    <td><%= link_to 'Destroy', sculptor, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate %>
+
+<br />
+
+<% if current_user.try(:admin?) %><%= link_to 'New sculptor', new_sculptor_path %><% end %>

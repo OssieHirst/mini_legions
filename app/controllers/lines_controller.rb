@@ -45,7 +45,7 @@ class LinesController < ApplicationController
 
   def admin_user
       redirect_to(root_url) unless current_user.admin?
-    end
+  end
 
     def signed_in_user
       unless signed_in?
