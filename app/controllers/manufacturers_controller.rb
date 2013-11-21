@@ -21,7 +21,8 @@ class ManufacturersController < ApplicationController
   end
 
   def index
-    @manufacturers = Manufacturer.paginate(page: params[:page])
+    @search = Manufacturer.search(params[:q])
+    @manufacturers = @search.result.paginate(page: params[:page])
   end
 
   def create
