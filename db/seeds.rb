@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create(name: "Olórin", email: "secretfire81@gmail.com", password: "foobar", admin: "true", username: "Olorin")
+
+Manufacturer.create(:name "Games Workshop", :slug "GamesWorkshop")
