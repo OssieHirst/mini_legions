@@ -25,14 +25,28 @@ class ManufacturersController < ApplicationController
   end
 
   def create
+    @manufacturer = Manufacturer.new(manufacturer_params)
+    if @manufacturer.save
+      flash[:success] = "Manufacturer added!"
+      redirect_to manufacturers_path
+    else
+      render 'new'
+    end
+  end
+
+  def new
+    @manufacturer = Manufacturer.new
   end
 
   def destroy
+    Manufacturer.find_by_slug(params[:id]).destroy
+    flash[:success] = "Manufacturer destroyed."
+    redirect_to manufacturers_url
   end
 
 private
     def manufacturer_params
-      params.require(:manufacturer).permit(:name)
+      params.require(:manufacturer).permit(:name, :slug)
     end
 
     def admin_user

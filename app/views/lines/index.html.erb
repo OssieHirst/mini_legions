@@ -19,7 +19,7 @@
     <td><%= line.ancestry %></td>
     <td><%= link_to 'Show', line %></td>
     <td><%= link_to 'Edit', edit_line_path(line) %></td>
-    <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><% if current_user.try(:admin?) %><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
   </tr>
 <% end %>
 </table>

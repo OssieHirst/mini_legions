@@ -8,3 +8,8 @@
 </ul>
 
 <%= will_paginate %>
+
+<% if current_user.try(:admin?) %>
+  <%= link_to 'New manufacturer', new_manufacturer_path %>
+  <% end %>
+
