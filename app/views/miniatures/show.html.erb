@@ -23,6 +23,11 @@
        <div class="minilabel">Notes:</div><br />
        <%= @miniature.notes %>
        <br /><br />
+       <div id="breadcrumbs">
+  <% @miniature.lines.each do |line| %> 
+    <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %> 
+  <% end %>
+</div><br /> 
        <%= link_to "Edit", edit_miniature_path %><br />
        <br />
        </section>
@@ -40,7 +45,8 @@
    <%= collection.progress %></li><% end %></ul></div>
   </aside>
    <div class="span8">
-    <ul class="photos"><% @miniature.collections(:photo).each do |collection| %>
+    <ul class="photos">
+      <% @miniature.collections(:photo).each do |collection| %>
     <% if collection.photo.exists? %><li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %><% end %>
     </ul>
    </div>

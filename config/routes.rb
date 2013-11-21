@@ -33,6 +33,7 @@ MiniLegions::Application.routes.draw do
   end
   resources :productions
   resources :sizes
+  resources :minilines
   resources :scales
   resources :sculptors do
     collection do

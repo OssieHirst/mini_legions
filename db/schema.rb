@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118141758) do
+ActiveRecord::Schema.define(version: 20131120154321) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20131118141758) do
 
   add_index "miniatures", ["created_at"], name: "index_miniatures_on_created_at"
   add_index "miniatures", ["release_date"], name: "index_miniatures_on_release_date"
+
+  create_table "minilines", force: true do |t|
+    t.integer  "miniature_id"
+    t.integer  "line_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "minilines", ["line_id"], name: "index_minilines_on_line_id"
+  add_index "minilines", ["miniature_id", "line_id"], name: "index_minilines_on_miniature_id_and_line_id", unique: true
+  add_index "minilines", ["miniature_id"], name: "index_minilines_on_miniature_id"
 
   create_table "productions", force: true do |t|
     t.integer  "miniature_id"
