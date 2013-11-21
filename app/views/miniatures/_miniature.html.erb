@@ -9,7 +9,7 @@
   <td><%= miniature.pcode %></td>
   <td><% miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br /><% end %></td>
-  <td><%= miniature.release_date %></td>
+  <td><%= miniature.release_date.strftime("%d %b %Y") unless miniature.release_date.blank? %></td>
   <td><% if current_user.try(:admin?) %>
   <%= link_to "delete", miniature, method: :delete,
                                   data: { confirm: "You sure?" } %>
