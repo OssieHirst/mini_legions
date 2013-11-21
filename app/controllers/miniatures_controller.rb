@@ -10,7 +10,7 @@ class MiniaturesController < ApplicationController
 
    def import
      Miniature.import(params[:file])
-     redirect_to root_url, notice: "Miniatures imported."
+     redirect_to miniatures_path, notice: "Miniatures imported."
    end
 
   def show
