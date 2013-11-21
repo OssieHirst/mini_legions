@@ -26,6 +26,9 @@
 <%= will_paginate %>
 
 <% if current_user.try(:admin?) %>
+
+<%= link_to 'New miniature', new_miniature_path %>
+
 <h1> Import Miniatures:</h1>
 
 <%= form_tag import_miniatures_path, multipart: true do %>

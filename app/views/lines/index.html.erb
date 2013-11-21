@@ -25,5 +25,6 @@
 </table>
 
 <br />
-
+<% if current_user.try(:admin?) %>
 <%= link_to 'New line', new_line_path %>
+<% end %>

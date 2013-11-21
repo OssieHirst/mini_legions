@@ -22,7 +22,7 @@
 
 <% @sculptors.each do |sculptor| %>
   <tr>
-    <td><%= link_to sculptor.fullname, sculptor %> (<%= sculptor.miniatures.count %>) miniatures</td>
+    <td><%= link_to sculptor.fullname, sculptor %> (<%= sculptor.miniatures.count %> miniatures)</td>
     <td><%= sculptor.biog %></td>
     <% if current_user.try(:admin?) %><td><%= link_to 'Edit', edit_sculptor_path(sculptor) %></td>
     <td><%= link_to 'Destroy', sculptor, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
