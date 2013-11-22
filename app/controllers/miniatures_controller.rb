@@ -116,6 +116,7 @@ class MiniaturesController < ApplicationController
 
   def index
     @search = Miniature.search(params[:q])
+    @search.sorts = 'release_date desc' if @search.sorts.empty?  
     @miniatures = @search.result.paginate(page: params[:page])
   end
 

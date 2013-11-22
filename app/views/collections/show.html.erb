@@ -7,7 +7,7 @@
       <% if @collection.photo.exists? %>
 
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true %><br />
-      "<%= @collection.name %>" Painted by <%= link_to @collection.user.name, @user %>
+      <i><%= @collection.name %></i> Painted by <%= link_to @collection.user.name, @user %>
       <% end %><br /><br />
 
         <%= @collection.notes %>

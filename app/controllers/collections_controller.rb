@@ -6,6 +6,7 @@ class CollectionsController < ApplicationController
   def index
     @user = User.find_by_username(params[:user_id])
     @search = @user.collections.search(params[:q])
+    @search.sorts = 'created_at desc' if @search.sorts.empty?  
     @collections = @search.result.where(status: params[:status]).paginate(page: params[:page])
   end
 

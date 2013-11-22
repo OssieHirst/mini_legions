@@ -22,6 +22,7 @@ class ManufacturersController < ApplicationController
 
   def index
     @search = Manufacturer.search(params[:q])
+    @search.sorts = 'name asc' if @search.sorts.empty?  
     @manufacturers = @search.result.paginate(page: params[:page])
   end
 

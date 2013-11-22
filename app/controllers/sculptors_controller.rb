@@ -13,6 +13,7 @@ class SculptorsController < ApplicationController
 
  def index
     @search = Sculptor.search(params[:q])
+    @search.sorts = 'last_name asc' if @search.sorts.empty?  
     @sculptors = @search.result.paginate(page: params[:page])
   end
 

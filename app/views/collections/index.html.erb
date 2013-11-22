@@ -7,9 +7,9 @@
 <%= will_paginate %>
 <table border="0" cellpadding="10" class="table table-hover">
 <th align="left"><i class="fa fa-camera fa-2x"></i></th>
-<th align="left"><%= sort_link(@search, :miniature_name, "Miniature") %></th>
+<th align="left"><%= sort_link(@search, :miniature_name, "Miniature Name") %></th>
 <th align="left"><%= sort_link(@search, :name, "Name") %></th>
-<th align="left"><%= sort_link(@search, :manufacturer, "Manufacturer") %></th>
+<th align="left"><%= sort_link(@search, :manufacturer_name, "Manufacturer") %></th>
 <th align="left"><%= sort_link(@search, :progress, "Progress") %></th>
 
   <%= render @collections %>
