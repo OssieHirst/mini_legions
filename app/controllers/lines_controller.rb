@@ -4,7 +4,6 @@ class LinesController < ApplicationController
 
   def show
     @line = Line.find_by_slug(params[:id])
-    Miniature.joins(:line).where(line.subtree_conditions)
   end
   def new
     @line = Line.new

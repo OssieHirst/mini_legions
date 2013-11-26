@@ -1,5 +1,5 @@
     Replace photo
     <%= form_for @collection, :html => { :multipart => true } do |f| %>
      	<%= f.file_field :photo %>
-     	<%= f.submit "Replace Photo", data: { confirm: "This will delete the current image, are you sure?" }, class: "btn btn-large btn-primary" %>
+     	<%= f.submit "Replace Photo", data: { confirm: "This will delete the current image, are you sure?" }, class: "btn btn-med btn-primary" %>
      <% end %>

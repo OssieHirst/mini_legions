@@ -1,5 +1,15 @@
 
-<strong>You own this miniature</strong><br /><br />Progress: <%= @collection.progress %><br /><br />
+<%= form_for @collection do |f| %>
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select(["Got", "Want", "Had"], :selected => @collection.status) %>
+    <%= f.label :progress %>
+    <%= f.select :progress, options_for_select(["Unpainted", "Painted", "Assembled", "Unassambled", "Work In progress", "N/A"], :selected => @collection.progress) %>
+    <%= f.label :name, 'Name or number' %>
+  <%= f.text_field :name %>
+  <%= f.label :notes, 'Notes' %>
+  <%= f.text_area :notes %>
+     	<%= f.submit "Update", class: "btn btn-med btn-primary" %>
+     <% end %><br />
 
 
 <% if @collection.photo? %>
