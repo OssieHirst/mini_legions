@@ -6,7 +6,20 @@
       <h3><%= @collection.miniature.name %> </h3>
       <% if @collection.photo.exists? %>
 
-      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true %><br />
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.single-popup').magnificPopup({
+    type:'image',
+    closeOnContentClick: true,
+    removalDelay: 300,
+    mainClass: 'mfp-with-fade'});
+});
+$('.single-popup').magnificPopup({ 
+  type: 'image'
+});
+</script>
+
+      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "single-popup" %><br />
       <i><%= @collection.name %></i> Painted by <%= link_to @collection.user.name, @user %>
       <% end %><br /><br />
 

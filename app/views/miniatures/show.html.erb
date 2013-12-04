@@ -48,7 +48,8 @@
    <div class="span8">
     <ul class="photos">
       <% @miniature.collections(:photo).each do |collection| %>
-    <% if collection.photo.exists? %><li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %><% end %>
+    <% if collection.photo.exists? %>
+    <li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %><% end %>
     </ul>
    </div>
 </div>

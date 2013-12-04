@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree .
 //= require retina
+//= require magnific-popup
 
 /* Count the number of characters in a micropost. */
 function countCharacters(textField, charCountLabel, maxLength) {

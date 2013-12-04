@@ -12,6 +12,7 @@ class Collection < ActiveRecord::Base
 	has_attached_file :photo,  :styles => { 
 		:original => "1024x1024", 
 		:medium => "620x620",
+		:thumb => "200x200",
 		:icon => " " },
 		:convert_options => {
     	:icon => '-resize "140x140^" +repage -gravity Center -crop "64x64+0-5"' },
