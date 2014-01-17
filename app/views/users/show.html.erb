@@ -9,7 +9,11 @@
       @<%= @user.username %>
     </section>
      <section>
+      <% if current_user?(@user) %>
+      <%= render 'self_stats' %>
+      <% else %>
       <%= render 'shared/stats' %>
+      <% end %>
     </section>
   </aside>
   <div class="span8">

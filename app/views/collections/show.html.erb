@@ -8,18 +8,24 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $('.single-popup').magnificPopup({
-    type:'image',
+  $('.image-popup-no-margins').magnificPopup({
+    type: 'image',
     closeOnContentClick: true,
-    removalDelay: 300,
-    mainClass: 'mfp-with-fade'});
-});
-$('.single-popup').magnificPopup({ 
-  type: 'image'
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300 // don't foget to change the duration also in CSS
+    }
+  });
 });
 </script>
 
-      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "single-popup" %><br />
+      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %><br />
       <i><%= @collection.name %></i> Painted by <%= link_to @collection.user.name, @user %>
       <% end %><br /><br />
 

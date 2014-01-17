@@ -1,0 +1,18 @@
+<% @user ||= current_user %>
+  
+    You are <a href="<%= following_user_path(@user) %>">following<strong id="following" class="stat">
+      <%= @user.followed_users.count %>
+    </strong> users.
+  </a><br />
+ 
+    You have <a href="<%= followers_user_path(@user) %>"><strong id="followers" class="stat">
+      <%= @user.followers.count %>
+    </strong> followers.
+  </a><br /><br />
+  Your have<a href="<%= user_collections_path(@user, :status => "Got") %>"><strong id="collection" class="stat">
+      <%= @user.collections.where(status: 'Got').count %>
+    </strong> miniatures</a> in your collection.
+    Of which<br /><br />
+    <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist<strong id="collection" class="stat">
+      <%= @user.collections.where(status: 'Want').count %>
+    </strong></a><br />
