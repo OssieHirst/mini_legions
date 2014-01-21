@@ -11,6 +11,7 @@
 <th align="left"><%= sort_link(@search, :name, "Name") %></th>
 <th align="left"><%= sort_link(@search, :manufacturer_name, "Manufacturer") %></th>
 <th align="left"><%= sort_link(@search, :progress, "Progress") %></th>
+<th align="left"><%= sort_link(@search, :created_at, "Date added") %></th>
 
   <%= render @collections %>
 </table>

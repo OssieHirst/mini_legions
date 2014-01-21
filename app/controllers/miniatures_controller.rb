@@ -52,7 +52,7 @@ class MiniaturesController < ApplicationController
       end
       # add one more empty scale attribute
     @miniature.sizes.build
-      elsif params[:remove_size]
+    elsif params[:remove_size]
         # collect all marked for delete scale ids
           removed_sizes = params[:miniature][:sizes_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
           # physically delete the scales from database
@@ -72,7 +72,7 @@ class MiniaturesController < ApplicationController
       end
       # add one more empty mfr attribute
     @miniature.productions.build
-      elsif params[:remove_production]
+    elsif params[:remove_production]
         # collect all marked for delete mfr ids
           removed_productions = params[:miniature][:productions_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
           # physically delete the mfr from database

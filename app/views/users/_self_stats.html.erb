@@ -9,10 +9,10 @@
       <%= @user.followers.count %>
     </strong> followers.
   </a><br /><br />
-  Your have<a href="<%= user_collections_path(@user, :status => "Got") %>"><strong id="collection" class="stat">
+  You have<a href="<%= user_collections_path(@user, :status => "Got") %>"><strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Got').count %>
     </strong> miniatures</a> in your collection.
-    Of which<br /><br />
-    <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist<strong id="collection" class="stat">
+    Of which <a href="<%= user_collections_path(@user, :progress => "Painted") %>"><strong id="collection" class="stat"><%= @user.collections.where(progress: 'Painted').count %></strong> are painted.</a><br /><br />
+   You have <strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Want').count %>
-    </strong></a><br />
+    </strong> miniature in your <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist</a>.<br />

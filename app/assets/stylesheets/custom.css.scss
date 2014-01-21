@@ -244,6 +244,15 @@ input {
   list-style: none;
   margin: 0;
   li {
+    float: left;
+    padding: 0 0;
+  }
+}
+
+.icons {
+  list-style: none;
+  margin: 0;
+  li {
     overflow: auto;
     padding: 10px 0;
   }

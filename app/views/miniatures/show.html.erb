@@ -39,17 +39,18 @@
        <i class="fa fa-check-square-o"></i> <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %></section>
  <div class="gotwant">You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist</div>
        <div class="gotwant">You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
-    <ul class="photos"><% current_user.collections.where(miniature_id: @miniature).where(status: 'Got').each do |collection| %>
+    <ul class="icons"><% current_user.collections.where(miniature_id: @miniature).where(status: 'Got').each do |collection| %>
       
-    <li><% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true, :class => "curvedicon"), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvedicon"), collection %><% end %>
-<%= collection.name %>
-   <%= collection.progress %></li><% end %></ul></div>
+    <li><table><tr><td><% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true, :class => "curvedicon"), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvedicon"), collection %><% end %></td><td>
+<%= collection.name %><br >
+   <%= collection.progress %></li></td></tr></table><% end %></ul></div>
   </aside>
    <div class="span8">
     <ul class="photos">
-      <% @miniature.collections(:photo).each do |collection| %>
+      <li><%= image_tag @miniature.collections.first.photo.url(:medium), :retina => true %></li>
+      <% @miniature.collections(:photo).drop(1).take(4).each do |collection| %>
     <% if collection.photo.exists? %>
-    <li><%= image_tag collection.photo.url(:medium), :retina => true %></li><% end %><% end %>
+    <li><%= image_tag collection.photo.url(:thumb), :retina => true %></li><% end %><% end %>
     </ul>
    </div>
 </div>
