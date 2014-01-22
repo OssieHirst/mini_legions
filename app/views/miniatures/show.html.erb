@@ -46,12 +46,45 @@
    <%= collection.progress %></li></td></tr></table><% end %></ul></div>
   </aside>
    <div class="span8">
-    <ul class="photos">
-      <li><%= image_tag @miniature.collections.first.photo.url(:medium), :retina => true %></li>
+    <div class="photo1">
+
+      <script type="text/javascript">
+$(document).ready(function() {
+  $('.image-popup-no-margins').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 200 // don't foget to change the duration also in CSS
+    }
+  });
+});
+</script>
+   
+      <%= link_to image_tag(@miniature.collections.first.photo.url(:medium), :retina => true), @miniature.collections.first.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+
+      <p>Painted by <%= link_to @miniature.collections.first.user.name, @miniature.collections.first.user %></p>
+
+</div>
+   
       <% @miniature.collections(:photo).drop(1).take(4).each do |collection| %>
+<div class="photos234"><li>
     <% if collection.photo.exists? %>
-    <li><%= image_tag collection.photo.url(:thumb), :retina => true %></li><% end %><% end %>
-    </ul>
-   </div>
+      
+     <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+    </li>
+    </div><% end %><% end %>
+    
+  <br>
+      These have been voted the best painted <%= @miniature.name %>s. See more and cast your vote.
+    
+  </div>  
+   
 </div>
 

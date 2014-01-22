@@ -240,9 +240,27 @@ input {
   float: left;
 }
 
-.photos {
-  list-style: none;
+.photo1 {
+  position: relative; 
+  width: 100%; /* for IE 6 */
+  p { 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 2px;
+  width: auto;
+  color: #FFF;
   margin: 0;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.5);
+  a {
+    color: #FFF;
+  }
+  }
+}
+
+.photos234 {
+  list-style: none;
   li {
     float: left;
     padding: 0 0;
@@ -366,10 +384,10 @@ for zoom animation
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
   -webkit-backface-visibility: hidden;
-  -webkit-transition: all 0.3s ease-out; 
-  -moz-transition: all 0.3s ease-out; 
-  -o-transition: all 0.3s ease-out; 
-  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.2s ease-out; 
+  -moz-transition: all 0.2s ease-out; 
+  -o-transition: all 0.2s ease-out; 
+  transition: all 0.2s ease-out;
 }
 
 .mfp-with-zoom.mfp-ready .mfp-container {
