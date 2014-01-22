@@ -57,6 +57,8 @@ MiniLegions::Application.routes.draw do
   match '/new',     to: 'miniatures#new',       via: 'get'
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
+  match 'image_vote', to: 'miniatures#image_vote', via: 'get'
+
   
 
   # The priority is based upon order of creation: first created -> highest priority.

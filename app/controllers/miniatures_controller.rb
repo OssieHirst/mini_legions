@@ -8,6 +8,10 @@ class MiniaturesController < ApplicationController
     @userwant = User.joins(:collections).where(collections: {status: 'Want', miniature: @miniature}).uniq
    end
 
+   def image_vote
+    @miniature = Miniature.find(params[:miniature_id])
+   end
+
    def import
      Miniature.import(params[:file])
      redirect_to miniatures_path, notice: "Miniatures imported."

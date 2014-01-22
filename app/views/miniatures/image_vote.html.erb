@@ -1,0 +1,35 @@
+ <script type="text/javascript">
+$(document).ready(function() {
+  $('.image-popup-no-margins').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 200 // don't foget to change the duration also in CSS
+    }
+  });
+});
+</script>
+
+<div class="row">
+  <div class="span14">
+<h1><%= @miniature.name %><br /></h1>
+   <table id="image_table">
+<% @miniature.collections(:photo).each do |collection| %>
+
+    <% if collection.photo.exists? %>
+      <td><div class="photo1">
+     <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+<%= image_tag("/system/stock/medal.gif", :retina => true, :class => "medal") %>
+     <p>Painted by <%= link_to collection.user.name, collection.user %></p></div></td>
+    <% end %>
+<% end %>
+ </table>
+  </div>
+</div>

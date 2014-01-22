@@ -46,7 +46,7 @@
    <%= collection.progress %></li></td></tr></table><% end %></ul></div>
   </aside>
    <div class="span8">
-    <div class="photo1">
+    
 
       <script type="text/javascript">
 $(document).ready(function() {
@@ -66,7 +66,7 @@ $(document).ready(function() {
   });
 });
 </script>
-   
+   <div class="photo1">
       <%= link_to image_tag(@miniature.collections.first.photo.url(:medium), :retina => true), @miniature.collections.first.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
       <p>Painted by <%= link_to @miniature.collections.first.user.name, @miniature.collections.first.user %></p>
@@ -74,16 +74,17 @@ $(document).ready(function() {
 </div>
    
       <% @miniature.collections(:photo).drop(1).take(4).each do |collection| %>
-<div class="photos234"><li>
+
     <% if collection.photo.exists? %>
+    <div class="photos234"><li>
       
      <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
     </li>
     </div><% end %><% end %>
-    
   <br>
-      These have been voted the best painted <%= @miniature.name %>s. See more and cast your vote.
-    
+      These have been voted the best painted <%= @miniature.name %>s. <%= link_to "See more and cast your vote.", image_vote_path(:miniature_id => @miniature) %>
+
+
   </div>  
    
 </div>
