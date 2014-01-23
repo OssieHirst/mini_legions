@@ -82,7 +82,9 @@ $(document).ready(function() {
     </li>
     </div><% end %><% end %>
   <br>
-      These have been voted the best painted <%= @miniature.name %>s. <%= link_to "See more and cast your vote.", image_vote_path(:miniature_id => @miniature) %>
+      Voted the best painted examples of <%= @miniature.name %>. <%= link_to "See more and cast your vote.", imagevote_path(:miniature_id => @miniature) %>
+      <br>
+      
 
 
   </div>  

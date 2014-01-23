@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120154321) do
+ActiveRecord::Schema.define(version: 20140123114409) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -92,6 +92,23 @@ ActiveRecord::Schema.define(version: 20131120154321) do
   add_index "minilines", ["line_id"], name: "index_minilines_on_line_id"
   add_index "minilines", ["miniature_id", "line_id"], name: "index_minilines_on_miniature_id_and_line_id", unique: true
   add_index "minilines", ["miniature_id"], name: "index_minilines_on_miniature_id"
+
+  create_table "paintingvotes", force: true do |t|
+    t.integer  "miniature_id"
+    t.integer  "set_id"
+    t.integer  "collection_id"
+    t.integer  "voter_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paintingvotes", ["collection_id"], name: "index_paintingvotes_on_collection_id"
+  add_index "paintingvotes", ["miniature_id", "voter_id"], name: "index_paintingvotes_on_miniature_id_and_voter_id", unique: true
+  add_index "paintingvotes", ["miniature_id"], name: "index_paintingvotes_on_miniature_id"
+  add_index "paintingvotes", ["recipient_id"], name: "index_paintingvotes_on_recipient_id"
+  add_index "paintingvotes", ["set_id"], name: "index_paintingvotes_on_set_id"
+  add_index "paintingvotes", ["voter_id"], name: "index_paintingvotes_on_voter_id"
 
   create_table "productions", force: true do |t|
     t.integer  "miniature_id"

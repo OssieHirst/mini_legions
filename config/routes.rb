@@ -46,6 +46,11 @@ MiniLegions::Application.routes.draw do
       get :users
     end
   end
+  resources :paintingvotes do
+    member do
+      get :miniatures
+    end
+  end
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
@@ -57,7 +62,7 @@ MiniLegions::Application.routes.draw do
   match '/new',     to: 'miniatures#new',       via: 'get'
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
-  match 'image_vote', to: 'miniatures#image_vote', via: 'get'
+  match 'imagevote', to: 'miniatures#imagevote', via: 'get'
 
   
 

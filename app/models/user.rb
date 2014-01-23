@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :paintingvotes, foreign_key: "recipient_id", dependent: :destroy
+  has_many :reverse_paintingvotes, foreign_key: "voter_id", dependent: :destroy
   before_save { email.downcase! }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }

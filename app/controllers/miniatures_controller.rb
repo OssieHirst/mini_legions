@@ -8,7 +8,7 @@ class MiniaturesController < ApplicationController
     @userwant = User.joins(:collections).where(collections: {status: 'Want', miniature: @miniature}).uniq
    end
 
-   def image_vote
+   def imagevote
     @miniature = Miniature.find(params[:miniature_id])
    end
 
