@@ -1,8 +1,0 @@
-<%= form_for(current_user.collections.build(miniature_id: @miniature.id)) do |f| %>
-  <div><%= f.hidden_field :miniature_id %></div>
-   <%= f.label :status %>
-  <%= f.select :status, options_for_select(["Got", "Want", "Had"]) %>
-   <%= f.label :progress %>
-  <%= f.select :progress, options_for_select(["Painted", "Unpainted", "Assembled", "Unassambled", "Work In progress", "N/A"]) %>
-  <%= f.submit "Add", class: "btn btn-large btn-primary" %>
-<% end %>
