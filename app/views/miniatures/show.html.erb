@@ -66,12 +66,16 @@ $(document).ready(function() {
   });
 });
 </script>
-   <div class="photo1">
+<% @miniature.collections(:photo).take(1).each do |collection| %>  
+ <% if collection.photo.exists? %> 
+<div class="photo1">
+
       <%= link_to image_tag(@miniature.collections.first.photo.url(:medium), :retina => true), @miniature.collections.first.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
       <p>Painted by <%= link_to @miniature.collections.first.user.name, @miniature.collections.first.user %></p>
-
-</div>
+   </div>
+  <% end %>
+<% end %>
    
       <% @miniature.collections(:photo).drop(1).take(4).each do |collection| %>
 
