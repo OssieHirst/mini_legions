@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123114409) do
+ActiveRecord::Schema.define(version: 20140127153205) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -92,6 +92,21 @@ ActiveRecord::Schema.define(version: 20140123114409) do
   add_index "minilines", ["line_id"], name: "index_minilines_on_line_id"
   add_index "minilines", ["miniature_id", "line_id"], name: "index_minilines_on_miniature_id_and_line_id", unique: true
   add_index "minilines", ["miniature_id"], name: "index_minilines_on_miniature_id"
+
+  create_table "minisets", force: true do |t|
+    t.text     "name"
+    t.string   "material"
+    t.date     "release_date"
+    t.string   "pcode"
+    t.text     "notes"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "minisets", ["created_at"], name: "index_minisets_on_created_at"
+  add_index "minisets", ["quantity"], name: "index_minisets_on_quantity"
+  add_index "minisets", ["release_date"], name: "index_minisets_on_release_date"
 
   create_table "paintingvotes", force: true do |t|
     t.integer  "miniature_id"
