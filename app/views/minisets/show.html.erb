@@ -1,0 +1,43 @@
+<% provide(:title, @miniset.name) %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      
+       <h1><%= @miniset.name %><br />
+        <div class="subh1">Set of <%= @miniset.quantity %></div></h1><br />
+       <div class="minilabel">Material:</div> <%= @miniset.material %><br /> 
+
+       <div class="minilabel"><%= simple_pluralize(@miniset.manufacturers.count, 'Manufacturer') %>:</div> 
+       <% @miniset.manufacturers.each do |manufacturer| %>
+        <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
+          <% end %><br /> 
+
+       <div class="minilabel"><%= simple_pluralize(@miniset.scales.count, 'Scale')%>:</div> <% @miniset.scales.each do |scale| %>
+        <%= scale.name %>
+          <% end %><br />
+       <div class="minilabel">Product code:</div> <%= @miniset.pcode %><br />
+       <div class="minilabel">Release date:</div> <%= @miniset.release_date.strftime("%d %b %Y") unless @miniset.release_date.blank? %><br />
+       <div class="minilabel">Sculpted by:</div> <% @miniset.sculptors.each do |sculptor| %>
+        <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br />
+          <% end %><br />
+       <br />
+       <div class="minilabel">Notes:</div><br />
+       <%= @miniset.notes %>
+       <br /><br />
+      
+       <%= link_to "Edit", edit_miniset_path %><br />
+       <br />
+       </section>
+      
+  </aside>
+   <div class="span8">
+    
+
+      
+
+
+  </div>  
+   
+</div>
+
