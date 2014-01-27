@@ -85,10 +85,13 @@ $(document).ready(function() {
      <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
     </li>
     </div><% end %><% end %>
+    <% @miniature.collections(:photo).take(1).each do |collection| %>  
+ <% if collection.photo.exists? %> 
   <br>
       Voted the best painted examples of <%= @miniature.name %>. <%= link_to "See more and cast your vote.", imagevote_path(:miniature_id => @miniature) %>
       <br>
-      
+      <% end %>
+<% end %>
 
 
   </div>  
