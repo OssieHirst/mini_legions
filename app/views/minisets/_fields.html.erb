@@ -1,3 +1,10 @@
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.multiselect').multiselect();
+  });
+</script>
+
 <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -6,25 +13,27 @@
       <%= f.number_field :quantity %>
 
       <%= f.label :material %>
-      <%= f.select 'material', options_from_collection_for_select(Miniset.select("DISTINCT material"), :material, 'material', @miniset.material) %>
+      <div class = "form-inline"><%= f.select 'material', options_from_collection_for_select(Miniset.select("DISTINCT material"), :material, 'material', @miniset.material), {include_blank: ''} %></div>
 
       <%= f.fields_for :sizes do |size_fields| %>
       <%= size_fields.label :scale_id, simple_pluralize(@miniset.scales.count, 'Scale') %>
       <%= hidden_field "Set Scale", @miniset.sizes %>
-      <div class = "form-inline"><%= size_fields.select :scale_id, options_from_collection_for_select(Scale.all, :id, :name, {:selected => @miniset.scales.map(&:id)}) %>
+      <div class = "form-inline"><%= size_fields.select :scale_id, options_from_collection_for_select(Scale.all, :id, :name, @miniset.scales.map(&:id)), {include_blank: '', :class => 'multiselect', :multiple => true} %>
       <% end %></div>
+ 
 
        <%= f.fields_for :productions do |production_fields| %>
       <%= production_fields.label :manufacturer_id, simple_pluralize(@miniset.manufacturers.count, 'Manufacturer') %>
       <%= hidden_field "Set Manufacturer", :manufacturer_id %>
-      <div class = "form-inline"><%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, {:selected => @miniset.manufacturers.map(&:id)}) %>
+      <div class = "form-inline"><%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, {:selected => @miniset.manufacturers.map(&:id)}), {include_blank: ''} %>
       <% end %></div>
+
 
 
       <%= f.fields_for :sculptings do |sculpting_fields| %>
       <%= sculpting_fields.label :sculptor_id, 'Sculpted by' %>
       <%= hidden_field "Sculptor", :sculptor_id %>
-      <div class = "form-inline"><%= sculpting_fields.select :sculptor_id, options_from_collection_for_select(Sculptor.all, :id, :fullname, {:selected => @miniset.sculptors.map(&:id)}), {:multiple => true, :class => "multiselect"} %>      
+      <div class = "form-inline"><%= sculpting_fields.select :sculptor_id, options_from_collection_for_select(Sculptor.all, :id, :fullname, {:selected => @miniset.sculptors.map(&:id)}), {include_blank: ''} %>      
       <% end %></div>
 
 
@@ -36,4 +45,3 @@
       <div class = "form-inline"><%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %></div>
       <%= f.label :notes %>
       <%= f.text_area :notes %>
-      <div class = "form-inline"></div>

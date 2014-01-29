@@ -18,6 +18,7 @@ gem 'font-awesome-rails'
 gem 'ransack'
 gem 'ancestry'
 gem 'magnific-popup-rails'
+gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
 
 
 group :development, :test do

@@ -40,7 +40,7 @@ $(document).ready(function() {
 
      <% if current_user?(@user) %>
      
-     <%= render 'got' %>
+     <%= render 'listed' %>
      
       <% else %>
       In <%= link_to @collection.user.name, @user %>'s collection<br /><br />

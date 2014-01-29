@@ -17,6 +17,7 @@
 //= require_tree .
 //= require retina
 //= require magnific-popup
+//= require bootstrap-multiselect
 
 /* Count the number of characters in a micropost. */
 function countCharacters(textField, charCountLabel, maxLength) {

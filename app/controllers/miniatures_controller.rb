@@ -30,9 +30,6 @@ class MiniaturesController < ApplicationController
 
   def create
     @miniature = Miniature.new(miniature_params)
-    @production = @miniature.productions.build
-    @size = @miniature.sizes.build
-    @sculpting = @miniature.sculptings.build
     if @miniature.save
       redirect_to @miniature
     else

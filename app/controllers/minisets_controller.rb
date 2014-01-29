@@ -15,9 +15,6 @@ class MinisetsController < ApplicationController
 
   def create
     @miniset = Miniset.new(miniset_params)
-    @production = @miniset.productions.build
-    @size = @miniset.sizes.build
-    @sculpting = @miniset.sculptings.build
     if @miniset.save
       redirect_to @miniset
     else
