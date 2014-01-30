@@ -92,5 +92,10 @@ MiniLegions::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
   config.force_ssl = true
+
+  # To make devise play nice with heroku
+  config.assets.initialize_on_precompile = false
+
+  config.action_mailer.default_url_options = { :host => 'nameless-caverns-6768.herokuapp.com' }
   
 end

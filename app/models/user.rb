@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :collections, dependent: :destroy
   has_many :miniatures, through: :collections
   has_many :microposts, dependent: :destroy
@@ -10,18 +14,11 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :paintingvotes, foreign_key: "recipient_id", dependent: :destroy
   has_many :reverse_paintingvotes, foreign_key: "voter_id", dependent: :destroy
-  before_save { email.downcase! }
-  before_create :create_remember_token
-  validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence:   true,
-                    format:     { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
   validates :username, presence: true,
                        length: { maximum: 15 },
-                       uniqueness: { case_sensitive: false }                  
-  has_secure_password
-  validates :password, length: { minimum: 6 }
+                       uniqueness: { case_sensitive: false }
+  validates :name, presence: true, length: { maximum: 50 }
+
 
   def to_param
     username
@@ -59,10 +56,5 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy!
   end
 
-  private
-
-    def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
-    end
 
 end

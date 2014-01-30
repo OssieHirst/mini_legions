@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_action :signed_in_user
+  before_action :user_signed_in?
 
   respond_to :html, :js
 

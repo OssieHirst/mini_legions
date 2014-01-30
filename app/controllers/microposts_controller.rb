@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
+  before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
   def reply_form

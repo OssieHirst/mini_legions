@@ -1,5 +1,5 @@
 class MiniaturesController < ApplicationController
-   before_action :signed_in_user, only: [:new, :create, :edit, :update]
+   before_action :user_signed_in?, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
    def in_collection

@@ -1,5 +1,5 @@
 class MinisetsController < ApplicationController
-   before_action :signed_in_user, only: [:new, :create, :edit, :update]
+   before_action :user_signed_in?, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
   def show
@@ -16,7 +16,7 @@ class MinisetsController < ApplicationController
   def create
     @miniset = Miniset.new(miniset_params)
     if @miniset.save
-      params[:scale_id].split(',').each do |id|
+      params[:sizes_attributes].split(',').each do |id|
         @miniset.sizes.create(params[:sizes_attributes])
     end
       redirect_to @miniset

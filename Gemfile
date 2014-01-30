@@ -19,6 +19,8 @@ gem 'ransack'
 gem 'ancestry'
 gem 'magnific-popup-rails'
 gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
+gem 'devise'
+gem 'mailcatcher'
 
 
 group :development, :test do
