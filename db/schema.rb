@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127162954) do
+ActiveRecord::Schema.define(version: 20140129152929) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20140127162954) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "random",       default: false
   end
 
   add_index "minisets", ["created_at"], name: "index_minisets_on_created_at"

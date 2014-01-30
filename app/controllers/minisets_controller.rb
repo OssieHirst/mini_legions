@@ -16,6 +16,9 @@ class MinisetsController < ApplicationController
   def create
     @miniset = Miniset.new(miniset_params)
     if @miniset.save
+      params[:scale_id].split(',').each do |id|
+        @miniset.sizes.create(params[:sizes_attributes])
+    end
       redirect_to @miniset
     else
       render 'new'
@@ -37,7 +40,7 @@ class MinisetsController < ApplicationController
 
   private
     def miniset_params
-      params.require(:miniset).permit(:name, :release_date, :material, :pcode, :notes, :quantity, productions_attributes: [:id, :manufacturer_id, :miniset_id], sizes_attributes: [:id, :scale_id, :miniset_id], sculptings_attributes: [:id, :sculptor_id, :miniset_id])
+      params.require(:miniset).permit(:name, :release_date, :material, :pcode, :notes, :quantity, :random, productions_attributes: [:id, :manufacturer_id, :miniset_id], sizes_attributes: [:id, :scale_id, :miniset_id], sculptings_attributes: [:id, :sculptor_id, :miniset_id])
     end
 
     def admin_user
