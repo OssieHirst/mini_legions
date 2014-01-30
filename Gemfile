@@ -19,7 +19,6 @@ gem 'ancestry'
 gem 'magnific-popup-rails'
 gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
 gem 'devise'
-gem 'mailcatcher'
 
 
 group :development, :test do
@@ -29,6 +28,7 @@ group :development, :test do
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
   gem 'childprocess', '0.3.6'
+  gem 'mailcatcher'
 end
 
 group :test do
