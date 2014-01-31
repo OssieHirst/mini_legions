@@ -19,6 +19,7 @@ gem 'ancestry'
 gem 'magnific-popup-rails'
 gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
 gem 'devise'
+gem 'letsrate', git: 'https://github.com/WorldOfProper/letsrate.git'
 
 
 group :development, :test do

@@ -69,6 +69,7 @@ MiniLegions::Application.routes.draw do
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
   match 'imagevote', to: 'miniatures#imagevote', via: 'get'
+  post '/rate' => 'rater#create', :as => 'rate'
 
   
 

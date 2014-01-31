@@ -4,6 +4,12 @@ GIT
   specs:
     database_cleaner (1.1.1)
 
+GIT
+  remote: https://github.com/WorldOfProper/letsrate.git
+  revision: d96bf866e3d2c2deebc9644022bb220920907485
+  specs:
+    letsrate (1.0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -318,6 +324,7 @@ DEPENDENCIES
   guard-spork (= 1.5.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
+  letsrate!
   magnific-popup-rails
   mailcatcher
   paperclip (~> 3.0)

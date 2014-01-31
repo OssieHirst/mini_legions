@@ -14,11 +14,10 @@ class Miniature < ActiveRecord::Base
   accepts_nested_attributes_for :sizes, allow_destroy: true
   accepts_nested_attributes_for :sculptings, allow_destroy: true
   accepts_nested_attributes_for :minilines, allow_destroy: true
-
-
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :material, presence: true
 	validates_date :release_date, :allow_blank => true
+  letsrate_rerateable "sculpt", "ingame"
 
   def name=(s)
     super s.titleize

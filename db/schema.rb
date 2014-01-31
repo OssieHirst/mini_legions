@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130171437) do
+ActiveRecord::Schema.define(version: 20140131121647) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -139,6 +139,19 @@ ActiveRecord::Schema.define(version: 20140130171437) do
   add_index "productions", ["miniature_id"], name: "index_productions_on_miniature_id"
   add_index "productions", ["miniset_id", "manufacturer_id"], name: "index_productions_on_miniset_id_and_manufacturer_id", unique: true
   add_index "productions", ["miniset_id"], name: "index_productions_on_miniset_id"
+
+  create_table "rates", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id"
 
   create_table "rating_caches", force: true do |t|
     t.integer  "cacheable_id"
