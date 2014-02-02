@@ -12,31 +12,36 @@
       <%= f.label :material %>
       <div class = "form-inline"><%= f.select 'material', options_from_collection_for_select(Miniset.select("DISTINCT material"), :material, 'material', @miniset.material), {include_blank: ''} %></div>
 
-      <%= f.fields_for :sizes do |size_fields| %>
-      <%= size_fields.label :scale_id, simple_pluralize(@miniset.scales.count, 'Scale') %>
-      <%= hidden_field "Set Scale", @miniset.sizes %>
-      <div class = "form-inline"><%= size_fields.select :scale_id, 
-                   options_from_collection_for_select(Scale.all, :id, :name, @miniset.scales.map(&:id)), 
+      <%= f.fields_for(@size) do |sf| %>
+      <%= sf.label simple_pluralize(@miniset.scales.count, 'Scale') %>
+
+      <div class = "form-inline">
+
+        <%= collection_select( :scales, :id, @all_scales, :id, :name, 
                    {}, 
-                   {class: 'multiselect', multiple: true} %>
-      <% end %></div>
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %>
+
+      </div>
  
 
-       <%= f.fields_for :productions do |production_fields| %>
-      <%= production_fields.label :manufacturer_id, simple_pluralize(@miniset.manufacturers.count, 'Manufacturer') %>
-      <%= hidden_field "Set Manufacturer", :manufacturer_id %>
-      <div class = "form-inline"><%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, @miniset.manufacturers.map(&:id)), {}, 
-                   {class: 'multiselect', multiple: true} %>
-      <% end %></div>
+       <%= f.fields_for(@production) do |pf|%>
+      <%= pf.label simple_pluralize(@miniset.manufacturers.count, 'Manufacturer') %>
+      <div class = "form-inline">
+        <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
+                   {}, 
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %></div>
 
 
 
-      <%= f.fields_for :sculptings do |sculpting_fields| %>
-      <%= sculpting_fields.label :sculptor_id, 'Sculpted by' %>
-      <%= hidden_field "Sculptor", :sculptor_id %>
-      <div class = "form-inline"><%= sculpting_fields.select :sculptor_id, options_from_collection_for_select(Sculptor.all, :id, :fullname, @miniset.sculptors.map(&:id)), {}, 
-                   {class: 'multiselect', multiple: true} %>      
-      <% end %></div>
+      <%= f.fields_for(@sculpting) do |scf| %>
+      <%= scf.label 'Sculpted by' %>
+      <div class = "form-inline">
+        <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
+                   {}, 
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %></div>
 
 
 <!-- Initialize the plugin: -->

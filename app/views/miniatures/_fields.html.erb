@@ -3,33 +3,45 @@
       <%= f.text_field :name %>
       <%= f.label :material %>
       <%= f.select 'material', options_from_collection_for_select(Miniature.select("DISTINCT material"), :material, 'material', @miniature.material) %>
-      <%= f.fields_for :sizes do |size_fields| %>
-      <%= size_fields.label :scale_id, simple_pluralize(@miniature.scales.count, 'Scale') %>
-      <%= hidden_field "Miniature Scale", @miniature.sizes %>
-      <div class = "form-inline"><%= size_fields.select :scale_id, options_from_collection_for_select(Scale.all, :id, :name, {:selected => @miniature.scales.map(&:id)}) %>
-      <%= size_fields.check_box :_destroy %>
-      <%= size_fields.label :_destroy, 'Delete' %></div>
-      <% end %>
-      <div class = "form-inline"><%= f.submit 'Add extra scale', :name => "add_size", class: "btn btn-default btn-xs"  %>
-    <%= f.submit 'Delete checked', :name => "remove_size", class: "btn btn-default btn-lg" %></div>
-       <%= f.fields_for :productions do |production_fields| %>
-      <%= production_fields.label :manufacturer_id, simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>
-      <%= hidden_field "Miniature Manufacturer", :manufacturer_id %>
-      <div class = "form-inline"><%= production_fields.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, {:selected => @miniature.manufacturers.map(&:id)}) %>
-      <%= production_fields.check_box :_destroy %>
-      <%= production_fields.label :_destroy, 'Delete' %></div>
-      <% end %>
-      <div class = "form-inline"><%= f.submit 'Add  manufacturer', :name => "add_production", class: "btn btn-default btn-xs"  %>
-      <%= f.submit 'Delete checked', :name => "remove_production", class: "btn btn-default btn-lg" %></div>
-      <%= f.fields_for :sculptings do |sculpting_fields| %>
-      <%= sculpting_fields.label :sculptor_id, 'Sculpted by' %>
-      <%= hidden_field "Miniature Sculptor", :sculptor_id %>
-      <div class = "form-inline"><%= sculpting_fields.select :sculptor_id, options_from_collection_for_select(Sculptor.all, :id, :fullname, {:selected => @miniature.sculptors.map(&:id)}) %>    
-      <%= sculpting_fields.check_box :_destroy %>
-      <%= sculpting_fields.label :_destroy, 'Delete' %></div>
-      <% end %>
-      <div class = "form-inline"><%= f.submit 'Add  sculptor', :name => "add_sculpting", class: "btn btn-default btn-xs"  %>
-      <%= f.submit 'Delete checked', :name => "remove_sculpting", class: "btn btn-default btn-lg" %></div>
+      
+      <%= f.fields_for(@size) do |sf| %>
+      <%= sf.label simple_pluralize(@miniature.scales.count, 'Scale') %>
+
+      <div class = "form-inline">
+
+        <%= collection_select( :scales, :id, @all_scales, :id, :name, 
+                   {}, 
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %>
+
+      </div>
+
+       <%= f.fields_for(@production) do |pf|%>
+      <%= pf.label simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>
+      <div class = "form-inline">
+        <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
+                   {}, 
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %></div>
+
+      <%= f.fields_for(@sculpting) do |scf| %>
+      <%= scf.label 'Sculpted by' %>
+      <div class = "form-inline">
+        <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
+                   {}, 
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %></div>
+
+        <!-- Initialize the plugin: -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.multiselect').multiselect({
+      enableFiltering: true,
+      maxHeight: 400
+    });
+  });
+</script>
+
       <%= f.label :pcode, 'Product Code' %>
       <%= f.text_field :pcode %>
       <%= f.label :release_date %>

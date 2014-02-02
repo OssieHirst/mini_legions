@@ -23,13 +23,31 @@ class MiniaturesController < ApplicationController
 
   def new
     @miniature = Miniature.new 
-    @miniature.productions.build
-    @miniature.sizes.build
-    @miniature.sculptings.build
+    @all_scales = Scale.all
+    @all_manufacturers = Manufacturer.all
+    @all_sculptors = Sculptor.all
+    @size = @miniature.sizes.build
+    @production = @miniature.productions.build
+    @sculpting = @miniature.sculptings.build
   end
 
   def create
     @miniature = Miniature.new(miniature_params)
+    params[:scales][:id].each do |scale|
+      if !scale.empty?
+        @miniature.sizes.build(:scale_id => scale)
+      end
+    end
+    params[:manufacturers][:id].each do |manufacturer|
+      if !manufacturer.empty?
+        @miniature.productions.build(:manufacturer_id => manufacturer)
+      end
+    end
+    params[:sculptors][:id].each do |sculptor|
+      if !sculptor.empty?
+        @miniature.sculptings.build(:sculptor_id => sculptor)
+      end
+    end
     if @miniature.save
       redirect_to @miniature
     else

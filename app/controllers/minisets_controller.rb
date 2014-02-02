@@ -8,17 +8,32 @@ class MinisetsController < ApplicationController
 
   def new
     @miniset = Miniset.new 
-    @miniset.productions.build
-    @miniset.sizes.build
-    @miniset.sculptings.build
+    @all_scales = Scale.all
+    @all_manufacturers = Manufacturer.all
+    @all_sculptors = Sculptor.all
+    @size = @miniset.sizes.build
+    @production = @miniset.productions.build
+    @sculpting = @miniset.sculptings.build
   end
 
   def create
     @miniset = Miniset.new(miniset_params)
-    if @miniset.save
-      params[:sizes_attributes].split(',').each do |id|
-        @miniset.sizes.create(params[:sizes_attributes])
+    params[:scales][:id].each do |scale|
+      if !scale.empty?
+        @miniset.sizes.build(:scale_id => scale)
+      end
     end
+    params[:manufacturers][:id].each do |manufacturer|
+      if !manufacturer.empty?
+        @miniset.productions.build(:manufacturer_id => manufacturer)
+      end
+    end
+    params[:sculptors][:id].each do |sculptor|
+      if !sculptor.empty?
+        @miniset.sculptings.build(:sculptor_id => sculptor)
+      end
+    end
+    if @miniset.save
       redirect_to @miniset
     else
       render 'new'
