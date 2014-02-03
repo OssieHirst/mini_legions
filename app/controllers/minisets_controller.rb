@@ -16,6 +16,16 @@ class MinisetsController < ApplicationController
     @sculpting = @miniset.sculptings.build
   end
 
+  def edit
+    @miniset = Miniset.find(params[:id])
+    @all_scales = Scale.all
+    @all_manufacturers = Manufacturer.all
+    @all_sculptors = Sculptor.all
+    @size = @miniset.sizes.build
+    @production = @miniset.productions.build
+    @sculpting = @miniset.sculptings.build
+  end
+
   def create
     @miniset = Miniset.new(miniset_params)
     params[:scales][:id].each do |scale|
@@ -37,6 +47,16 @@ class MinisetsController < ApplicationController
       redirect_to @miniset
     else
       render 'new'
+    end
+  end
+
+  def update
+    @miniset = Miniset.find(params[:id])
+    if @miniset.update(miniset_params)
+      flash[:success] = "Miniset updated"
+      redirect_to @miniset
+    else
+      render 'edit'
     end
   end
 

@@ -70,7 +70,6 @@ MiniLegions::Application.routes.draw do
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
   match 'imagevote', to: 'miniatures#imagevote', via: 'get'
   post '/rate' => 'rater#create', :as => 'rate'
-
   
 
   # The priority is based upon order of creation: first created -> highest priority.

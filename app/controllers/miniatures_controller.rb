@@ -56,8 +56,7 @@ class MiniaturesController < ApplicationController
   end
 
   def edit
-    @miniature = Miniature.find(params[:id])
-    
+    @miniature = Miniature.find(params[:id])  
   end
 
   def update
