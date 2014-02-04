@@ -52,7 +52,7 @@ class MinisetsController < ApplicationController
 
   def update
     @miniset = Miniset.find(params[:id])
-    if @miniset.update(miniset_params)
+    if @miniset.update_attributes(miniset_params)
       flash[:success] = "Miniset updated"
       redirect_to @miniset
     else
