@@ -14,7 +14,10 @@
 <br />
 <% end %>
 <br /><br />
-Depth = <%= @line.depth %>
+Depth = <%= @line.depth %><br />
+  Live? <%= @line.live? %><br />
+  <%= @line.originator %>
+  
 </div>
 <div class="span8">
 	<%= @line.description %><br /><br />
@@ -24,6 +27,5 @@ Depth = <%= @line.depth %>
 	 <% @line.miniatures.each do |miniature| %>
         <%= link_to miniature.name, miniature %><br />
     <% end %>
-	
 </div>
 </div>

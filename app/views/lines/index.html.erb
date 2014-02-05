@@ -6,20 +6,22 @@
     <th>Manufacturer</th>
     <th>Description</th>
     <th>Ancestry</th>
+    <% if current_user.try(:admin?) %>
     <th></th>
     <th></th>
-    <th></th>
+    <% end %>
   </tr>
 
 <% @lines.each do |line| %>
   <tr>
-    <td><%= line.name %></td>
+    <td><%= link_to line.name, line %></td>
     <td><%= line.manufacturer.name %></td>
     <td><%= line.description %></td>
     <td><%= line.ancestry %></td>
-    <td><%= link_to 'Show', line %></td>
+    <% if current_user.try(:admin?) %>
     <td><%= link_to 'Edit', edit_line_path(line) %></td>
-    <td><% if current_user.try(:admin?) %><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
+    <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

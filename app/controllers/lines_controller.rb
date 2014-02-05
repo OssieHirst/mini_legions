@@ -1,6 +1,5 @@
 class LinesController < ApplicationController
-	before_action :user_signed_in?, only: [:new, :create, :edit, :update]
-	before_action :admin_user,     only: :destroy
+	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
 
   def show
     @line = Line.find_by_slug(params[:id])

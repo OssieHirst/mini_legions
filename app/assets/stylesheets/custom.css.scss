@@ -151,7 +151,7 @@ aside {
 .user_avatars {
   overflow: auto;
   margin-top: 10px;
-  .avatar {
+  .gravatar {
     margin: 1px 1px;
     -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -345,7 +345,7 @@ input {
 .timestamp{
   color: $grayLight;
 }
-.avatar {
+.gravatar {
   float: left;
   margin-right: 10px;
   -webkit-border-radius: 10px;
@@ -436,5 +436,14 @@ for zoom animation
 .mfp-with-zoom.mfp-removing .mfp-container, 
 .mfp-with-zoom.mfp-removing.mfp-bg {
   opacity: 0;
+}
+
+#breadcrumbs {
+  background-color: $grayLighter;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin-bottom: 30px;
 }
 

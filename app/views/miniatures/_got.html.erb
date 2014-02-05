@@ -1,5 +1,5 @@
 
   		<% @usergot.each do |user| %>
-        <tr><td><%= gravatar_for user, size: 30 %>
+        <tr><td><%= gravatar_for user %>
         	<%= link_to user.name, user %></td></tr>
       <% end %>
