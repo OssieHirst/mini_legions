@@ -20,6 +20,7 @@ gem 'magnific-popup-rails'
 gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
 gem 'devise'
 gem 'letsrate', git: 'https://github.com/WorldOfProper/letsrate.git'
+gem 'paper_trail'
 
 
 group :development, :test do

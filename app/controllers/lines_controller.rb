@@ -16,7 +16,7 @@ class LinesController < ApplicationController
   def update
     @line = Line.find_by_slug(params[:id])
     if @line.update_attributes(line_params)
-      flash[:success] = "Line updated"
+      flash[:success] = "Line updated. #{undo_link}"
       redirect_to @line
     else
       render 'edit'
@@ -30,7 +30,7 @@ class LinesController < ApplicationController
   def create
     @line = Line.new(line_params)
     if @line.save
-      flash[:success] = "Line added!"
+      flash[:success] = "Line added. #{undo_link}"
       redirect_to lines_path
     else
       render 'new'
@@ -38,8 +38,9 @@ class LinesController < ApplicationController
   end
 
   def destroy
-    Line.find_by_slug(params[:id]).destroy
-    flash[:success] = "Line destroyed."
+    @line = Line.find_by_slug(params[:id])
+    @line.destroy
+    flash[:success] = "Line destroyed. #{undo_link}"
     redirect_to lines_path
   end
 
@@ -55,6 +56,10 @@ class LinesController < ApplicationController
     end
 
     private
+
+    def undo_link
+      view_context.link_to("undo", revert_version_path(@line.versions.scoped.last), :method => :post)
+    end
     def line_params
       params.require(:line).permit(:name, :description, :parent_id, :manufacturer_id,
                                    :slug)
