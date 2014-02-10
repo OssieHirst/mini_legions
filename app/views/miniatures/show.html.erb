@@ -20,7 +20,7 @@
        <div class="minilabel">Sculpted by:</div> <% @miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br />
           <% end %><br />
-       <div class="minilabel">Sculpt rating:</div> <%= rating_for @miniature, "sculpt" %>
+      
        <br />
        <div class="minilabel">Notes:</div><br />
        <%= @miniature.notes %>

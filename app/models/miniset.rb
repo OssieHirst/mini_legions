@@ -18,7 +18,6 @@ class Miniset < ActiveRecord::Base
 #  validates :material, presence: true
   validates :quantity, numericality: true
   validates_date :release_date, :allow_blank => true
-  letsrate_rerateable "sculpt", "ingame"
 
   def name=(s)
     super s.titleize
