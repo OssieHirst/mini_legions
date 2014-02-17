@@ -11,8 +11,8 @@
      <% end %><br />
 
 
-<% if @collection.photo? %>
-    <%= render 'replace_photo' %>
+<% if @collection.progress == 'Unpainted' || @collection.progress =='N/A' || @collection.progress =='Unassambled' %>
+    <br /><br />
     <% else %>
-    <%= render 'add_photo' %>
-    <% end %>
+    <%= render 'painted' %>
+<% end %>

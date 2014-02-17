@@ -1,0 +1,5 @@
+<% if @collection.photo? %>
+    <%= render 'replace_photo' %>
+    <% else %>
+    <%= render 'add_photo' %>
+<% end %>
