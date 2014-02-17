@@ -25,9 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :parent_id %><br />
-    <%= f.collection_select :parent_id, Line.order(:name), :id, :name, include_blank: true %>
+    <%= f.select :parent_id, @lines, include_blank: true %>
+
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

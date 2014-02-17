@@ -1,11 +1,26 @@
 class LinesController < ApplicationController
 	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
 
+
+    def ancestry_options(items, &block)
+      return ancestry_options(items){ |i| "#{'&nbsp; &nbsp; &nbsp;' * i.depth} #{i.name}".html_safe } unless block_given?
+
+      result = []
+      items.map do |item, sub_items|
+        result << [yield(item), item.id]
+        #this is a recursive call:
+        result += ancestry_options(sub_items, &block)
+      end
+      result
+    end
+
+
   def show
     @line = Line.find(params[:id])
   end
   def new
     @line = Line.new
+    @lines = ancestry_options(Line.all.arrange(:order => 'name')) {|i| "#{'&nbsp; &nbsp; &nbsp;' * i.depth} #{i.name}".html_safe }
   end
 
   def edit
