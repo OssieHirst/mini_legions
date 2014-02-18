@@ -4,6 +4,9 @@
   <td><% miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
       <% end %></td> 
+      <td><% miniature.lines.each do |line| %>
+        <%= link_to line.root.name, line.root %>: <%= link_to line.name, line_path(line) %><br />
+      <% end %></td> 
   <td><% miniature.scales.each do |scale| %>
         <%= scale.name %><br /><% end %></td> 
   <td><%= miniature.pcode %></td>

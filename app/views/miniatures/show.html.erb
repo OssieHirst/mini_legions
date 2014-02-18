@@ -27,10 +27,15 @@
        <br /><br />
        <div id="breadcrumbs">
   <% @miniature.lines.each do |line| %> 
-    <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %> 
+    <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %>
+  <%= link_to '<i class="fa fa-times"></i>'.html_safe, miniline_path(:miniature_id => @miniature.id, :line_id => line.id),
+            :confirm => 'Are you sure?', :method => :delete %><br />
+  <% end %>
+  <% if current_user.admin? %>
+    <%= link_to "Add to product line", new_miniline_path(:miniature_id => @miniature) %>
   <% end %>
 </div><br /> 
-       <%= link_to "Edit", edit_miniature_path %><br />
+       <%= link_to "Edit miniature", edit_miniature_path %><br />
        <br />
        </section>
       <section>

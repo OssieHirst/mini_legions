@@ -2,6 +2,18 @@ class MiniaturesController < ApplicationController
    before_action :user_signed_in?, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
+   def ancestry_options(items, &block)
+      return ancestry_options(items){ |i| "#{'&nbsp; &nbsp; &nbsp;' * i.depth} #{i.name}".html_safe } unless block_given?
+
+      result = []
+      items.map do |item, sub_items|
+        result << [yield(item), item.id]
+        #this is a recursive call:
+        result += ancestry_options(sub_items, &block)
+      end
+      result
+   end
+
    def in_collection
     @miniature = Miniature.find(params[:miniature_id])
     @usergot = User.joins(:collections).where(collections: {status: 'Got', miniature: @miniature}).uniq
@@ -23,9 +35,11 @@ class MiniaturesController < ApplicationController
 
   def new
     @miniature = Miniature.new 
+
     @all_scales = Scale.all
     @all_manufacturers = Manufacturer.all
     @all_sculptors = Sculptor.all
+
     @size = @miniature.sizes.build
     @production = @miniature.productions.build
     @sculpting = @miniature.sculptings.build
@@ -48,6 +62,7 @@ class MiniaturesController < ApplicationController
         @miniature.sculptings.build(:sculptor_id => sculptor)
       end
     end
+
     if @miniature.save
       redirect_to @miniature
     else
@@ -146,7 +161,7 @@ class MiniaturesController < ApplicationController
 
 private
     def miniature_params
-      params.require(:miniature).permit(:name, :release_date, :material, :pcode, :notes, productions_attributes: [:id, :manufacturer_id, :miniature_id], sizes_attributes: [:id, :scale_id, :miniature_id], sculptings_attributes: [:id, :sculptor_id, :miniature_id])
+      params.require(:miniature).permit(:name, :release_date, :material, :pcode, :notes, productions_attributes: [:id, :manufacturer_id, :miniature_id], sizes_attributes: [:id, :scale_id, :miniature_id], sculptings_attributes: [:id, :sculptor_id, :miniature_id], minilines_attributes: [:id, :line_id, :miniature_id])
     end
 
     def admin_user
