@@ -1,31 +1,48 @@
 <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :material %>
+<div class="row">
+      <div class="span6">
+        <%= f.label :name, 'Name*' %>
+      <%= f.text_field :name %></div>
+      <div class="span2">
+      <%= f.label :material, 'Material*' %>
       <%= f.select 'material', options_from_collection_for_select(Miniature.select("DISTINCT material"), :material, 'material', @miniature.material) %>
-      
-      <%= f.fields_for(@size) do |sf| %>
-      <%= sf.label simple_pluralize(@miniature.scales.count, 'Scale') %>
+      </div></div>
+      <div class="row">
+      <div class="span2">
 
-      <div class = "form-inline">
+
+       <%= f.fields_for(@production) do |pf|%>
+      <%= pf.label :manufacturers, 'Manufactured by' %>
+      
+        <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
+                   {}, 
+                   {class: 'multiselect', multiple: true}) %>
+        <% end %>
+
+        </div>
+         <div class="span3">
+        <%= f.label :pcode, 'Product Code' %>
+      <%= f.text_field :pcode %>
+         </div>
+         <div class="span3">
+         <%= f.label :release_date %>
+      <div class = "form-inline"><%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %></div>
+      </div>
+        </div>
+      <div class="row">
+      <div class="span2">
+        <%= f.fields_for(@size) do |sf| %>
+      <%= sf.label :scales, 'Scale' %>
 
         <%= collection_select( :scales, :id, @all_scales, :id, :name, 
                    {}, 
                    {class: 'multiselect', multiple: true}) %>
         <% end %>
-
-      </div>
-
-       <%= f.fields_for(@production) do |pf|%>
-      <%= pf.label simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>
-      <div class = "form-inline">
-        <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
-                   {}, 
-                   {class: 'multiselect', multiple: true}) %>
-        <% end %></div>
+        </div>
+      <div class="span2">
 
       <%= f.fields_for(@sculpting) do |scf| %>
-      <%= scf.label 'Sculpted by' %>
+      <%= scf.label :sculptors, 'Sculpted by' %>
       <div class = "form-inline">
         <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
                    {}, 
@@ -40,12 +57,10 @@
       maxHeight: 400
     });
   });
-</script>
+</script></div></div>
 
-      <%= f.label :pcode, 'Product Code' %>
-      <%= f.text_field :pcode %>
-      <%= f.label :release_date %>
-      <div class = "form-inline"><%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %></div>
+    
+      
       <%= f.label :notes %>
       <%= f.text_area :notes %>
       <div class = "form-inline"></div>

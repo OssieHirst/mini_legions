@@ -2,11 +2,12 @@
 <h1>Add a miniature</h1>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span8 offset2">
     <%= form_for(@miniature) do |f| %>
           <%= render 'fields', f: f %>
+  
 
-      <%= f.submit "Add miniature", class: "btn btn-large btn-primary" %>
+      <div style="float: right;"><%= f.submit "Add miniature", class: "btn btn-large btn-primary" %></div>
     <% end %>
   </div>
 </div>

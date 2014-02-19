@@ -6,7 +6,7 @@
     <%= f.label :name_cont, "Name contains" %>
     <%= f.text_field :name_cont %>
   </div>
-  <div class="actions"><%= f.submit "Search" %></div>
+  <%= f.submit "Search", class: "btn btn-medium btn-primary" %>
 <% end %>
 
 <%= will_paginate %>

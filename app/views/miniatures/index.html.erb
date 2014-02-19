@@ -6,7 +6,7 @@
     <%= f.label :name_or_material_or_pcode_cont, "Search" %>
     <%= f.text_field :name_or_material_or_pcode_cont %>
   </div>
-  <div class="actions"><%= f.submit "Search" %></div>
+  <%= f.submit "Search", class: "btn btn-medium btn-primary" %>
 <% end %>
 
 <%= will_paginate %>
