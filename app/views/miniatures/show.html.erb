@@ -11,6 +11,11 @@
        <% @miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
           <% end %><br /> 
+        <% if current_user.admin? %>
+          <%= render 'admin_line' %>
+        <% else %>
+          <%= render 'line' %>
+        <% end %>
 
        <div class="minilabel"><%= simple_pluralize(@miniature.scales.count, 'Scale')%>:</div> <% @miniature.scales.each do |scale| %>
         <%= scale.name %>
@@ -25,16 +30,9 @@
        <div class="minilabel">Notes:</div><br />
        <%= @miniature.notes %>
        <br /><br />
-       <div id="breadcrumbs">
-  <% @miniature.lines.each do |line| %> 
-    <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %>
-  <%= link_to '<i class="fa fa-times"></i>'.html_safe, miniline_path(:miniature_id => @miniature.id, :line_id => line.id),
-            :confirm => 'Are you sure?', :method => :delete %><br />
-  <% end %>
-  <% if current_user.admin? %>
-    <%= link_to "Add to product line", new_miniline_path(:miniature_id => @miniature) %>
-  <% end %>
-</div><br /> 
+       
+
+<br /> 
        <%= link_to "Edit miniature", edit_miniature_path %><br />
        <br />
        </section>

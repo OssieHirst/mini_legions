@@ -1,0 +1,11 @@
+
+  <% @miniature.lines.each do |line| %> 
+    <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %>
+  <%= link_to '<i class="fa fa-times"></i>'.html_safe, miniline_path(:miniature_id => @miniature.id, :line_id => line.id),
+            :confirm => 'Are you sure you want to remove this product line?', :method => :delete %>
+  <%= link_to '<i class="fa fa-plus"></i>'.html_safe, new_miniline_path(:miniature_id => @miniature) %>
+            <br />
+<% end %>
+
+
+ 

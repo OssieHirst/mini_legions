@@ -1,0 +1,4 @@
+<% @miniature.lines.each do |line| %> 
+    <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %>
+  <br />
+<% end %>
