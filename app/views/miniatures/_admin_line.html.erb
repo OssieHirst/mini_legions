@@ -1,5 +1,5 @@
   <div class="minilabel"><%= simple_pluralize(@miniature.lines.count, 'Product line') %>:</div>
-  <%= link_to '<i class="fa fa-plus"></i>'.html_safe, new_miniline_path(:miniature_id => @miniature) %>
+  <%= link_to '<i class="fa fa-plus"></i> add'.html_safe, new_miniline_path(:miniature_id => @miniature) %>
   <br />
   <% @miniature.lines.each do |line| %> 
     <%= link_to line.root.name, line.root %> &gt; <%= link_to line.name, line %>

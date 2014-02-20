@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210143912) do
+ActiveRecord::Schema.define(version: 20140220164126) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 20140210143912) do
   add_index "collections", ["status"], name: "index_collections_on_status"
   add_index "collections", ["user_id", "miniature_id"], name: "index_collections_on_user_id_and_miniature_id"
   add_index "collections", ["user_id"], name: "index_collections_on_user_id"
+
+  create_table "contents", force: true do |t|
+    t.integer  "miniset_id"
+    t.integer  "miniature_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contents", ["miniature_id"], name: "index_contents_on_miniature_id"
+  add_index "contents", ["miniset_id", "miniature_id"], name: "index_contents_on_miniset_id_and_miniature_id", unique: true
+  add_index "contents", ["miniset_id"], name: "index_contents_on_miniset_id"
 
   create_table "lines", force: true do |t|
     t.string   "name"
@@ -85,11 +97,14 @@ ActiveRecord::Schema.define(version: 20140210143912) do
     t.integer  "line_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "miniset_id"
   end
 
   add_index "minilines", ["line_id"], name: "index_minilines_on_line_id"
   add_index "minilines", ["miniature_id", "line_id"], name: "index_minilines_on_miniature_id_and_line_id", unique: true
   add_index "minilines", ["miniature_id"], name: "index_minilines_on_miniature_id"
+  add_index "minilines", ["miniset_id", "line_id"], name: "index_minilines_on_miniset_id_and_line_id", unique: true
+  add_index "minilines", ["miniset_id"], name: "index_minilines_on_miniset_id"
 
   create_table "minisets", force: true do |t|
     t.text     "name"

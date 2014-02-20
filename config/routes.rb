@@ -16,6 +16,7 @@ MiniLegions::Application.routes.draw do
     get :sculptors
     get :collections
     get :lines
+    get :contents
     post :import
     end
   end
@@ -26,6 +27,7 @@ MiniLegions::Application.routes.draw do
     get :sculptors
     get :collections
     get :lines
+    get :contents
     end
   end
   resources :manufacturers do
@@ -43,6 +45,7 @@ MiniLegions::Application.routes.draw do
   resources :productions
   resources :sizes
   resources :minilines
+  resources :contents
   resources :scales
   resources :sculptors do
     collection do

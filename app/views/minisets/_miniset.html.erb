@@ -1,0 +1,19 @@
+<tr>
+  <td><%= link_to miniset.name, miniset %> (<%= miniset.quantity %>)</td>  
+  <td><%= miniset.material %></td>
+  <td><% miniset.manufacturers.each do |manufacturer| %>
+        <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
+      <% end %></td> 
+      <td><% miniset.lines.each do |line| %>
+        <%= link_to line.root.name, line.root %>: <%= link_to line.name, line_path(line) %><br />
+      <% end %></td> 
+  <td><% miniset.scales.each do |scale| %>
+        <%= scale.name %><br /><% end %></td> 
+  <td><%= miniset.pcode %></td>
+  <td><% miniset.sculptors.each do |sculptor| %>
+        <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br /><% end %></td>
+  <td><%= miniset.release_date.strftime("%d %b %Y") unless miniset.release_date.blank? %></td>
+  <td><% if current_user.try(:admin?) %>
+  <%= link_to "delete", miniset, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %></td></tr>

@@ -11,6 +11,8 @@ class Miniature < ActiveRecord::Base
   has_many :lines, :through => :minilines
   has_many :minilines, dependent: :destroy
   has_many :paintingvotes, dependent: :destroy
+  has_many :contents, dependent: :destroy
+  has_many :minisets, :through => :contents
   accepts_nested_attributes_for :productions, allow_destroy: true
   accepts_nested_attributes_for :sizes, allow_destroy: true
   accepts_nested_attributes_for :sculptings, allow_destroy: true

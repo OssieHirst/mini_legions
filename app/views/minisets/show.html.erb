@@ -5,7 +5,8 @@
     <section>
       
        <h1><%= @miniset.name %><br />
-        <div class="subh1">Set of <%= @miniset.quantity %></div></h1><br />
+        <div class="subh1">Set of <%= @miniset.quantity %></div></h1>
+        <br />
        <div class="minilabel">Material:</div> <%= @miniset.material %><br /> 
 
        <div class="minilabel"><%= simple_pluralize(@miniset.manufacturers.count, 'Manufacturer') %>:</div> 
@@ -25,7 +26,7 @@
        <div class="minilabel">Notes:</div><br />
        <%= @miniset.notes %>
        <br /><br />
-      
+      (Set id <code><%= @miniset.id %></code>)<br />
        <%= link_to "Edit", edit_miniset_path %><br />
        <br />
        </section>
@@ -33,8 +34,21 @@
   </aside>
    <div class="span8">
     
-
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<h3>Contents:</h3>
+      <% if @miniset.random? %>
+      This set of <%= @miniset.quantity %> contains a random assortment of the following miniatures.
+      <% else %>
+      This set of <%= @miniset.quantity %> contains the following miniatures.
+      <% end %><br />
       
+      <% @miniset.contents.where(miniset_id: @miniset).each do |content| %>
+          <%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvedicon"), content.miniature %>
+          <%= link_to content.miniature.name, content.miniature %>
+          <% if content.quantity? %>
+            <%= "x#{content.quantity}" %>    
+          <% end %>   
+      <% end %>
 
 
   </div>  

@@ -1,5 +1,4 @@
 class Miniset < ActiveRecord::Base
-  has_many :collections, dependent: :destroy
   has_many :users, :through => :collections
   has_many :productions, dependent: :destroy
   has_many :manufacturers, :through => :productions
@@ -9,7 +8,8 @@ class Miniset < ActiveRecord::Base
   has_many :sculptors, :through => :sculptings
   has_many :minilines, dependent: :destroy
   has_many :lines, :through => :minilines
-  has_many :paintingvotes, dependent: :destroy
+  has_many :contents, dependent: :destroy
+  has_many :miniatures, :through => :contents
   accepts_nested_attributes_for :productions, allow_destroy: true
   accepts_nested_attributes_for :sizes, allow_destroy: true
   accepts_nested_attributes_for :sculptings, allow_destroy: true

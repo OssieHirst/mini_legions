@@ -21,20 +21,17 @@
         <%= scale.name %>
           <% end %><br />
        <div class="minilabel">Product code:</div> <%= @miniature.pcode %><br />
-       <div class="minilabel">Release date:</div> <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br /><br />
+       <div class="minilabel">Release date:</div> <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
        <div class="minilabel">Sculpted by:</div> <% @miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br />
           <% end %><br />
       
-       <br />
        <div class="minilabel">Notes:</div><br />
        <%= @miniature.notes %>
        <br /><br />
        
 
-<br /> 
-       <%= link_to "Edit miniature", edit_miniature_path %><br />
-       <br />
+       <%= link_to "Edit miniature", edit_miniature_path %><br /><br />
        </section>
       <section>
         <%= render 'stats' %>
@@ -95,7 +92,14 @@ $(document).ready(function() {
       Voted the best painted examples of <%= @miniature.name %>. <%= link_to "See more and cast your vote.", imagevote_path(:miniature_id => @miniature) %>
       <br>
       <% end %>
-<% end %>
+<% end %><br />
+   <strong>Sets containing <%= @miniature.name %>:</strong>
+
+   <%= @miniature.contents.where(miniature_id: @miniature).map { |content| link_to "#{content.miniset.name} (x#{content.quantity})" , content.miniset if content.quantity.present? }.join(", ").html_safe %><br />
+   
+      <% if current_user.admin? %>
+          <%= link_to "Add to set", new_content_path(:miniature_id => @miniature) %>
+      <% end %>
 
   </div>  
    
