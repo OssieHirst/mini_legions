@@ -62,7 +62,7 @@ class MinisetsController < ApplicationController
 
   def index
     @search = Miniset.search(params[:q])
-    @search.sorts = 'release_date desc' if @search.sorts.empty?  
+    @search.sorts = 'name asc' if @search.sorts.empty?  
     @minisets = @search.result.paginate(page: params[:page])
   end
 
