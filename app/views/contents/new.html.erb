@@ -7,10 +7,10 @@
  	<%= f.hidden_field :miniature_id, :value => @miniature.id %>
    
     <%= f.label :miniset_id, 'Enter set number' %><br />
-    <%= f.number_field :miniset_id %></div>
+    <%= f.number_field :miniset_id, :autocomplete => :off %></div>
     <div class="span4">
     <%= f.label :quantity, 'Quantity of this miniature included in set' %><br />
-    <%= f.number_field :quantity %>
+    <%= f.number_field :quantity, :autocomplete => :off %>
   
   <div style="float: right;"><%= f.submit "Add", class: "btn btn-large btn-primary" %></div>
 <% end %>
