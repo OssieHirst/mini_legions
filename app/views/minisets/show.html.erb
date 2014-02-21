@@ -43,11 +43,11 @@
       <% end %><br />
       
       <% @miniset.contents.where(miniset_id: @miniset).each do |content| %>
-          <%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvedicon"), content.miniature %>
+          <div class="contents"><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset"), content.miniature %>
           <%= link_to content.miniature.name, content.miniature %>
           <% if content.quantity? %>
             <%= "x#{content.quantity}" %>    
-          <% end %>   
+          <% end %>   </div>
       <% end %>
 
 

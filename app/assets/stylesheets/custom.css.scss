@@ -328,6 +328,19 @@ input {
   border-collapse: collapse;
    }
 
+/* Minisets show */
+
+.contents {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.curvediconminiset {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+
 /* Image Vote */
 
 #image_table  { display: block; }
