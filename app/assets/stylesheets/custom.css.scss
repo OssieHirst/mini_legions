@@ -330,16 +330,14 @@ input {
 
 /* Minisets show */
 
-.contents {
-  float: left;
-  margin-right: 5px;
-  margin-bottom: 10px;
-}
 .curvediconminiset {
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
 }
+
+#contents_table  { display: block; }
+#contents_table  td {display: inline-block; }
 
 /* Image Vote */
 

@@ -95,7 +95,7 @@ $(document).ready(function() {
 <% end %><br />
    <strong>Sets containing <%= @miniature.name %>:</strong>
 
-         <%= @miniature.contents.where(miniature_id: @miniature).map { |content| link_to "#{content.miniset.name} (x#{content.quantity})" , content.miniset if content.quantity.present? }.join(", ").html_safe %><br /><br />
+         <%= content_miniset_links_with_quantity(@miniature) %><br /><br />
    
       <% if current_user.admin? %>
           <%= link_to "Add to set", new_content_path(:miniature_id => @miniature) %>

@@ -42,15 +42,11 @@
       This set of <%= @miniset.quantity %> contains the following miniatures.
       <% end %><br />
       
-      <% @miniset.contents.where(miniset_id: @miniset).each do |content| %>
-          <div class="contents"><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset"), content.miniature %>
-          <%= link_to content.miniature.name, content.miniature %>
-          <% if content.quantity? %>
-            <%= "x#{content.quantity}" %>    
-          <% end %>   </div>
-      <% end %>
+     <table id="contents_table">
 
+       <%= content_miniature_links_with_quantity(@miniset) %>
 
+     </table>
   </div>  
    
 </div>
