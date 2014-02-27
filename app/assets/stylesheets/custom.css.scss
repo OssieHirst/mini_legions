@@ -147,6 +147,28 @@ aside {
   }
 }
 
+.homestats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 3px;
+    border-left: 1px solid $grayLighter;
+    font-size: smaller;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
 .sitestats {
   background-color: $grayLighter;
   padding: 10px;
@@ -362,16 +384,22 @@ input {
 }
 .postinfo {
   color: $grayLight;
+  display: inline;
   a {
    color: $grayLight;
   }
 }
-  
 
+#charCounterLabel{
+  padding-left: 20px;
+  color: $grayLight;
+}
 
 .timestamp{
   color: $grayLight;
+  display: inline;
 }
+
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -381,6 +409,7 @@ input {
 }
 
 .user {
+    display: inline;
   a {
     color: $black;
     font-weight: bold;

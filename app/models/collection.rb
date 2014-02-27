@@ -8,6 +8,7 @@ class Collection < ActiveRecord::Base
 	validates :progress, presence: true
 	validates :name, length: { maximum: 25 }
 	validates :notes, length: { maximum: 280 }
+	scope :desc, order("photo_updated_at DESC")
 	retina!
 
 	has_attached_file :photo,  :styles => { 

@@ -4,9 +4,5 @@
   @<%= current_user.username %>
 
 <span>
-  <%= link_to "view my profile", user_path(current_user) %>
-</span>
-<span>
-  <%= pluralize(current_user.microposts.count, "micropost") %>
-
+  <%= link_to "view your profile", user_path(current_user) %>
 </span>

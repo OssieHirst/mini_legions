@@ -6,9 +6,13 @@
    :onKeyDown => "countCharacters(this, document.getElementById('charCounterLabel'), 140);", 
    :onKeyUp => "countCharacters(this, document.getElementById('charCounterLabel'), 140);" %>
   </div>
-  <div class="field">
-    <span id="charCounterLabel">140</span> characters remaining
-  </div>
+  <table>
+    <td>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+</td><td>
+  <div class="field">
+    <span id="charCounterLabel"> 140</span>
+  </div></td>
+</table>
 <% end %>
 

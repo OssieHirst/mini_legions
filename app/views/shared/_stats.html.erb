@@ -1,5 +1,5 @@
 <% @user ||= current_user %>
-<div class="stats">
+
   <a href="<%= following_user_path(@user) %>">
     following<strong id="following" class="stat">
       <%= @user.followed_users.count %>
@@ -16,4 +16,3 @@
     <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist<strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Want').count %>
     </strong></a>
-</div>

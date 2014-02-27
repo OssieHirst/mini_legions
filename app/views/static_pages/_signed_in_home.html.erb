@@ -1,20 +1,27 @@
 <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-       <section>
+  <aside class="span3">
+    <section>
+      <%= render 'shared/user_info' %>
+    </section>
+    <section>
+      <div class="homestats">
         <%= render 'shared/stats' %>
-      </section>
+      </div>
+    </section>
+    <section>
+      <%= render 'shared/site_stats' %>
+    </section>
+  </aside>
+  <aside class="span4">
+    <section>
+       <%= render 'shared/picfeed' %>
+    </section>
+  </aside>
+    <aside class="span5">
       <section>
-       <%= render 'shared/micropost_form' %>
-       </section>
-       <section>
-       <%= render 'shared/site_stats' %>
-       </section>
+        <h1>Updates feed</h1>
+          <%= render 'shared/micropost_form' %>
+          <%= render 'shared/feed' %>
+      </section>
     </aside>
-     <div class="span8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
+</div>
