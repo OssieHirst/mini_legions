@@ -1,0 +1,32 @@
+ <% Miniature.uniq.joins(:lines).where(@line.subtree_conditions).each do |miniature| %>
+<tr>
+  <td><%= link_to miniature.name, miniature %></td>  
+  <td><%= miniature.material %></td>
+      <td><% miniature.lines.where.not(id: @line).each do |line| %>
+        <%= link_to line.name, line_path(line) %><br />
+      <% end %></td> 
+  <td><%= miniature.pcode %></td>
+  <td><% miniature.sculptors.each do |sculptor| %>
+        <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br /><% end %></td>
+  <td><%= miniature.release_date.strftime("%d %b %Y") unless miniature.release_date.blank? %></td>
+  <td>
+      <% if miniature.collections.where(user_id: current_user).where(status: 'Got').any? %>
+      <span class="fa-stack gotcircle">
+    <i class="fa fa-circle fa-stack-2x gotcircle"></i>
+    <i class="fa-stack-1x circletext">
+    <%= miniature.collections.where(user_id: current_user).where(status: 'Got').count %>
+    </i></span>
+      <% end %>
+      <% if miniature.collections.where(user_id: current_user).where(status: 'Want').any? %>
+      <span class="fa-stack wantcircle">
+    <i class="fa fa-circle fa-stack-2x wantcircle"></i>
+    <i class="fa-stack-1x circletext">
+    <%= miniature.collections.where(user_id: current_user).where(status: 'Want').count %>
+    </i></span>
+      <% end %>
+  </td>  
+  <td><% if current_user.try(:admin?) %>
+  <%= link_to "delete", miniature, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %></td></tr>
+  <% end %>
