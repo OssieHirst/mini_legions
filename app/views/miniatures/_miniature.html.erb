@@ -1,14 +1,12 @@
 <tr>
   <td><%= link_to miniature.name, miniature %></td>  
   <td><%= miniature.material %></td>
-  <td><% miniature.manufacturers.each do |manufacturer| %>
+  <td><div class="indexsmall"><% miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
-      <% end %></td> 
-      <td><% miniature.lines.each do |line| %>
+      <% end %></div></td> 
+      <td><div class="indexsmall"><% miniature.lines.where.not(id: @line).each do |line| %>
         <%= link_to line.root.name, line.root %>: <%= link_to line.name, line_path(line) %><br />
-      <% end %></td> 
-  <td><% miniature.scales.each do |scale| %>
-        <%= scale.name %><br /><% end %></td> 
+      <% end %></div></td> 
   <td><%= miniature.pcode %></td>
   <td><% miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br /><% end %></td>

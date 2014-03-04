@@ -21,19 +21,18 @@
 
   <%= will_paginate @miniatures %>
 
-<table border="0" cellpadding="10" class="table table-hover">
+<table border="0" cellpadding="10" class="table table-condensed table-hover">
 
 <th align="left"><%= sort_link(@search, :name, "Name") %></th>
 <th align="left"><%= sort_link(@search, :material, "Material") %></th>
+<th align="left">Manufacturer</th>
 <th align="left">Line</th>
-<th align="left"><%= sort_link(@search, :pcode, "Product Code") %></th>
-<th align="left">Sculpted by</th>
-<th align="left"><%= sort_link(@search, :release_date, "Release Date") %></th>
-<th align="left"></th>
+<th align="left"><%= sort_link(@search, :pcode, "Code") %></th>
+<th align="left">Sculpt</th>
+<th align="left"><%= sort_link(@search, :release_date, "Released") %></th>
+<th align="left"><i class="fa fa-check-square-o"></i></th>
 <% if current_user.try(:admin?) %><th align="left">Admin</th><% end %>
-
-<%= render 'lineminiatures' %>
-
+  <%= render @miniatures %>
 </table>
 
 <%= will_paginate @miniatures %>

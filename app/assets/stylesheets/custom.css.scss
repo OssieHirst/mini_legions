@@ -288,6 +288,18 @@ input {
   font-size: small;
 }
 
+.indexsmall {
+  font-size: smaller;
+}
+.table-semicondensed {
+  th {
+    padding: 6px;
+  }
+  td {
+    padding: 6px;
+  }
+}
+
 /* Miniatures show */
 
 .minilabel {

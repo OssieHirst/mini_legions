@@ -1,4 +1,4 @@
- <% Miniature.uniq.joins(:lines).where(@line.subtree_conditions).each do |miniature| %>
+
 <tr>
   <td><%= link_to miniature.name, miniature %></td>  
   <td><%= miniature.material %></td>
@@ -29,4 +29,3 @@
   <%= link_to "delete", miniature, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %></td></tr>
-  <% end %>
