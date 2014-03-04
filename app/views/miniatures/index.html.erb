@@ -12,6 +12,7 @@
 <%= will_paginate %>
 
 <table border="0" cellpadding="10" class="table table-hover">
+
 <th align="left"><%= sort_link(@search, :name, "Name") %></th>
 <th align="left"><%= sort_link(@search, :material, "Material") %></th>
 <th align="left">Manufacturer</th>
@@ -20,6 +21,7 @@
 <th align="left"><%= sort_link(@search, :pcode, "Product Code") %></th>
 <th align="left">Sculpted by</th>
 <th align="left"><%= sort_link(@search, :release_date, "Release Date") %></th>
+<th align="left"></th>
 <% if current_user.try(:admin?) %><th align="left">Admin</th><% end %>
   <%= render @miniatures %>
 </table>

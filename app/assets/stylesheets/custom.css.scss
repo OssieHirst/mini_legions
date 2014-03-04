@@ -73,13 +73,12 @@ p {
 
 #logo {
   float: left;
-  margin-right: 1px;
-  font-size: 1.7em;
+  font-size: 1.9em;
   color: white;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: lighter;
-  line-height: 1;
+  line-height: 0.8;
   &:hover {
     color: white;
     text-decoration: none;
@@ -89,12 +88,12 @@ p {
 #redlogo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 1.9em;
   color: #DB020D;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-  line-height: 1;
+  line-height: 0.8;
   &:hover {
     color: #DB020D;
     text-decoration: none;
@@ -273,6 +272,20 @@ input {
       border-bottom: 1px solid $grayLighter;
     }
   }
+}
+
+.gotcircle {
+  color: #02CC5A;
+  font-size: 0.8em;
+}
+.wantcircle {
+  color: #CC0249;
+  font-size: 0.8em;
+}
+
+.circletext {
+  color: white;
+  font-size: small;
 }
 
 /* Miniatures show */
