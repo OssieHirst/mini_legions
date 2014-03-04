@@ -7,26 +7,38 @@
   <% end %> <%= @line.name %>
 </div>
 <div class="row">
-  <div class="span4">
+  <div class="span2">
 <br /><br />
 <% @line.children.each do |line| %>
 <%= link_to line.name, line %>
 <br />
 <% end %>
-<br /><br />
-Depth = <%= @line.depth %><br />
-  Live? <%= @line.live? %><br />
-  <%= @line.originator %>
-  
 </div>
-<div class="span8">
+<div class="span10">
 	<%= @line.description %><br /><br />
 
 	<h4>Miniatures</h4>
-	
-  <% Miniature.uniq.joins(:lines).where(@line.subtree_conditions).each do |miniature| %>
-    <%= link_to miniature.name, miniature %><br />
-  <% end %>
+
+  <%= will_paginate @miniatures %>
+
+<table border="0" cellpadding="10" class="table table-hover">
+
+<th align="left"><%= sort_link(@search, :name, "Name") %></th>
+<th align="left"><%= sort_link(@search, :material, "Material") %></th>
+<th align="left">Manufacturer</th>
+<th align="left">Line</th>
+<th align="left">Scale</th>
+<th align="left"><%= sort_link(@search, :pcode, "Product Code") %></th>
+<th align="left">Sculpted by</th>
+<th align="left"><%= sort_link(@search, :release_date, "Release Date") %></th>
+<th align="left"></th>
+<% if current_user.try(:admin?) %><th align="left">Admin</th><% end %>
+ 
+ <%= render @miniatures %>
+</table>
+
+<%= will_paginate @miniatures %>
+
 
 </div>
 </div>
