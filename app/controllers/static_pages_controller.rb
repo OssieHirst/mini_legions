@@ -8,7 +8,6 @@ class StaticPagesController < ApplicationController
       @users = User.all(params[:id])
       @manufacturers = Manufacturer.all(params[:id])
       @sculptors = Sculptor.all(params[:id])
-      @minisets = Miniset.all(params[:id])
       @lines = Line.all(params[:id])
       @collections = Collection.all(params[:id])
     end

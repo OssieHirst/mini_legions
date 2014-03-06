@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306175131) do
+ActiveRecord::Schema.define(version: 20140306190021) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
     t.integer  "miniature_id"
     t.string   "status"
     t.string   "progress"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -27,6 +25,8 @@ ActiveRecord::Schema.define(version: 20140306175131) do
     t.string   "name"
     t.string   "notes"
     t.string   "video"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "collections", ["miniature_id"], name: "index_collections_on_miniature_id"
