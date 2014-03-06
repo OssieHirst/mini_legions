@@ -19,6 +19,9 @@ MiniLegions::Application.routes.draw do
     get :contents
     post :import
     end
+    member do
+      get :minisets, :setminis
+    end
   end
   resources :minisets do
     collection do

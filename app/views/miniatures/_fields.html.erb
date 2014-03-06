@@ -47,8 +47,16 @@
         <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
                    {:selected => @miniature.sculptors.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
-        <% end %></div>
+        <% end %></div></div>
 
+      <div class="span4">
+      <div class = "form-inline">
+        <%= f.label :set, 'Is a set? (More than one miniature' %>
+        <%= f.check_box :set %></div>
+        <%= f.label :quantity, 'Number of miniatures in set' %>
+       <div class = "form-inline"><%= f.number_field :quantity, :autocomplete => :off  %>
+      <%= f.label :random, 'Random miniatures?' %>
+      <%= f.check_box :random %></div></div>
         <!-- Initialize the plugin: -->
 <script type="text/javascript">
   $(document).ready(function() {
@@ -63,4 +71,4 @@
       
       <%= f.label :notes %>
       <%= f.text_area :notes %>
-      <div class = "form-inline"></div>
+      <div class = "form-inline"></div></div>

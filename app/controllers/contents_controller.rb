@@ -3,14 +3,14 @@ class ContentsController < ApplicationController
 
   def new
     @content = Content.new(@miniature)
-    @miniature = Miniature.find(params[:miniature_id])
+    @miniature = Miniature.find(params[:setmini_id])
   end
 
   def create
     @content = Content.new(content_params)
     if @content.save
       flash[:success] = "Miniature added to set"
-      redirect_to @content.miniature
+      redirect_to @content.setmini
     else
       flash[:success] = "Did not work!!!"
       render 'new'
@@ -31,7 +31,7 @@ class ContentsController < ApplicationController
   private
 
     def content_params
-      params.require(:content).permit(:miniset_id, :miniature_id, :quantity)
+      params.require(:content).permit(:miniset_id, :setmini_id, :quantity)
     end
 
 end

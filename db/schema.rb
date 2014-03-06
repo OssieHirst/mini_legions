@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220164126) do
+ActiveRecord::Schema.define(version: 20140306175131) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -37,15 +37,15 @@ ActiveRecord::Schema.define(version: 20140220164126) do
 
   create_table "contents", force: true do |t|
     t.integer  "miniset_id"
-    t.integer  "miniature_id"
+    t.integer  "setmini_id"
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contents", ["miniature_id"], name: "index_contents_on_miniature_id"
-  add_index "contents", ["miniset_id", "miniature_id"], name: "index_contents_on_miniset_id_and_miniature_id", unique: true
+  add_index "contents", ["miniset_id", "setmini_id"], name: "index_contents_on_miniset_id_and_setmini_id", unique: true
   add_index "contents", ["miniset_id"], name: "index_contents_on_miniset_id"
+  add_index "contents", ["setmini_id"], name: "index_contents_on_setmini_id"
 
   create_table "lines", force: true do |t|
     t.string   "name"
@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(version: 20140220164126) do
     t.datetime "updated_at"
     t.string   "pcode"
     t.string   "notes"
+    t.boolean  "set",          default: false
+    t.boolean  "random",       default: false
+    t.integer  "quantity"
   end
 
   add_index "miniatures", ["created_at"], name: "index_miniatures_on_created_at"
@@ -105,22 +108,6 @@ ActiveRecord::Schema.define(version: 20140220164126) do
   add_index "minilines", ["miniature_id"], name: "index_minilines_on_miniature_id"
   add_index "minilines", ["miniset_id", "line_id"], name: "index_minilines_on_miniset_id_and_line_id", unique: true
   add_index "minilines", ["miniset_id"], name: "index_minilines_on_miniset_id"
-
-  create_table "minisets", force: true do |t|
-    t.text     "name"
-    t.string   "material"
-    t.date     "release_date"
-    t.string   "pcode"
-    t.text     "notes"
-    t.integer  "quantity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "random",       default: false
-  end
-
-  add_index "minisets", ["created_at"], name: "index_minisets_on_created_at"
-  add_index "minisets", ["quantity"], name: "index_minisets_on_quantity"
-  add_index "minisets", ["release_date"], name: "index_minisets_on_release_date"
 
   create_table "paintingvotes", force: true do |t|
     t.integer  "miniature_id"

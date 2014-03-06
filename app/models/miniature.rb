@@ -11,8 +11,10 @@ class Miniature < ActiveRecord::Base
   has_many :lines, :through => :minilines
   has_many :minilines, dependent: :destroy
   has_many :paintingvotes, dependent: :destroy
-  has_many :contents, foreign_key: "setmini_id" dependent: :destroy
+  has_many :contents, foreign_key: "setmini_id", dependent: :destroy
   has_many :minisets, :through => :contents, source: :miniset
+  has_many :reverse_contents, foreign_key: "miniset_id", class_name: "Content", dependent: :destroy
+  has_many :setminis, :through => :reverse_contents, source: :setmini
   accepts_nested_attributes_for :productions, allow_destroy: true
   accepts_nested_attributes_for :sizes, allow_destroy: true
   accepts_nested_attributes_for :sculptings, allow_destroy: true

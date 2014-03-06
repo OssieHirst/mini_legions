@@ -4,7 +4,7 @@
 <div class="row">
   <div class="span4 offset2">
     <%= form_for(@content) do |f| %>
- 	<%= f.hidden_field :miniature_id, :value => @miniature.id %>
+ 	<%= f.hidden_field :setmini_id, :value => @miniature.id %>
    
     <%= f.label :miniset_id, 'Enter set number' %><br />
     <%= f.number_field :miniset_id, :autocomplete => :off %></div>

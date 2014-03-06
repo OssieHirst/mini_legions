@@ -4,7 +4,8 @@
   <aside class="span4">
     <section>
       
-       <h1><%= @miniature.name %><br /></h1><br />
+       <h1><%= @miniature.name %><br />
+        <% if @miniature.set? %><div class="subh1">Set of <%= @miniature.quantity %></div><% end %></h1><br />
        <div class="minilabel">Material:</div> <%= @miniature.material %><br /> 
 
        <div class="minilabel"><%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>:</div> 
@@ -30,8 +31,13 @@
        <%= @miniature.notes %>
        <br /><br />
        
-
+       <% if @miniature.set? %>
+       (Set id <code><%= @miniature.id %></code>)<br />
+        <%= link_to "Edit set", edit_miniature_path %><br /><br />
+       <% else %>
+       (Miniature id <code><%= @miniature.id %></code>)<br />
        <%= link_to "Edit miniature", edit_miniature_path %><br /><br />
+       <% end %>
        </section>
       <section>
         <%= render 'stats' %>
@@ -93,13 +99,29 @@ $(document).ready(function() {
       <br>
       <% end %>
 <% end %><br />
+<% if @miniature.set? %>
+    <h3>Contents:</h3>
+      <% if @miniature.random? %>
+      This set of <%= @miniature.quantity %> contains a random assortment of the following miniatures.
+      <% else %>
+      This set of <%= @miniature.quantity %> contains the following miniatures.
+      <% end %><br />
+      
+     <table id="contents_table">
+
+       <%= content_setmini_links_with_quantity(@miniature) %>
+
+     </table>
+<% else %>
+
    <strong>Sets containing <%= @miniature.name %>:</strong>
 
          <%= content_miniset_links_with_quantity(@miniature) %><br /><br />
    
       <% if current_user.admin? %>
-          <%= link_to "Add to set", new_content_path(:miniature_id => @miniature) %>
+          <%= link_to "Add to set", new_content_path(:setmini_id => @miniature.id) %>
       <% end %>
+<% end %>
 
   </div>  
    
