@@ -6,13 +6,13 @@
     <%= link_to line.name, line %> &gt;
   <% end %> <%= @line.name %>
 </div>
-	<%= @line.description %><br />
+<div class="indexcontent"><%= @line.description %><br />
   <strong>Sub-lines:</strong>
 
   <% @line.children.each do |line| %>
 <span id="sub-line"><%= link_to line.name, line %></span>
-<% end %><br /><br />
-
+<% end %></div><br />
+<br />
 	<h4>Miniatures</h4>
 
   <%= will_paginate @miniatures %>

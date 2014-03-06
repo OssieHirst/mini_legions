@@ -15,7 +15,7 @@
       <%= pf.label :manufacturers, 'Manufactured by' %>
       
         <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
-                   {}, 
+                   {:selected => @miniature.manufacturers.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
         <% end %>
 
@@ -35,7 +35,7 @@
       <%= sf.label :scales, 'Scale' %>
 
         <%= collection_select( :scales, :id, @all_scales, :id, :name, 
-                   {}, 
+                   {:selected => @miniature.scales.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
         <% end %>
         </div>
@@ -45,7 +45,7 @@
       <%= scf.label :sculptors, 'Sculpted by' %>
       <div class = "form-inline">
         <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
-                   {}, 
+                   {:selected => @miniature.sculptors.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
         <% end %></div>
 

@@ -21,6 +21,7 @@ class LinesController < ApplicationController
     @search.sorts = 'name ASC' if @search.sorts.empty?  
     @miniatures = @search.result.paginate(page: params[:page])
   end
+  
   def new
     @line = Line.new
     @lines = ancestry_options(Line.all.arrange(:order => 'name')) {|i| "#{'&nbsp; &nbsp;' * i.depth} #{i.name}".html_safe }
