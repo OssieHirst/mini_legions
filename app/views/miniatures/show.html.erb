@@ -32,10 +32,10 @@
        <br /><br />
        
        <% if @miniature.set? %>
-       (Set id <code><%= @miniature.id %></code>)<br />
+       <code>Set id: <%= @miniature.id %></code><br /><br />
         <%= link_to "Edit set", edit_miniature_path %><br /><br />
        <% else %>
-       (Miniature id <code><%= @miniature.id %></code>)<br />
+       <code>Miniature id: <%= @miniature.id %></code><br /><br />
        <%= link_to "Edit miniature", edit_miniature_path %><br /><br />
        <% end %>
        </section>

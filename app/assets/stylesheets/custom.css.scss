@@ -300,6 +300,11 @@ input {
   }
 }
 
+.indexnowrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 /* Miniatures show */
 
 .minilabel {
