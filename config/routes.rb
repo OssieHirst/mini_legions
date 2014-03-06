@@ -23,16 +23,6 @@ MiniLegions::Application.routes.draw do
       get :minisets, :setminis
     end
   end
-  resources :minisets do
-    collection do
-    get :manufacturers
-    get :scales
-    get :sculptors
-    get :collections
-    get :lines
-    get :contents
-    end
-  end
   resources :manufacturers do
     collection do
       get :miniatures

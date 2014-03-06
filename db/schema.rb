@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306190021) do
+ActiveRecord::Schema.define(version: 20140306193341) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -100,14 +100,11 @@ ActiveRecord::Schema.define(version: 20140306190021) do
     t.integer  "line_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "miniset_id"
   end
 
   add_index "minilines", ["line_id"], name: "index_minilines_on_line_id"
   add_index "minilines", ["miniature_id", "line_id"], name: "index_minilines_on_miniature_id_and_line_id", unique: true
   add_index "minilines", ["miniature_id"], name: "index_minilines_on_miniature_id"
-  add_index "minilines", ["miniset_id", "line_id"], name: "index_minilines_on_miniset_id_and_line_id", unique: true
-  add_index "minilines", ["miniset_id"], name: "index_minilines_on_miniset_id"
 
   create_table "paintingvotes", force: true do |t|
     t.integer  "miniature_id"
@@ -131,14 +128,11 @@ ActiveRecord::Schema.define(version: 20140306190021) do
     t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "miniset_id"
   end
 
   add_index "productions", ["manufacturer_id"], name: "index_productions_on_manufacturer_id"
   add_index "productions", ["miniature_id", "manufacturer_id"], name: "index_productions_on_miniature_id_and_manufacturer_id", unique: true
   add_index "productions", ["miniature_id"], name: "index_productions_on_miniature_id"
-  add_index "productions", ["miniset_id", "manufacturer_id"], name: "index_productions_on_miniset_id_and_manufacturer_id", unique: true
-  add_index "productions", ["miniset_id"], name: "index_productions_on_miniset_id"
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -162,13 +156,10 @@ ActiveRecord::Schema.define(version: 20140306190021) do
     t.integer  "miniature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "miniset_id"
   end
 
   add_index "sculptings", ["miniature_id", "sculptor_id"], name: "index_sculptings_on_miniature_id_and_sculptor_id", unique: true
   add_index "sculptings", ["miniature_id"], name: "index_sculptings_on_miniature_id"
-  add_index "sculptings", ["miniset_id", "sculptor_id"], name: "index_sculptings_on_miniset_id_and_sculptor_id", unique: true
-  add_index "sculptings", ["miniset_id"], name: "index_sculptings_on_miniset_id"
   add_index "sculptings", ["sculptor_id"], name: "index_sculptings_on_sculptor_id"
 
   create_table "sculptors", force: true do |t|
@@ -184,12 +175,9 @@ ActiveRecord::Schema.define(version: 20140306190021) do
     t.integer  "scale_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "miniset_id"
   end
 
   add_index "sizes", ["miniature_id"], name: "index_sizes_on_miniature_id"
-  add_index "sizes", ["miniset_id", "scale_id"], name: "index_sizes_on_miniset_id_and_scale_id", unique: true
-  add_index "sizes", ["miniset_id"], name: "index_sizes_on_miniset_id"
   add_index "sizes", ["scale_id"], name: "index_sizes_on_scale_id"
 
   create_table "users", force: true do |t|
