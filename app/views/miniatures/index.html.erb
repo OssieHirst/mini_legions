@@ -1,13 +1,20 @@
 <% provide(:title, 'All miniatures') %>
 <h1>All miniatures</h1>
-
-<%= search_form_for @search do |f| %>
-  <div class="field">
-    <%= f.label :name_or_material_or_pcode_cont, "Search" %>
-    <%= f.text_field :name_or_material_or_pcode_cont %>
-  </div>
-  <%= f.submit "Search", class: "btn btn-medium btn-primary" %>
-<% end %>
+		<form class="form">
+			<div class = "form-inline">
+			<%= search_form_for @search do |f| %>
+  	 			<div class="input-append">
+    				<%= f.text_field :name_or_material_or_pcode_cont, class: "span3" %>
+  					<%= f.submit "Search", class: "btn" %>
+  	    		</div>
+			<% end %>
+				<div class="float-right">
+					<% if current_user.try(:admin?) %>
+						<%= link_to 'Add new miniature', new_miniature_path, class: "btn btn-primary" %>
+					<% end %>
+				</div>
+			</div>
+		</form>
 
 <%= will_paginate %>
 
@@ -27,13 +34,8 @@
 
 <%= will_paginate %>
 
-<% if current_user.try(:admin?) %>
-
-<%= link_to 'New miniature', new_miniature_path %>
-
-<h1> Import Miniatures:</h1>
-
-<%= form_tag import_miniatures_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %><% end %>
+<div class="float-right">
+	<% if current_user.try(:admin?) %>
+		<%= link_to 'Add new miniature', new_miniature_path, class: "btn btn-primary" %>
+	<% end %>
+</div><br />
