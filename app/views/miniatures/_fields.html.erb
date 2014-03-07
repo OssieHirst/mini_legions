@@ -1,74 +1,137 @@
 <%= render 'shared/error_messages', object: f.object %>
-<div class="row">
-      <div class="span6">
-        <%= f.label :name, 'Name*' %>
-      <%= f.text_field :name %></div>
-      <div class="span2">
-      <%= f.label :material, 'Material*' %>
-      <%= f.select 'material', options_from_collection_for_select(Miniature.select("DISTINCT material"), :material, 'material', @miniature.material) %>
-      </div></div>
-      <div class="row">
-      <div class="span2">
-
-
-       <%= f.fields_for(@production) do |pf|%>
-      <%= pf.label :manufacturers, 'Manufactured by' %>
-      
-        <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
+  <div class="row">
+    <div class="span7">
+     <div class="control-group">
+      <%= f.label :name, 'Name', class: "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name, placeholder: 'Enter miniature or set name' %>
+        </div>
+     </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <div class="control-group">
+        <%= f.label :material, 'Material', class: "control-label" %>
+          <div class="controls">
+            <%= f.select 'material', options_from_collection_for_select(Miniature.select("DISTINCT material"), :material, 'material', @miniature.material) %>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span2">
+      <div class="control-group">
+        <%= f.fields_for(@production) do |pf|%>
+          <%= pf.label :manufacturers, 'Manufactured by', class: "control-label" %>
+            <div class="controls">
+              <%= collection_select( :manufacturers, :id, @all_manufacturers, :id, :name, 
                    {:selected => @miniature.manufacturers.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
+            </div>
         <% end %>
-
-        </div>
-         <div class="span3">
-        <%= f.label :pcode, 'Product Code' %>
-      <%= f.text_field :pcode %>
-         </div>
-         <div class="span3">
-         <%= f.label :release_date %>
-      <div class = "form-inline"><%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %></div>
       </div>
-        </div>
-      <div class="row">
-      <div class="span2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="span5">
+      <div class="control-group">
+        <%= f.label :pcode, 'Product Code', class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :pcode, placeholder: 'Enter product code or SKU' %>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <div class="control-group">
+        <%= f.label :release_date, class: "control-label" %>
+          <div class="controls">
+            <div class = "form-inline">
+              <%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %>
+            </div>  
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span2">
+      <div class="control-group">
         <%= f.fields_for(@size) do |sf| %>
-      <%= sf.label :scales, 'Scale' %>
-
-        <%= collection_select( :scales, :id, @all_scales, :id, :name, 
+          <%= sf.label :scales, 'Scale', class: "control-label" %>
+            <div class="controls">
+              <%= collection_select( :scales, :id, @all_scales, :id, :name, 
                    {:selected => @miniature.scales.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
-        <% end %>
-        </div>
-      <div class="span2">
-
-      <%= f.fields_for(@sculpting) do |scf| %>
-      <%= scf.label :sculptors, 'Sculpted by' %>
-      <div class = "form-inline">
-        <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
+            </div>
+         <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span2">
+      <div class="control-group">
+        <%= f.fields_for(@sculpting) do |scf| %>
+          <%= scf.label :sculptors, 'Sculpted by', class: "control-label" %>
+            <div class="controls">
+              <%= collection_select( :sculptors, :id, @all_sculptors, :id, :fullname, 
                    {:selected => @miniature.sculptors.map(&:id)}, 
                    {class: 'multiselect', multiple: true}) %>
-        <% end %></div></div>
-
-      <div class="span4">
-      <div class = "form-inline">
-        <%= f.label :set, 'Is a set? (More than one miniature' %>
-        <%= f.check_box :set %></div>
-        <%= f.label :quantity, 'Number of miniatures in set' %>
-       <div class = "form-inline"><%= f.number_field :quantity, :autocomplete => :off  %>
-      <%= f.label :random, 'Random miniatures?' %>
-      <%= f.check_box :random %></div></div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+  <div class="row">
+    <div class="span8">
+      <div class="control-group">
+        <%= f.label :set, 'This is a set', class: "control-label" %>
+          <div class="controls"> 
+            <%= f.check_box :set, {class: "check_box_spaced"} %> <span class="help-inline">(More than one miniature)</span>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3">
+      <div class="control-group">
+        <%= f.label :quantity, 'No. of miniatures in set', class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :quantity, :autocomplete => :off %>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span5">
+      <div class="control-group">
+        <%= f.label :random, 'Random miniatures?', class: "control-label" %>
+          <div class="controls">
+            <%= f.check_box :random %> <span class="help-inline">(If exact contents may vary)</span>
+          </div> 
+      </div> 
+    </div>
+  </div> 
+  <br /><br />
         <!-- Initialize the plugin: -->
-<script type="text/javascript">
+        <script type="text/javascript">
   $(document).ready(function() {
     $('.multiselect').multiselect({
       enableFiltering: true,
       maxHeight: 400
     });
   });
-</script></div></div>
+        </script>
 
-    
-      
-      <%= f.label :notes %>
-      <%= f.text_area :notes %>
-      <div class = "form-inline"></div></div>
+  <div class="row">  
+    <div class="span8">
+      <div class="control-group">
+        <%= f.label :notes, class: "control-label" %>
+        <div class="controls">
+          <%= f.text_area :notes, placeholder: 'Any other facts about this miniature or release' %>
+        </div>
+      </div>
+    </div>
+  </div>

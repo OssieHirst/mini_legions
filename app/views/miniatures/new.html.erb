@@ -1,13 +1,14 @@
 <% provide(:title, 'Add miniature') %>
 <h1>Add a miniature</h1>
-
+<form class="form-horizontal">
 <div class="row">
   <div class="span8 offset2">
-    <%= form_for(@miniature) do |f| %>
-          <%= render 'fields', f: f %>
-  
-
-      <div style="float: right;"><%= f.submit "Add miniature", class: "btn btn-large btn-primary" %></div>
-    <% end %>
+    	<%= form_for(@miniature) do |f| %>
+        	<%= render 'fields', f: f %>
+    		<div style="float: right;">
+    			<%= f.submit "Add miniature", class: "btn btn-primary" %>
+    		</div>
+    	<% end %>
   </div>
 </div>
+</form>
