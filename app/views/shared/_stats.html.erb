@@ -1,18 +1,28 @@
 <% @user ||= current_user %>
-
   <a href="<%= following_user_path(@user) %>">
-    following<strong id="following" class="stat">
+    following
+    <strong id="following" class="stat">
       <%= @user.followed_users.count %>
     </strong>
   </a>
+
   <a href="<%= followers_user_path(@user) %>">
-    followers<strong id="followers" class="stat">
+    followers
+    <strong id="followers" class="stat">
       <%= @user.followers.count %>
     </strong>
   </a>
-  <a href="<%= user_collections_path(@user, :status => "Got") %>">collection<strong id="collection" class="stat">
+
+  <a href="<%= user_collections_path(@user, :status => "Got") %>">
+    collection
+    <strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Got').count %>
-    </strong></a>
-    <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist<strong id="collection" class="stat">
+    </strong>
+  </a>
+
+  <a href="<%= user_collections_path(@user, :status => "Want") %>">
+    wantlist
+    <strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Want').count %>
-    </strong></a>
+    </strong>
+  </a>

@@ -12,7 +12,6 @@
   <% @line.children.each do |line| %>
 <span id="sub-line"><%= link_to line.name, line %></span>
 <% end %></div><br />
-<br />
 	<h4>Miniatures</h4>
 
   <%= will_paginate @miniatures %>
@@ -21,11 +20,11 @@
 
 <th align="left"><%= sort_link(@search, :name, "Name") %></th>
 <th align="left"><%= sort_link(@search, :material, "Material") %></th>
-<th align="left">Manufacturer</th>
-<th align="left">Line</th>
+<th align="left"><%= sort_link(@search, :manufacturers_name, "Manufacturer") %></th>
+<th align="left"><%= sort_link(@search, :lines_name, "Line") %></th>
 <th align="left"><%= sort_link(@search, :pcode, "Code") %></th>
-<th align="left">Sculpt</th>
-<th align="left"><%= sort_link(@search, :release_date, "Released") %></th>
+<th align="left"><%= sort_link(@search, :sculptors_last_name, "Sculpt") %></th>
+<th align="left"><%= sort_link(@search, :release_date, "Release") %></th>
 <th align="left"><i class="fa fa-check-square-o"></i></th>
 <% if current_user.try(:admin?) %><th align="left">Admin</th><% end %>
   <%= render @miniatures %>
