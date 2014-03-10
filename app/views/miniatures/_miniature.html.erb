@@ -1,5 +1,5 @@
 <tr>
-  <td><div class="indexnowrap"> <%= link_to miniature.name, miniature %><%= " (#{miniature.quantity})" if miniature.set? %></div></td>  
+  <td><div class="indexnowrap"> <%= link_to miniature.name.truncate(35, omission: "...#{miniature.name.last(2)}"), miniature %><%= " (#{miniature.quantity})" if miniature.set? %></div></td>  
   <td><%= miniature.material %></td>
   <td><div class="indexsmall"><% miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
