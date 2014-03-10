@@ -12,7 +12,7 @@
   <% @line.children.each do |line| %>
 <span id="sub-line"><%= line_sublink_with_count(line) %></span>
 <% end %></div><br />
-	<h4>Miniatures</h4>
+	<h4>Miniatures <%= line_count %></h4>
 
   <%= will_paginate @miniatures %>
 

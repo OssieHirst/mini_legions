@@ -8,7 +8,9 @@
 <% end %>
 
 <br /><br /><br />
-<h4>Miniatures</h4>
+<h4>Miniatures (<%= @manufacturer.miniatures.count %>)</h4>
+
+
 
 <%= will_paginate @miniatures %>
 
