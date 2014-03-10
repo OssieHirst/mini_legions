@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     if request.referer == sign_in_url
       super
     else
-       root_path
+      request.referer || root_path
     end
   end
 
