@@ -22,6 +22,8 @@ class Miniature < ActiveRecord::Base
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :material, presence: true
 	validates_date :release_date, :allow_blank => true
+  scope :indiv, where(set: false)
+  scope :multi, where(set: true)
   
   def name=(s)
     super s.titleize

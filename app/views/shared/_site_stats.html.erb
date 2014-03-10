@@ -1,10 +1,10 @@
 <div class="sitestats">
 <strong>Site stats</strong><br />
-<%= @miniatures.where(set: false).count %> miniatures listed<br />
-<%= @miniatures.where(set: true).count %> sets listed<br />
-<%= @users.count %> users<br />
-<%= @manufacturers.count %> manufacturers<br />
-<%= @lines.count %> product lines<br />
-<%= @sculptors.count %> sculptors<br />
+<%= @miniatures.indiv.count %> miniatures listed<br />
+<%= @miniatures.multi.count %> sets listed<br />
+<%= @users.count %> <%= link_to "users", users_path %><br />
+<%= @manufacturers.count %> <%= link_to "manufacturers", manufacturers_path %><br />
+<%= @lines.count %> <%= link_to "product lines", lines_path %><br />
+<%= @sculptors.count %> <%= link_to "sculptors", sculptors_path %><br />
 <%= @collections.where("photo_file_size IS NOT NULL").count %> photos uploaded
 </div> 
