@@ -1,4 +1,35 @@
 <% provide(:title, @sculptor.fullname) %>
-<h1><%= @sculptor.fullname %></h1>
+	<h1><%= @sculptor.fullname %></h1>
+		<div class="indexcontent">
 
-<%= @sculptor.biog %>
+  <% if @sculptor.biog.length > 500 %>
+    <%= truncate(@sculptor.biog, length: 500) %>
+    <%= link_to_function '...Read more', "$(this).parent().html('#{escape_javascript @sculptor.biog}')" %>
+  <% else %>
+    <%= @sculptor.biog %>
+  <% end %>
+
+		</div><br />
+
+
+<h4>Miniatures (<%= @sculptor.miniatures.count %>)</h4>
+
+
+
+<%= will_paginate @miniatures %>
+
+<table border="0" cellpadding="10" class="table table-condensed table-hover">
+
+<th align="left"><%= sort_link(@search, :name, "Name") %></th>
+<th align="left"><%= sort_link(@search, :material, "Material") %></th>
+<th align="left"><%= sort_link(@search, :manufacturers_name, "Manufacturer") %></th>
+<th align="left"><%= sort_link(@search, :lines_name, "Line") %></th>
+<th align="left"><%= sort_link(@search, :pcode, "Code") %></th>
+<th align="left"><%= sort_link(@search, :sculptors_last_name, "Sculpt") %></th>
+<th align="left"><%= sort_link(@search, :release_date, "Release") %></th>
+<th align="left"><i class="fa fa-check-square-o"></i></th>
+<% if current_user.try(:admin?) %><th align="left">Admin</th><% end %>
+  <%= render @miniatures %>
+</table>
+
+<%= will_paginate @miniatures %>

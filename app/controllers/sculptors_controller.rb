@@ -1,6 +1,9 @@
 class SculptorsController < ApplicationController
   def show
   	@sculptor = Sculptor.find(params[:id])
+    @search = @sculptor.miniatures.search(params[:q])
+    @search.sorts = 'name ASC' if @search.sorts.empty?  
+    @miniatures = @search.result.paginate(page: params[:page])
   end
 
   def new
