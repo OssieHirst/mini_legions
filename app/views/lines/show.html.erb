@@ -10,7 +10,7 @@
   <strong>Sub-lines:</strong>
 
   <% @line.children.each do |line| %>
-<span id="sub-line"><%= link_to line.name, line %></span>
+<span id="sub-line"><%= line_sublink_with_count(line) %></span>
 <% end %></div><br />
 	<h4>Miniatures</h4>
 

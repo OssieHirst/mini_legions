@@ -4,6 +4,9 @@ class ManufacturersController < ApplicationController
 
   def show
     @manufacturer = Manufacturer.find_by_slug(params[:id])
+    @search = @manufacturer.miniatures.search(params[:q])
+    @search.sorts = 'name ASC' if @search.sorts.empty?  
+    @miniatures = @search.result.paginate(page: params[:page])
   end
 
   def edit
