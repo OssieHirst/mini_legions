@@ -8,8 +8,8 @@
         <%= link_to line.root.name, line.root %>: <%= link_to line.name, line_path(line) %><br />
       <% end %></div></td> 
   <td><%= miniature.pcode %></td>
-  <td><% miniature.sculptors.each do |sculptor| %>
-        <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br /><% end %></td>
+  <td><div class="indexsmall"><% miniature.sculptors.each do |sculptor| %>
+        <%= link_to sculptor.initial_fullname, sculptor_path(sculptor) %><br /><% end %></div></td>
   <td><%= miniature.release_date.strftime("%d %b %Y") unless miniature.release_date.blank? %></td>
   <td>
       <% if miniature.collections.where(user_id: current_user).where(status: 'Got').any? %>
