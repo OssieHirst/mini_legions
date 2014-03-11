@@ -9,10 +9,10 @@
       <%= @user.followers.count %>
     </strong> <%= simple_pluralize(@user.followers.count, 'follower') %>.
   </a><br /><br />
-  You have<a href="<%= user_collections_path(@user, :status => "Got") %>"><strong id="collection" class="stat">
+  You have<strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Got').count %>
-    </strong> <%= simple_pluralize(@user.collections.where(status: 'Got').count, 'miniature') %></a> in your collection.
-    Of which <a href="<%= user_collections_path(@user, :progress => "Painted") %>"><strong id="collection" class="stat"><%= @user.collections.where(progress: 'Painted').count %></strong> are painted.</a><br /><br />
+    </strong> <%= simple_pluralize(@user.collections.where(status: 'Got').count, 'miniature') %> in <a href="<%= user_collections_path(@user, :status => "Got") %>">your collection</a>.
+    Of which <strong id="collection" class="stat"><%= @user.collections.where(progress: 'Painted').count %></strong> are painted.<br /><br />
    You have <strong id="collection" class="stat">
       <%= @user.collections.where(status: 'Want').count %>
     </strong> <%= simple_pluralize(@user.collections.where(status: 'Want').count, 'miniature') %> in your <a href="<%= user_collections_path(@user, :status => "Want") %>">wantlist</a>.<br />

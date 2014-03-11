@@ -49,9 +49,10 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    @miniature = Collection.find(params[:id]).remove
-    current_user.remove!(@miniature)
-    redirect_to @miniature
+    @collection = Collection.find(params[:id])
+    @collection.destroy
+    flash[:success] = "Removed from collection"
+    redirect_to user_path(current_user)
   end
 
   private
