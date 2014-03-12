@@ -1,6 +1,15 @@
 <tr>
-  <td><%= link_to manufacturer.name, manufacturer %> (<%= manufacturer.miniatures.count %> miniatures)</td> <% if current_user.try(:admin?) %><td><%= link_to 'Edit', edit_manufacturer_path(manufacturer) %></td><td>
-  <%= link_to "delete", manufacturer, method: :delete,
-                                  data: { confirm: "You sure?" } %></td>
-  <% end %>
+  <td><%= link_to manufacturer.name, manufacturer %> (<%= manufacturer.miniatures.count %> miniatures)
+  </td>
+  	<% if current_user.try(:contributor?) %>
+  		<td>
+  			<%= link_to 'Edit', edit_manufacturer_path(manufacturer) %>
+  		</td>
+  	<% end %>
+  	<% if current_user.try(:admin?) %>
+  		<td>
+  			<%= link_to "delete", manufacturer, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+        </td>
+  	<% end %>
 </tr>

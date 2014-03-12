@@ -1,5 +1,6 @@
 <% @user ||= current_user %>
-  
+
+
     You are <a href="<%= following_user_path(@user) %>">following<strong id="following" class="stat">
       <%= @user.followed_users.count %>
     </strong> <%= simple_pluralize(@user.followed_users.count, 'user') %>.

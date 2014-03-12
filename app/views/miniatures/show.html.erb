@@ -5,14 +5,19 @@
     <section>
       
        <h1><%= @miniature.name %><br />
-        <% if @miniature.set? %><div class="subh1">Set of <%= @miniature.quantity %></div><% end %></h1><br />
+        <% if @miniature.set? %>
+          <div class="subh1">
+            Set of <%= @miniature.quantity %>
+          </div>
+        <% end %>
+       </h1><br />
        <div class="minilabel">Material:</div> <%= @miniature.material %><br /> 
 
        <div class="minilabel"><%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>:</div> 
        <% @miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
           <% end %><br /> 
-        <% if current_user.admin? %>
+        <% if current_user.try(:contributor?) %>
           <%= render 'admin_line' %>
         <% else %>
           <%= render 'line' %>
@@ -33,24 +38,16 @@
        
        <% if @miniature.set? %>
        <code>Set id: <%= @miniature.id %></code><br /><br />
-        <%= link_to "Edit set", edit_miniature_path %><br /><br />
+        <%= link_to "Edit set", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
        <% else %>
        <code>Miniature id: <%= @miniature.id %></code><br /><br />
-       <%= link_to "Edit miniature", edit_miniature_path %><br /><br />
+       <%= link_to "Edit miniature", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
        <% end %>
        </section>
       <section>
         <%= render 'stats' %>
       </section>
-      <section>
-       <i class="fa fa-check-square-o"></i> <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %></section>
- <div class="gotwant">You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist</div>
-       <div class="gotwant">You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
-    <ul class="icons"><% current_user.collections.where(miniature_id: @miniature).where(status: 'Got').each do |collection| %>
-      
-    <li><table><tr><td><% if collection.photo.exists? %><%= link_to image_tag(collection.photo.url(:icon), :retina => true, :class => "curvedicon"), collection %><% else %><%= link_to image_tag("/system/stock/barbarian.gif", :retina => true, :class => "curvedicon"), collection %><% end %></td><td>
-<%= collection.name %><br >
-   <%= collection.progress %></li></td></tr></table><% end %></ul></div>
+      <%= render 'collection_info' if user_signed_in? %>
   </aside>
    <div class="span8">
     
@@ -118,7 +115,7 @@ $(document).ready(function() {
 
          <%= content_miniset_links_with_quantity(@miniature) %><br /><br />
    
-      <% if current_user.admin? %>
+      <% if current_user.try(:contributor?) %>
           <%= link_to "Add to set", new_content_path(:setmini_id => @miniature.id) %>
       <% end %>
 <% end %>

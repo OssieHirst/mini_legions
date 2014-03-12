@@ -12,9 +12,11 @@
 <%= will_paginate %>
 
 <table border="0" cellpadding="10" class="table table-hover">
-<th align="left"><%= sort_link(@search, :name, "Manufacturer") %></th>
-<% if current_user.try(:admin?) %><th></th>
-    <th></th><% end %>
+<th align="left">
+	<%= sort_link(@search, :name, "Manufacturer") %></th>
+<% if current_user.try(:contributor?) %><th>Edit</th><% end %>
+<% if current_user.try(:admin?) %><th>Delete</th><% end %>
+
 
 
  <%= render @manufacturers %>

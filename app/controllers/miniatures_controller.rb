@@ -1,5 +1,5 @@
 class MiniaturesController < ApplicationController
-   before_action :user_signed_in?, only: [:new, :create, :edit, :update]
+   before_action :contributor, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
    def ancestry_options(items, &block)
@@ -109,6 +109,10 @@ private
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def contributor
+      redirect_to(root_url) unless current_user.contributor?
     end
 
     def signed_in_user

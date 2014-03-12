@@ -2,12 +2,12 @@
 
 <h1>Sculptors</h1>
 
-<%= search_form_for @search do |f| %>
+<%= search_form_for @search, :html => {:method => :post} do |f| %>
   <div class="field">
     <%= f.label :first_name_or_last_name_cont, "Name contains" %>
     <%= f.text_field :first_name_or_last_name_cont %>
   </div>
-  <div class="actions"><%= f.submit "Search" %></div>
+  <%= f.submit "Search", class: "btn btn-medium btn-primary" %>
 <% end %>
 
 <%= will_paginate %>
@@ -15,10 +15,11 @@
 <table border="0" cellpadding="10" class="table table-condensed table-hover">
   <tr>
     <th><%= sort_link(@search, :last_name, "Name") %></th>
-    <th><%= sort_link(@search, :sculptor_miniatures_count, "Miniatures") %></th>
+    <th>Miniatures</th>
     <th>Biog</th>
-    <% if current_user.try(:admin?) %><th>Admin</th>
-    <th>Admin</th><% end %>
+     <% if current_user.try(:contributor?) %><th>Edit</th><% end %>
+    <% if current_user.try(:admin?) %><th>Delete</th>
+    <% end %>
   </tr>
 
 <% @sculptors.each do |sculptor| %>
@@ -26,7 +27,7 @@
     <td><%= link_to sculptor.fullname, sculptor %></td>
     <td><%= sculptor.miniatures.count %></td>
     <td><%= truncate(sculptor.biog, length: 100) %></td>
-    <% if current_user.try(:admin?) %><td><%= link_to 'Edit', edit_sculptor_path(sculptor) %></td>
+    <% if current_user.try(:contributor?) %><td><%= link_to 'Edit', edit_sculptor_path(sculptor) %></td>
     <td><%= link_to 'Destroy', sculptor, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
   </tr>
 <% end %>

@@ -1,5 +1,12 @@
-<h1>New line</h1>
+<% provide(:title, 'Add product line') %>
 
-<%= render 'form' %>
+<h1>New product line</h1>
+<div class="row">
+	<div class="span8 offset2">
 
-<%= link_to 'Back', lines_path %>
+	<%= render 'form' %>
+
+	<%= link_to 'Back', lines_path %>
+
+	</div>
+</div>
