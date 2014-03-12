@@ -9,7 +9,7 @@
 <div class="indexcontent"><%= @line.description %><br />
   <% if @line.children.any? %><strong>Sub-lines:</strong><% end %>
 
-  <% @line.children.each do |line| %>
+  <% @line.children.sort { |a,b| a.name <=> b.name }.each do |line| %>
 <span id="sub-line"><%= line_sublink_with_count(line) %></span>
 <% end %></div><br />
 	<h4>Miniatures <%= line_count %></h4>
