@@ -16,7 +16,7 @@ class LinesController < ApplicationController
 
 
   def show
-    @line = Line.find(params[:id])
+    @line = Line.find(params[:id], :order => "name ASC")
     @search = Miniature.uniq.joins(:lines).where(@line.subtree_conditions).search(params[:q])
     @search.sorts = 'name ASC' if @search.sorts.empty?  
     @miniatures = @search.result.paginate(page: params[:page])
