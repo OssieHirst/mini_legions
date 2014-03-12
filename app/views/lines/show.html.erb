@@ -7,7 +7,7 @@
   <% end %> <%= @line.name %>
 </div>
 <div class="indexcontent"><%= @line.description %><br />
-  <strong>Sub-lines:</strong>
+  <% if @line.children.any? %><strong>Sub-lines:</strong><% end %>
 
   <% @line.children.each do |line| %>
 <span id="sub-line"><%= line_sublink_with_count(line) %></span>

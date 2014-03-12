@@ -1,4 +1,3 @@
-<%= form_for(@line, :html => { :class => "form-horizontal"} ) do |f| %>
   <% if @line.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
@@ -46,13 +45,10 @@
      <div class="control-group">
     <%= f.label :parent_id, class: "control-label" %>
     <div class="controls">
-    <%= f.select :parent_id, @lines, include_blank: true %>
+    <%= f.select :parent_id, @lines, {:selected => @line.parent, include_blank: true} %>
     </div>
      </div>
     </div>
  </div>
-  <div style="float: right;">
-    <%= f.submit "Add line", class: "btn btn-primary" %>
-  </div>
-<% end %>
+  
 
