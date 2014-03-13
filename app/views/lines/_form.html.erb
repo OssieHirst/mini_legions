@@ -45,7 +45,7 @@
      <div class="control-group">
     <%= f.label :parent_id, class: "control-label" %>
     <div class="controls">
-    <%= f.select :parent_id, @lines, {:selected => @line.parent, include_blank: true} %>
+    <%= f.select :parent_id, ("<option></option>" + options_from_collection_for_select(Line.all, :id, :name, {:selected => @line.parent_id})).html_safe %>
     </div>
      </div>
     </div>
