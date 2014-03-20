@@ -6,22 +6,22 @@
 
      <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 <%= f.radio_button(:collection_id, collection.id) %>
-<%= f.hidden_field :voter_id, :value => current_user.id %>
-<%= f.hidden_field :voted_id, :value => collection.user.id %>
-<%= f.hidden_field :miniature_id, :value => @miniature.id %>
+
+
 
      <p>Painted by <%= link_to collection.user.name, collection.user %></p>
          </div></td>
     <% end %>
   <% end %>
-  <%= f.submit "Vote" %>
+  <%= f.hidden_field :voter_id, :value => current_user.id %>
+<%= f.hidden_field :miniature_id, :value => @miniature.id %>
+  <%= f.submit "Vote", class: "btn btn-large btn-primary" %>
 <% end %>
  </table>
 
   </div>
 </div>
 
-<% provide(:title, 'Vote for the best painted miniature') %>
  <script type="text/javascript">
 $(document).ready(function() {
   $('.image-popup-no-margins').magnificPopup({
