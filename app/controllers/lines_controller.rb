@@ -28,7 +28,7 @@ class LinesController < ApplicationController
   end
 
   def edit
-    @line = Line.find(params[:id])
+    @line = Line.find(params[:id])  
   end
 
   def update

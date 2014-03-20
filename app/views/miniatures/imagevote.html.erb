@@ -21,21 +21,22 @@ $(document).ready(function() {
   <div class="span14">
 <h1><%= @miniature.name %><br /></h1>
 <%= link_to @miniature.name, @miniature %> > Vote<br>
-<i class="fa fa-hand-o-up"></i> Click an image to see it full size.<br> Click on a medal to cast your vote for the best painted miniature. You can change your vote any time.<br><br>
+Select an image to cast your vote for the best painted miniature. You can change your vote any time.<br>
+<i class="fa fa-hand-o-up"></i> Click an image to see it full size.<br> <br>
   <table id="image_table">
-
-<% @miniature.collections(:photo).each do |collection| %>
+<%= form_tag do %>
+  <% @miniature.collections(:photo).each do |collection| %>
 
     <% if collection.photo.exists? %>
       <td><div class="photo1">
 
      <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+<%= radio_button_tag(:collection_id, :id) %>
 
-          <%= image_tag("/system/stock/medal.gif", :retina => true, :class => "medal") %>
-
-     <p>Painted by <%= link_to collection.user.name, collection.user %></p></div>
-         </td>
+     <p>Painted by <%= link_to collection.user.name, collection.user %></p>
+         </div></td>
     <% end %>
+  <% end %>
 <% end %>
  </table>
 

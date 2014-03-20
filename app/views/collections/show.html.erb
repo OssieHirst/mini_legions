@@ -49,7 +49,7 @@ $(document).ready(function() {
      <%= link_to 'See full Miniature details', @miniature %><br />
      <%= link_to 'See user collection', user_collections_path(@user, :status => "Got") %><br /><br />
 
-     <%= link_to raw("<i class='fa fa-times'></i> Remove from collection"), @collection, :confirm => 'Are you sure you want to remove this? Photos and notes will be lost and it cannot be undone!', method: :delete , class: "btn btn-med btn-primary" %>
+     <%= link_to raw("<i class='fa fa-trash-o'></i> Remove from collection"), @collection, :confirm => 'Are you sure you want to remove this? Photos and notes will be lost and it cannot be undone!', method: :delete , class: "btn btn-med btn-primary" %>
 
     </section>
   </aside>
