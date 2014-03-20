@@ -10,7 +10,7 @@ class Miniature < ActiveRecord::Base
   has_many :minilines, dependent: :destroy
   has_many :lines, :through => :minilines
   has_many :minilines, dependent: :destroy
-  has_many :paintingvotes, dependent: :destroy
+  has_many :imagevotes, dependent: :destroy
   has_many :contents, foreign_key: "setmini_id", dependent: :destroy
   has_many :minisets, :through => :contents, source: :miniset
   has_many :reverse_contents, foreign_key: "miniset_id", class_name: "Content", dependent: :destroy

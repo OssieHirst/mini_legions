@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311164052) do
+ActiveRecord::Schema.define(version: 20140320131726) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 20140311164052) do
   add_index "contents", ["miniset_id", "setmini_id"], name: "index_contents_on_miniset_id_and_setmini_id", unique: true
   add_index "contents", ["miniset_id"], name: "index_contents_on_miniset_id"
   add_index "contents", ["setmini_id"], name: "index_contents_on_setmini_id"
+
+  create_table "imagevotes", force: true do |t|
+    t.integer  "collection_id"
+    t.integer  "voter_id"
+    t.integer  "voted_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "miniature_id"
+  end
+
+  add_index "imagevotes", ["collection_id"], name: "index_imagevotes_on_collection_id"
+  add_index "imagevotes", ["miniature_id", "voter_id"], name: "index_imagevotes_on_miniature_id_and_voter_id", unique: true
+  add_index "imagevotes", ["miniature_id"], name: "index_imagevotes_on_miniature_id"
+  add_index "imagevotes", ["voted_id"], name: "index_imagevotes_on_voted_id"
+  add_index "imagevotes", ["voter_id"], name: "index_imagevotes_on_voter_id"
 
   create_table "lines", force: true do |t|
     t.string   "name"

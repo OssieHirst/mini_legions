@@ -91,9 +91,7 @@ $(document).ready(function() {
   </div><% end %><% end %>
     <% @miniature.collections(:photo).take(1).each do |collection| %>  
  <% if collection.photo.exists? %> 
-  <br>
-      Voted the best painted examples of <%= @miniature.name %>. <%= link_to "See more and cast your vote.", imagevote_path(:miniature_id => @miniature) %>
-      <br>
+  <%= render 'vote' %>
       <% end %>
 <% end %><br />
 <% if @miniature.set? %>

@@ -36,6 +36,7 @@ MiniLegions::Application.routes.draw do
    end
   end
   resources :productions
+  resources :imagevotes
   resources :sizes
   resources :minilines
   resources :contents
@@ -49,11 +50,7 @@ MiniLegions::Application.routes.draw do
     member do
       get :miniatures
       get :users
-    end
-  end
-  resources :paintingvotes do
-    member do
-      get :miniatures
+      get :imagevotes
     end
   end
 
@@ -64,8 +61,6 @@ MiniLegions::Application.routes.draw do
   match '/new',     to: 'miniatures#new',       via: 'get'
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
-  match 'imagevote', to: 'miniatures#imagevote', via: 'get'
-  post '/rate' => 'rater#create', :as => 'rate'
   post 'versions/:id/revert' => 'versions#revert', :as => 'revert_version'
   
 

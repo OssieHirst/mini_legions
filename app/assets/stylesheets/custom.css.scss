@@ -345,17 +345,6 @@ input {
   top: 5px;
   z-index: 1;
 }
-.fa-trophy {
-  position:absolute;
-  display: inline;
-  left: 20px;
-  top: 5px;
-  z-index: 1;
-  font-size: 20px;
-  background: -webkit-linear-gradient(#D4DB00, #484A01);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 }
 
 
@@ -410,6 +399,27 @@ input {
 
 #image_table  { display: block; }
 #image_table  td {display: inline-block; }
+
+.photovoted {
+  position: relative; 
+  width: 100%; /* for IE 6 */
+  margin-top: 20px;
+  p { 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 2px;
+  width: auto;
+  font-size: larger;
+  color: #FFF;
+  margin: 0;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.5);
+  a {
+    color: #FFF;
+  }
+  }
+  }
 
 /* Line show */
 

@@ -24,14 +24,14 @@ $(document).ready(function() {
 Select an image to cast your vote for the best painted miniature. You can change your vote any time.<br>
 <i class="fa fa-hand-o-up"></i> Click an image to see it full size.<br> <br>
   <table id="image_table">
-<%= form_tag do %>
+<%= form_tag({ :controller => "imagevotes", :action => "create" } ) do |f| %>
   <% @miniature.collections(:photo).each do |collection| %>
 
     <% if collection.photo.exists? %>
       <td><div class="photo1">
 
      <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
-<%= radio_button_tag(:collection_id, :id) %>
+<%= radio_button_tag(:collection_id, collection.id) %>
 
      <p>Painted by <%= link_to collection.user.name, collection.user %></p>
          </div></td>

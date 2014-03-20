@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="span14">
+<h1><%= @miniature.name %><br /></h1>
+<%= link_to @miniature.name, @miniature %> > Vote<br>
+Select an image to cast your vote for the best painted miniature. You can change your vote any time.<br>
+<i class="fa fa-hand-o-up"></i> Click an image to see it full size.<br> <br>
+  <table id="image_table">
+    
+<%= render 'voteform' %>

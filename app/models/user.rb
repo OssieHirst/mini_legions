@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-  has_many :paintingvotes, foreign_key: "recipient_id", dependent: :destroy
-  has_many :reverse_paintingvotes, foreign_key: "voter_id", dependent: :destroy
+  has_many :imagevotes, foreign_key: "voted_id", dependent: :destroy
+  has_many :reverse_imagevotes, foreign_key: "voter_id", dependent: :destroy
   validates :username, presence: true,
                        length: { maximum: 15 },
                        uniqueness: { case_sensitive: false }
