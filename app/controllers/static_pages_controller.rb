@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
       @sculptors = Sculptor.all(params[:id])
       @lines = Line.all(params[:id])
       @collections = Collection.all(params[:id])
+      @imagevotes = Imagevote.all(params[:id])
     end
   end
 

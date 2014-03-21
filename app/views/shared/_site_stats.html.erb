@@ -29,5 +29,9 @@
 				<td><%= @collections.where("photo_file_size IS NOT NULL").count %></td>
 				<td>&nbsp; photos uploaded</td>
 			</tr>
+			<tr>
+				<td><%= @imagevotes.count %></td>
+				<td>&nbsp; painting votes cast</td>
+			</tr>
 		</table>
 </div> 
