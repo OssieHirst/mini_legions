@@ -8,9 +8,14 @@ class ImagevotesController < ApplicationController
 	end
 
 	def show
-    	@imagevote = Imagevote.find_by_miniature_id_and_voter_id(params[:miniature_id],params[:voter_id]) 
-    	@miniature = Miniature.find(params[:miniature_id]) 
-    end
+    	@imagevote = Imagevote.find(params[:id]) 
+      @miniature = @imagevote.miniature
+  end
+
+  def edit
+      @imagevote = Imagevote.find_by_miniature_id_and_voter_id(params[:miniature_id],params[:voter_id]) 
+      @miniature = Miniature.find(params[:miniature_id]) 
+  end
 
 	def create
   		@imagevote = Imagevote.new(imagevote_params)
@@ -18,7 +23,7 @@ class ImagevotesController < ApplicationController
   		@imagevote.voted_id = @collection.user_id
   		if @imagevote.save
   			flash[:success] = "Vote registered"
-  			redirect_to :back
+  			redirect_to @imagevote
   		else
   			flash[:success] = "Vote not registered"
   			redirect_to :back
@@ -31,7 +36,7 @@ class ImagevotesController < ApplicationController
   		@imagevote.voted_id = @collection.user_id
 		if @imagevote.update_attributes(imagevote_params)
 			flash[:success] = "Vote changed."
-      		redirect_to :back
+      		redirect_to @imagevote
     	else
       		redirect_to :back
     	end

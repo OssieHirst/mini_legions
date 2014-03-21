@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :user_signed_in?
 
+
   respond_to :html, :js
 
   def index

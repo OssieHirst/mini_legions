@@ -5,21 +5,20 @@
 
 <div class="row">
   <div class="span9">
-<h1><%= @miniature.name %><br /></h1>
-<%= link_to @miniature.name, @miniature %> > Vote<br>
+<h1><%= @imagevote.miniature.name %><br /></h1>
+<%= link_to @imagevote.miniature.name, @imagevote.miniature %> > Vote<br>
 Select an image to cast your vote for the best painted miniature. You can change your vote any time.<br>
 <i class="fa fa-hand-o-up"></i> Click an image to see it full size.<br> <br>
   </div>
   <div class="span3">
-      <% @miniature.imagevotes.where(:voter_id => current_user).each do |imagevote| %>
         <div class="photovoted">
 
-          <%= link_to image_tag(imagevote.collection.photo.url(:thumb), :retina => true), imagevote.collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+          <%= link_to image_tag(@imagevote.collection.photo.url(:thumb), :retina => true), @imagevote.collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
           <p>Your current vote</p>
         </div>
-      <% end %>
   </div>
 </div>
-
   <table id="image_table">
+
 <%= render 'voteform' %>
+

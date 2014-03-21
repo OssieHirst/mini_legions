@@ -1,4 +1,5 @@
 class Collection < ActiveRecord::Base
+	default_scope order('imagevotes_count DESC')
 	belongs_to :miniature
 	belongs_to :user
     has_many :imagevotes, dependent: :destroy

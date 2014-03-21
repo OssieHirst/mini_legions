@@ -1,7 +1,7 @@
 	<% if @miniature.imagevotes.where(:voter_id => current_user).any? %>
 	<br>
       Voted the best painted examples of <%= @miniature.name %>. 
-      <%= link_to "See more and change your vote.", imagevote_path(:miniature_id => @miniature, :voter_id => current_user.id) %>
+      <%= link_to "See more and change your vote.", edit_imagevote_path(:miniature_id => @miniature, :voter_id => current_user.id) %>
       <br>
       <% else %>
       <br>
