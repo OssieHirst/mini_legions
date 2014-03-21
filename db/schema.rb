@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321124125) do
+ActiveRecord::Schema.define(version: 20140321171809) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -202,11 +202,15 @@ ActiveRecord::Schema.define(version: 20140321124125) do
     t.string   "unconfirmed_email"
     t.boolean  "contributor",            default: false
     t.boolean  "superadmin",             default: false
+    t.integer  "voted_count",            default: 0
+    t.integer  "vote_count",             default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["vote_count"], name: "index_users_on_vote_count"
+  add_index "users", ["voted_count"], name: "index_users_on_voted_count"
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
