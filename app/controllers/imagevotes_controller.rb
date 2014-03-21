@@ -22,10 +22,11 @@ class ImagevotesController < ApplicationController
   		@collection = Collection.find(params[:imagevote][:collection_id])
   		@imagevote.voted_id = @collection.user_id
   		if @imagevote.save
-  			flash[:success] = "Vote registered"
+  			flash[:success] = "Vote accepted."
   			redirect_to @imagevote
   		else
-  			flash[:success] = "Vote not registered"
+  			flash[:alert] = "Vote not accepted."
+        flash[:alert] << @imagevote.errors[:vote].first unless @imagevote.errors[:vote].nil?
   			redirect_to :back
   		end
 	end
@@ -38,6 +39,8 @@ class ImagevotesController < ApplicationController
 			flash[:success] = "Vote changed."
       		redirect_to @imagevote
     	else
+        flash[:alert] = "Vote not accepted. "
+        flash[:alert] << @imagevote.errors[:vote].first unless @imagevote.errors[:vote].nil?
       		redirect_to :back
     	end
   	end
