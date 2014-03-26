@@ -19,7 +19,7 @@ $(document).ready(function() {
 });
 </script>
 
-<% Collection.desc.where("photo_file_size IS NOT NULL").first(5).each do |collection| %>
+<% picfeed.each do |collection| %>
 		<div class="photo1">
       		<%= link_to image_tag(collection.photo.url(:medium), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 

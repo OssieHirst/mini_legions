@@ -6,7 +6,7 @@
     <%= form_for(@content) do |f| %>
  	<%= f.hidden_field :setmini_id, :value => @miniature.id %>
    
-    <%= f.label :miniset_id, 'Enter set number' %><br />
+    <%= f.label :miniset_id, 'Enter set id' %><br />
     <%= f.number_field :miniset_id, :autocomplete => :off %></div>
     <div class="span4">
     <%= f.label :quantity, 'Quantity of this miniature included in set' %><br />
