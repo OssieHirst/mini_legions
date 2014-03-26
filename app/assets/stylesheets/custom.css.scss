@@ -331,14 +331,15 @@ input {
   position: absolute;
   left: 0;
   bottom: 0;
-  padding: 2px;
+  padding: 4px;
   font-size: smaller;
   color: #FFF;
   margin: 0;
   background: rgb(0, 0, 0); /* fallback color */
   background: rgba(0, 0, 0, 0.5);
   a {
-    color: $grayLight;
+    color: #FFF;
+    text-decoration:underline;
   }
   }
  input[type="radio"] {
