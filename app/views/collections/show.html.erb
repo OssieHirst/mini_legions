@@ -26,7 +26,7 @@ $(document).ready(function() {
 </script>
 
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %><br />
-      <i><%= @collection.name %></i> Painted by <%= link_to @collection.user.name, @user %>
+      <i><%= @collection.name %></i> Painted by <%= link_to @collection.user.name, @user %> <%= "GOLD" if @collection.is_gold %> <%= "SILVER" if @collection.is_silver %>
       <% end %><br /><br />
 
         <%= @collection.notes %>

@@ -8,6 +8,9 @@ class Imagevote < ActiveRecord::Base
 	validates :voted_id, presence: true
 	validates :miniature_id, presence: true
 	validate :cannot_vote_for_self
+	after_create :set_gold_and_silver
+	after_update :set_gold_and_silver
+	
 	
 
 	def cannot_vote_for_self
@@ -15,5 +18,9 @@ class Imagevote < ActiveRecord::Base
 		errors.add(:vote, "You cannot vote for your self!")
 		end
 	end
+
+	def set_gold_and_silver
+    	self.miniature.set_gold_and_silver
+  	end
 
 end

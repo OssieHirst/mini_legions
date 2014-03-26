@@ -1,6 +1,7 @@
 class ImagevotesController < ApplicationController
 	
 	respond_to :html, :js
+  
 
 	def new
 		@imagevote = Imagevote.new

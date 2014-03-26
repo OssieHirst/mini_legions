@@ -17,11 +17,6 @@
        <% @miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
           <% end %><br /> 
-        <% if current_user.try(:contributor?) %>
-          <%= render 'admin_line' %>
-        <% else %>
-          <%= render 'line' %>
-        <% end %>
 
        <div class="minilabel"><%= simple_pluralize(@miniature.scales.count, 'Scale')%>:</div> <% @miniature.scales.each do |scale| %>
         <%= scale.name %>
@@ -30,8 +25,14 @@
        <div class="minilabel">Release date:</div> <%= @miniature.release_date.strftime("%d %b %Y") unless @miniature.release_date.blank? %><br />
        <div class="minilabel">Sculpted by:</div> <% @miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br />
-          <% end %><br />
+          <% end %>
+          <% if current_user.try(:contributor?) %>
+          <%= render 'admin_line' %>
+        <% else %>
+          <%= render 'line' %>
+        <% end %>
       
+      <br />
        <div class="minilabel">Notes:</div><br />
        <%= @miniature.notes %>
        <br /><br />
@@ -76,24 +77,25 @@ $(document).ready(function() {
 
       <%= link_to image_tag(@miniature.collections.first.photo.url(:medium), :retina => true), @miniature.collections.first.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
-      <p>Painted by <%= link_to @miniature.collections.first.user.name, @miniature.collections.first.user %></p>
+      <p><%= collection.name %> Painted by <%= link_to collection.user.name, collection.user %></p>
    </div>
   <% end %>
 <% end %>
    
-      <% @miniature.collections(:photo).drop(1).take(3).each do |collection| %>
+<% @miniature.collections(:photo).drop(1).take(3).each do |collection| %>
 
-    <% if collection.photo.exists? %>
-    <div class="photos234"><li>
+  <% if collection.photo.exists? %>
+    <div class="photos234">
+      <li>
       
-     <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
-    </li>
-  </div><% end %><% end %>
-    <% @miniature.collections(:photo).take(1).each do |collection| %>  
- <% if collection.photo.exists? %> 
-  <%= render 'vote' %>
-      <% end %>
+        <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+      </li>
+    </div>
+  <% end %>
 <% end %><br />
+
+    <p class="clear"><%= render 'vote' if @miniature.collections.where("photo_file_name IS NOT NULL").any? %></p>  
+ <br />
 <% if @miniature.set? %>
     <h3>Contents:</h3>
       <% if @miniature.random? %>

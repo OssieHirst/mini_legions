@@ -26,6 +26,12 @@
       </div>
       <% end %>
     </section>
+    <section>
+      Painting<br/>
+      Golds <%= @user.collections.where(:is_gold => true).count %><br />
+      Silvers <%= @user.collections.where(:is_silver => true).count %><br />
+      Painterscore <%= @user.painterscore %>
+    </section>
   </aside>
   <div class="span8">
     <%= render 'follow_form' if signed_in? %>

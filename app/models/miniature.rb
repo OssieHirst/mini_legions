@@ -9,7 +9,6 @@ class Miniature < ActiveRecord::Base
   has_many :sculptors, :through => :sculptings
   has_many :minilines, dependent: :destroy
   has_many :lines, :through => :minilines
-  has_many :minilines, dependent: :destroy
   has_many :imagevotes, dependent: :destroy
   has_many :contents, foreign_key: "setmini_id", dependent: :destroy
   has_many :minisets, :through => :contents, source: :miniset
@@ -33,6 +32,14 @@ class Miniature < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       Miniature.create! row.to_hash
     end
+  end
+
+  def set_gold_and_silver
+    self.collections.update_all(:is_gold => false, :is_silver => false)
+    top_collections = self.collections.limit(4)
+    gold = top_collections.shift 
+    gold.update_attribute :is_gold, true if gold
+    top_collections.each {|s| s.update_attribute :is_silver, true}
   end
 
 end

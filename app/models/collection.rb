@@ -11,6 +11,8 @@ class Collection < ActiveRecord::Base
 	validates :notes, length: { maximum: 280 }
 	scope :desc, order("photo_updated_at DESC")
 	retina!
+	before_destroy :cache_miniature
+	after_destroy :set_gold_and_silver
 
 	has_attached_file :photo,  :styles => { 
 		:original => "1024x1024", 
@@ -25,4 +27,13 @@ class Collection < ActiveRecord::Base
 
 		validates_attachment_size :photo, :less_than => 4.megabytes
 		validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
+
+	def cache_miniature
+    	@miniature = self.miniature
+  	end
+
+  	def set_gold_and_silver
+  		@miniature.set_gold_and_silver
+  	end
 end

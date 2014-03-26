@@ -3,14 +3,14 @@
   <% @miniature.collections(:photo).each do |collection| %>
 
     <% if collection.photo.exists? %>
-      <td><div class="photo1">
+      <td><div class="votephotos">
 
      <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 <%= f.radio_button(:collection_id, collection.id) %>
 
 
 
-     <p>Painted by <%= link_to collection.user.name, collection.user %></p>
+     <p><%= link_to ['Painted by', collection.user.name].join(' '), collection %></p>
          </div></td>
     <% end %>
   <% end %>

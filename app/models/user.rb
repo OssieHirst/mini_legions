@@ -12,16 +12,30 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-  has_many :imagevotes, foreign_key: "voted_id", dependent: :destroy
-  has_many :reverse_imagevotes, foreign_key: "voter_id", dependent: :destroy
+  has_many :imagevotes, foreign_key: "voted_id"
+  has_many :imagevotes, foreign_key: "voter_id"
   validates :username, presence: true,
                        length: { maximum: 15 },
                        uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }
+  before_destroy :set_gold_and_silver
 
 
   def to_param
     username
+  end
+
+  def painterscore
+    gold = self.collections.where(:is_gold => true).count * 25
+    silver = self.collections.where(:is_silver => true).count * 5
+    totalvotes = self.vote_count
+    gold+silver+totalvotes
+  end
+
+  def set_gold_and_silver
+    @miniatures = self.imagevotes.map(&:miniature).uniq
+    self.imagevotes.destroy
+    @miniatures.each(&:set_gold_and_silver)
   end
 
   def add!(miniature)

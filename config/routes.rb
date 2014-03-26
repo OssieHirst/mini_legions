@@ -3,6 +3,7 @@ MiniLegions::Application.routes.draw do
   devise_for :users
   resources :users do
     resources :collections
+    resources :imagevotes
     member do
       get :following, :followers
     end
