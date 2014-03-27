@@ -14,6 +14,15 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def large_gravatar_for(user)
+    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=190"
+    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+  end
 
+  def paintedfeed
+    pics = @user.collections.where('photo_updated_at >= ?', 6.months.ago)
+      pics.take(5)
+  end
   
 end

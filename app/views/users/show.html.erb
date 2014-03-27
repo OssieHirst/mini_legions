@@ -3,7 +3,7 @@
   <aside class="span3">
     <section>
       <h1>
-        <%= gravatar_for @user %>
+        <%= large_gravatar_for @user %>
         <%= @user.name %>
       </h1>
       @<%= @user.username %>
@@ -23,9 +23,39 @@
 
     </section>
   </aside>
-  <div class="span4">
-  </div>
-  <div class="span5">
+  <aside class="span4">
+    <section>
+    <h1>Best painted</h1><br />
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.image-popup-no-margins').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 200 // don't foget to change the duration also in CSS
+    }
+  });
+});
+</script>
+
+<% paintedfeed.each do |collection| %>
+    <div class="photo1">
+          <%= link_to image_tag(collection.photo.url(:medium), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+
+          <p><%= link_to collection.name.presence || collection.miniature.name, collection %> </p>
+        </div><br />
+<% end %>
+</section>
+  </aside>
+  <aside class="span5">
     <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
       <h3>Updates (<%= @user.microposts.count %>)</h3>
@@ -34,5 +64,5 @@
       </ol>
       <%= will_paginate @microposts %>
     <% end %>
-  </div>
+  </aside>
 </div>
