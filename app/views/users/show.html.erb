@@ -6,7 +6,7 @@
         <%= large_gravatar_for @user %>
         <%= @user.name %>
       </h1>
-      @<%= @user.username %>
+      <div class="username">@<%= @user.username %></div>
         <div class="adminlevel">
           <% if @user.superadmin? %>
             Dark Lord
@@ -25,7 +25,7 @@
   </aside>
   <aside class="span4">
     <section>
-    <h1>Best painted</h1><br />
+    <h1 class="before_picfeed"><%= @user.username.titleize %>'s best painted</h1>
 
 <script type="text/javascript">
 $(document).ready(function() {

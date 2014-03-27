@@ -54,6 +54,7 @@ h1 {
   
 }
 
+
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -238,9 +239,20 @@ aside {
   .gravatar {
     margin: 1px 1px;
     -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  margin-bottom: 10px;
+    -moz-border-radius: 10px;
+    margin-bottom: 10px;
   }
+}
+
+.large_gravatar {
+    margin: 1px 1px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.before_picfeed {
+  margin-bottom: 15px;
 }
 
 
@@ -595,6 +607,12 @@ aside {
   margin-right: 20px;
   color: #DB020D;
 }
+
+.username {
+  color: $grayLight;
+  display: inline;
+}
+
 
 /* magnific-popup */
 

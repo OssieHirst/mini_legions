@@ -1,8 +1,4 @@
-<%= gravatar_for current_user %>
+<%= med_gravatar_for current_user %>
 <h1>
   <%= current_user.name %></h1>
-  @<%= current_user.username %>
-
-<span>
-  <%= link_to "view your profile", user_path(current_user) %>
-</span>
+  <div class="username">@<%= current_user.username %></div>
