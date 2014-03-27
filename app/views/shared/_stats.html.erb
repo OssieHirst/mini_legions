@@ -1,28 +1,58 @@
-<% @user ||= current_user %>
-  <a href="<%= following_user_path(@user) %>">
-    following
-    <strong id="following" class="stat">
-      <%= @user.followed_users.count %>
-    </strong>
-  </a>
-
-  <a href="<%= followers_user_path(@user) %>">
-    followers
-    <strong id="followers" class="stat">
-      <%= @user.followers.count %>
-    </strong>
-  </a>
-
-  <a href="<%= user_collections_path(@user, :status => "Got") %>">
-    collection
-    <strong id="collection" class="stat">
-      <%= @user.collections.where(status: 'Got').count %>
-    </strong>
-  </a>
-
+  <% @user ||= current_user %>
+<div class="stats2">
+<div class="collection">
+    <a href="<%= user_collections_path(@user, :status => "Got") %>">Collection 
+      <div class="count"><%= @user.collections.where(status: 'Got').count %></div>
+      </a>
+</div>
+<div class="item">
   <a href="<%= user_collections_path(@user, :status => "Want") %>">
-    wantlist
-    <strong id="collection" class="stat">
-      <%= @user.collections.where(status: 'Want').count %>
-    </strong>
+    Wantlist
+      <div class="count"><%= @user.collections.where(status: 'Want').count %></div>
   </a>
+</div>
+<div class="item">
+    <strong>Painted
+      <div class="count"><%= @user.collections.where(progress: 'Painted').count %></div></strong>
+</div>
+<div class="painterscore">
+   Painterscore <div class="count"><%= @user.painterscore %></div>
+ </div>
+ <div class="item">
+ <strong>
+    Golds
+      <div class="count"><%= @user.collections.where(:is_gold => true).count %></div>
+  </strong>
+</div>
+<div class="item">
+ <strong>
+    Silvers
+      <div class="count"><%= @user.collections.where(:is_silver => true).count %></div>
+  </strong>
+</div>
+<div class="item">
+ <strong>
+    Votes cast
+      <div class="count"><%= @user.voted_count %></div>
+  </strong>
+</div>
+
+<div class="updates">
+    <strong>Updates 
+      <div class="count"><%= @user.microposts.count %></div>
+      </strong>
+</div>
+<div class="item">
+  <a href="<%= followers_user_path(@user) %>">
+    Followers
+      <div class="count"> <%= @user.followers.count %></div>
+  </a>
+</div>
+<div class="item">
+  <a href="<%= following_user_path(@user) %>">
+    Following
+      <div class="count"><%= @user.followed_users.count %></div>
+  </a>
+</div>
+
+</div>
