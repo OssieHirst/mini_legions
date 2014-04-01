@@ -42,4 +42,5 @@ class Miniature < ActiveRecord::Base
     top_collections.each {|s| s.update_attribute :is_silver, true}
   end
 
+
 end

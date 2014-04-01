@@ -1,4 +1,4 @@
 <%= med_gravatar_for current_user %>
 <h1>
   <%= current_user.name %></h1>
-  <div class="username">@<%= current_user.username %></div>
+  <div class="username">@<%= link_to current_user.username, current_user %></div>
