@@ -2,7 +2,7 @@
 	<h1><%= @sculptor.fullname %></h1>
 		<div class="indexcontent">
 
-  <% if @sculptor.biog.length > 500 %>
+  <% if @sculptor.biog.to_s.length > 500 %>
     <%= truncate(@sculptor.biog, length: 500) %>
     <%= link_to_function '...Read more', "$(this).parent().html('#{escape_javascript @sculptor.biog}')" %>
   <% else %>
