@@ -47,18 +47,24 @@ class MiniaturesController < ApplicationController
 
   def create
     @miniature = Miniature.new(miniature_params)
-    params[:scales][:id].each do |scale|
-      if !scale.empty?
+    if params[:scales][:id]
+      ## Convert ["", "1","2","4","8"] to [1,2,4,8]
+      params[:scales][:id] = params[:scales][:id].reject(&:empty?).map(&:to_i)
+      params[:scales][:id].each do |scale|
         @miniature.sizes.build(:scale_id => scale)
       end
     end
-    params[:manufacturers][:id].each do |manufacturer|
-      if !manufacturer.empty?
+    if params[:manufacturers][:id]
+      ## Convert ["", "1","2","4","8"] to [1,2,4,8]
+      params[:manufacturers][:id] = params[:manufacturers][:id].reject(&:empty?).map(&:to_i)
+      params[:manufacturers][:id].each do |manufacturer|
         @miniature.productions.build(:manufacturer_id => manufacturer)
       end
     end
-    params[:sculptors][:id].each do |sculptor|
-      if !sculptor.empty?
+    if params[:sculptors][:id]
+      ## Convert ["", "1","2","4","8"] to [1,2,4,8]
+      params[:sculptors][:id] = params[:sculptors][:id].reject(&:empty?).map(&:to_i)
+      params[:sculptors][:id].each do |sculptor|
         @miniature.sculptings.build(:sculptor_id => sculptor)
       end
     end
