@@ -82,6 +82,54 @@ class MiniaturesController < ApplicationController
 
   def update
     @miniature = Miniature.find(params[:id])
+    if params[:scales][:id]
+      ## Convert ["", "1","2","4","8"] to [1,2,4,8]
+      params[:scales][:id] = params[:scales][:id].reject(&:empty?).map(&:to_i) 
+      ## Get the scale_id from sizes already present in database [1,2,5,6] 
+      old_scales = @miniature.sizes.pluck(:scale_id)
+      ## Find the new scales to be added [1,2,4,8] - [1,2,5,6] = [4,8]
+      new_scales = params[:scales][:id] - old_scales 
+      ## Find the old_scales to be deleted [1,2,5,6] - [1,2,4,8] = [5,6]
+      old_scales = old_scales - params[:scales][:id] 
+      ## Build new_scales [4,8]
+      new_scales.each do |scale|
+        @miniature.sizes.build(:scale_id => scale)
+      end
+      ## Delete old_scales [5,6]
+      Size.delete_all(:scale_id => old_scales)
+    end
+    if params[:manufacturers][:id]
+      ## Convert ["", "1","2","4","8"] to [1,2,4,8]
+      params[:manufacturers][:id] = params[:manufacturers][:id].reject(&:empty?).map(&:to_i) 
+      ## Get the manufacturer_id from productions already present in database [1,2,5,6] 
+      old_manufacturers = @miniature.productions.pluck(:manufacturer_id)
+      ## Find the new manufacturers to be added [1,2,4,8] - [1,2,5,6] = [4,8]
+      new_manufacturers = params[:manufacturers][:id] - old_manufacturers 
+      ## Find the old_manufacturers to be deleted [1,2,5,6] - [1,2,4,8] = [5,6]
+      old_manufacturers = old_manufacturers - params[:manufacturers][:id] 
+      ## Build new_manufacturers [4,8]
+      new_manufacturers.each do |manufacturer|
+        @miniature.productions.build(:manufacturer_id => manufacturer)
+      end
+      ## Delete old_manufacturers [5,6]
+      Production.delete_all(:manufacturer_id => old_manufacturers)
+    end
+    if params[:sculptors][:id]
+      ## Convert ["", "1","2","4","8"] to [1,2,4,8]
+      params[:sculptors][:id] = params[:sculptors][:id].reject(&:empty?).map(&:to_i) 
+      ## Get the sculptor_id from sculptings already present in database [1,2,5,6] 
+      old_sculptors = @miniature.sculptings.pluck(:sculptor_id)
+      ## Find the new sculptors to be added [1,2,4,8] - [1,2,5,6] = [4,8]
+      new_sculptors = params[:sculptors][:id] - old_sculptors 
+      ## Find the old_sculptors to be deleted [1,2,5,6] - [1,2,4,8] = [5,6]
+      old_sculptors = old_sculptors - params[:sculptors][:id] 
+      ## Build new_sculptors [4,8]
+      new_sculptors.each do |sculptor|
+        @miniature.sculptings.build(:sculptor_id => sculptor)
+      end
+      ## Delete old_sculptors [5,6]
+      Sculpting.delete_all(:sculptor_id => old_sculptors)
+    end
     if @miniature.update_attributes(miniature_params)
       flash[:success] = "Miniature updated"
       redirect_to @miniature
