@@ -147,7 +147,7 @@ class MiniaturesController < ApplicationController
   def index
     @search = Miniature.search(params[:q])
     @search.sorts = 'name ASC' if @search.sorts.empty?  
-    @miniatures = @search.result.paginate(page: params[:page])
+    @miniatures = @search.result.uniq.paginate(page: params[:page])
   end
 
   def destroy
