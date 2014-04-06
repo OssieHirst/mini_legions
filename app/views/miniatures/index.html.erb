@@ -4,7 +4,7 @@
 			<div class = "form-inline">
 			<%= search_form_for @search, :html => {:method => :post} do |f| %>
   	 			<div class="input-append">
-    				<%= f.text_field :name_or_material_or_pcode_name_or_sculptors_last_name_or_sculptors_first_name_cont, class: "span3" %>
+    				<%= f.text_field :name_or_material_or_pcode_or_sculptors_last_name_or_sculptors_first_name_cont, class: "span3" %>
   					<%= f.submit "Search", class: "btn" %>
   	    		</div>
 			<% end %>
