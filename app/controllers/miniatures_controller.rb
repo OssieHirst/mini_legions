@@ -47,6 +47,22 @@ class MiniaturesController < ApplicationController
 
   def create
     @miniature = Miniature.new(miniature_params)
+    if params[:miniature][:"release_date(2i)"] == ''
+      # no month is given, insert fake month and day
+      params[:miniature][:"release_date(2i)"] = '1'
+      params[:miniature][:"release_date(3i)"] = '1'
+      mask = 4 # 100
+    elsif params[:miniature][:"release_date(3i)"] == ''
+      # no day is given, insert a fake day
+      params[:miniature][:"release_date(3i)"] = '1'
+      mask = 6 # 110
+    else
+      # full-date
+      mask = 7 # 111
+    end
+    @miniature = Miniature.new(miniature_params.merge(date_mask: mask))
+
+
     if params[:scales][:id]
       ## Convert ["", "1","2","4","8"] to [1,2,4,8]
       params[:scales][:id] = params[:scales][:id].reject(&:empty?).map(&:to_i)
@@ -88,6 +104,20 @@ class MiniaturesController < ApplicationController
 
   def update
     @miniature = Miniature.find(params[:id])
+     if params[:miniature][:"release_date(2i)"] == ''
+      # no month is given, insert fake month and day
+      params[:miniature][:"release_date(2i)"] = '1'
+      params[:miniature][:"release_date(3i)"] = '1'
+      mask = 4 # 100
+    elsif params[:miniature][:"release_date(3i)"] == ''
+      # no day is given, insert a fake day
+      params[:miniature][:"release_date(3i)"] = '1'
+      mask = 6 # 110
+    else
+      # full-date
+      mask = 7 # 111
+    end
+    
     if params[:scales][:id]
       ## Convert ["", "1","2","4","8"] to [1,2,4,8]
       params[:scales][:id] = params[:scales][:id].reject(&:empty?).map(&:to_i) 
@@ -136,7 +166,7 @@ class MiniaturesController < ApplicationController
       ## Delete old_sculptors [5,6]
       Sculpting.delete_all(:sculptor_id => old_sculptors)
     end
-    if @miniature.update_attributes(miniature_params)
+    if @miniature.update_attributes(miniature_params.merge(date_mask: mask))
       flash[:success] = "Miniature updated"
       redirect_to @miniature
     else
@@ -158,7 +188,7 @@ class MiniaturesController < ApplicationController
 
 private
     def miniature_params
-      params.require(:miniature).permit(:name, :release_date, :material, :pcode, :notes, :quantity, :random, :set, productions_attributes: [:id, :manufacturer_id, :miniature_id], sizes_attributes: [:id, :scale_id, :miniature_id], sculptings_attributes: [:id, :sculptor_id, :miniature_id], minilines_attributes: [:id, :line_id, :miniature_id])
+      params.require(:miniature).permit(:name, :release_date, :date_mask, :material, :pcode, :notes, :quantity, :random, :set, productions_attributes: [:id, :manufacturer_id, :miniature_id], sizes_attributes: [:id, :scale_id, :miniature_id], sculptings_attributes: [:id, :sculptor_id, :miniature_id], minilines_attributes: [:id, :line_id, :miniature_id])
     end
 
     def admin_user

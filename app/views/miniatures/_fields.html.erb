@@ -49,7 +49,7 @@
         <%= f.label :release_date, class: "control-label" %>
           <div class="controls">
             <div class = "form-inline">
-              <%= f.date_select :release_date, :start_year => Date.current.year, :end_year => 1970, :include_blank => true %>
+              <%= f.date_select :release_date, @miniature.get_date_select_opt %>
             </div>  
           </div>
       </div>

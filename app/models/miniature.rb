@@ -20,9 +20,10 @@ class Miniature < ActiveRecord::Base
   accepts_nested_attributes_for :minilines, allow_destroy: true
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :material, presence: true
-	validates_date :release_date, :allow_blank => true
+  validates_date :release_date, :allow_blank => true
   scope :indiv, where(set: false)
   scope :multi, where(set: true)
+  PartialDate = Struct.new(:year, :month, :day)
   
   def name=(s)
     super s.titleize
@@ -40,6 +41,31 @@ class Miniature < ActiveRecord::Base
     gold = top_collections.shift 
     gold.update_attribute :is_gold, true if gold
     top_collections.each {|s| s.update_attribute :is_silver, true}
+  end
+
+  def release_date_display
+    if self.date_mask == 4
+      return self.release_date.strftime('%Y')
+    elsif self.date_mask == 6
+      return self.release_date.strftime('%b %Y')
+    else
+      return self.release_date.strftime('%d %b %Y')
+    end
+  end
+
+  def get_date_select_opt
+    opt = { include_blank: true }
+    if self.date_mask == 0 || self.release_date == nil
+      return opt.merge( selected: nil )
+    elsif self.date_mask == 6
+      date = PartialDate.new(self.release_date.year, self.release_date.month, nil)
+      return opt.merge( selected: date)
+    elsif self.date_mask == 4
+      date = PartialDate.new(self.release_date.year, nil, nil)
+      return opt.merge( selected: date)
+    else
+      return opt
+    end
   end
 
 
