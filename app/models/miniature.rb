@@ -54,7 +54,7 @@ class Miniature < ActiveRecord::Base
   end
 
   def get_date_select_opt
-    opt = { include_blank: true }
+    opt = { :start_year => Date.current.year, :end_year => 1970, include_blank: true }
     if self.date_mask == 0 || self.release_date == nil
       return opt.merge( selected: nil )
     elsif self.date_mask == 6
