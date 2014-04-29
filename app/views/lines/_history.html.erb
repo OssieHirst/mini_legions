@@ -4,7 +4,7 @@
 <% @line.versions.reverse.each do |version| %>
 	<tr>
 		<td>
-			<div class="nowrap"><% if version.user != nil %><%= gravatar_for version.user %><%= link_to  version.user.username, user_path(version.user) %><% end %></div>
+			<div class="nowrap"><% if version.whodunnit != nil %><%= gravatar_for version.user %><%= link_to  version.user.username, user_path(version.user) %><% end %></div>
 		</td>
 		<td>
 			<strong>
