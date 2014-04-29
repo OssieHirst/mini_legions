@@ -25,7 +25,7 @@ gem 'ancestry'
 gem 'magnific-popup-rails'
 gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
 gem 'devise'
-gem 'paper_trail'
+gem 'paper_trail', github: 'airblade/paper_trail', :branch => 'order_by_primary_key'
 gem 'randumb'
 
 

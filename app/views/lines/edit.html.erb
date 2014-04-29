@@ -4,13 +4,74 @@
 	<div class="span8 offset2">
 		<%= form_for(@line, :html => { :class => "form-horizontal"} ) do |f| %>
 			<%= render 'form', f: f %>
+			<%= render 'shared/comment', f: f %>
 		<div style="float: right;">
    		 <%= f.submit "Submit changes", class: "btn btn-primary" %>
   		</div>
-<% end %>
+		<% end %>
 
 	</div>
-</div>
+</div><br /><br />
+<h1>Line history</h1>
+<table class="table table-hover">
+<% @line.versions.reverse.each do |version| %>
+	<tr>
+		<td>
+			<div class="nowrap"><%= gravatar_for version.user %><%= link_to  version.user.username, user_path(version.user) %></div>
+		</td>
+		<td>
+			<strong>
+				<%= version.event.titleize %>d
+			</strong><br />
+			<% if version.comment.present? %>
+				<span class="submission_notes">"<%= version.comment %>"</span>
+				<% else %>
+				<span class="no_submission_notes">Automatic update or restore.</span>
+				<% end %>
+		</td>
+		<td>
+				<% version.changeset.except(:updated_at).each do |key, value| %>
+  				
+  						<% if key == "ancestry" %>
+  							Parent line:
+  						<% else %>
+  							<%= "#{key.titleize}:" %>
+  						<% end %>
+  					
+  						<span class="old_version">
+  							<% if key == "manufacturer_id" %>
+  								<%= Manufacturer.find(value.first).name if version.event != "create" %>
+  							<% elsif key == "ancestry" %>
+  								<%= Line.find(value.first.split('/').last).name if version.event != "create" %>
+  							<% else %>
+  								<%= value.first %>
+  							<% end %>
+  						</span>
+  					
+  						
+  							<% if key == "manufacturer_id" %>
+  								"<%= Manufacturer.find(value.last).name %>"
+  							<% elsif key == "ancestry" %>
+  								"<%= Line.find(value.last.split('/').last).name %>"
+  							<% else %>
+  								"<%= value.last %>"
+  							<% end %>
+  						<br />
+				<% end %>
+		</td>
+		<td>
+			<div class="nowrap"><%= time_ago_in_words(version.created_at) %> ago</div>
+		</td>
+		<td>
+			<% if version.next %>
+			<div class="nowrap"><i class="fa fa-undo"></i> <%= link_to("Restore", revert_version_path(version.next), :method => :post) %>
+			</div>
+			<% end %>
+		</td>
+	</tr>
+<% end %>
+</table>
 
+<br /><br /><br /><br />
 <%= link_to 'Show', @line %> |
 <%= link_to 'Back', lines_path %>

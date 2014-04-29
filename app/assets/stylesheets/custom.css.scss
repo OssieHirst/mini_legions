@@ -616,6 +616,31 @@ aside {
   } 
 }
 
+/* papertrail */
+
+.old_version {
+  font-style: italic;
+  text-decoration:line-through;
+  color: #DB020D;
+  padding: 4px;
+}
+
+
+.no-style {
+  border: 0;
+  padding: 0;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+.submission_notes {
+  font-style: italic;
+}
+
+.no_submission_notes {
+  color: $grayLight;
+}
 
 /* magnific-popup */
 

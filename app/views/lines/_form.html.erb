@@ -1,13 +1,17 @@
   <% if @line.errors.any? %>
+  <div class="row">
+    <div class="span7">
     <div id="error_explanation">
       <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
 
-      <ul>
+      <div class="controls"><ul>
       <% @line.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
+      <% end %></div>
       </ul>
     </div>
+    </div>
+  </div><br />
   <% end %>
 
  <div class="row">
@@ -35,7 +39,7 @@
      <div class="control-group">
     <%= f.label :manufacturer_id, class: "control-label" %>
     <div class="controls">
-    <%= f.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, {:selected => @line.manufacturer}) %>
+    <%= f.select :manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :name, @line.manufacturer_id) %>
       </div>
      </div>
     </div>
@@ -45,7 +49,7 @@
      <div class="control-group">
     <%= f.label :parent_id, class: "control-label" %>
     <div class="controls">
-    <%= f.select :parent_id, ("<option></option>" + options_from_collection_for_select(Line.all, :id, :name, {:selected => @line.parent_id})).html_safe %>
+    <%= f.select :parent_id, ("<option></option>" + options_from_collection_for_select(Line.all, :id, :name, @line.parent_id)).html_safe %>
     </div>
      </div>
     </div>

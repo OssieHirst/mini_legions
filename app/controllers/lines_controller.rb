@@ -33,7 +33,10 @@ class LinesController < ApplicationController
 
   def update
     @line = Line.find(params[:id])
+    #Add Submission notes
+    @line.reload.versions.last.update(comment: params[:comment]) if @line.versions.exists?
     if @line.update_attributes(line_params)
+      
       flash[:success] = "Line updated. #{undo_link}"
       redirect_to @line
     else
@@ -76,10 +79,10 @@ class LinesController < ApplicationController
     private
 
     def undo_link
-      view_context.link_to("undo", revert_version_path(@line.versions.scoped.last), :method => :post)
+      view_context.link_to("undo", revert_version_path(@line.versions.last), :method => :post)
     end
     def line_params
-      params.require(:line).permit(:name, :description, :parent_id, :manufacturer_id)
+      params.require(:line).permit(:name, :description, :parent_id, :manufacturer_id, :comment)
     end
 
 end

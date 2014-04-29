@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/airblade/paper_trail.git
+  revision: 202ee99c43d2090463dc774d2a6f6c388f3f67ed
+  branch: order_by_primary_key
+  specs:
+    paper_trail (3.0.1)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
+
+GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: dd7c12ca0bee753e285a55c5399ac577a284ea12
   specs:
@@ -159,9 +168,6 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
-    paper_trail (3.0.0)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -327,7 +333,7 @@ DEPENDENCIES
   jquery-rails (= 3.0.4)
   magnific-popup-rails
   mailcatcher
-  paper_trail
+  paper_trail!
   paperclip (~> 3.0)
   pg (= 0.15.1)
   rails (= 4.0.2)

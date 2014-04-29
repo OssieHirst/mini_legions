@@ -8,4 +8,5 @@ class VersionsController < ApplicationController
     end
     redirect_to :back, :notice => "Undid #{@version.event}"
   end
+  
 end
