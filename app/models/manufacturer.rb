@@ -6,6 +6,7 @@ class Manufacturer < ActiveRecord::Base
 	validates :slug, presence: true
 	accepts_nested_attributes_for :productions
 
+
 	def to_param
 		slug
 	end

@@ -66,7 +66,11 @@ class LinesController < ApplicationController
   end
 
   def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      if current_user != nil
+        redirect_to(root_url) unless current_user.admin?
+      else
+        redirect_to(root_url)
+      end
   end
 
   def signed_in_user
