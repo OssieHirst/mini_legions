@@ -7,7 +7,7 @@
     <%= link_to_function '...Read more', "$(this).parent().html('#{escape_javascript @sculptor.biog}')" %>
   <% else %>
     <%= @sculptor.biog %>
-  <% end %>
+  <% end %> <%= link_to 'Edit', edit_sculptor_path(@sculptor) if current_user.try(:admin?) %>
 
 		</div><br />
 

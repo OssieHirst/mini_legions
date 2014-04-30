@@ -3,5 +3,5 @@
     <td><%= sculptor.miniatures.count %></td>
     <td><%= truncate(sculptor.biog, length: 140) %></td>
     <% if current_user.try(:contributor?) %><td><%= link_to 'Edit', edit_sculptor_path(sculptor) %></td>
-    <td><%= link_to 'Destroy', sculptor, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
+    <td><%= link_to 'Delete', sculptor, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
  </tr>

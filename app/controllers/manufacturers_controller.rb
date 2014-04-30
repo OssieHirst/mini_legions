@@ -33,7 +33,7 @@ class ManufacturersController < ApplicationController
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)
     if @manufacturer.save
-      flash[:success] = "Manufacturer added!"
+      flash[:success] = "Manufacturer added. #{undo_link}"
       redirect_to manufacturers_path
     else
       render 'new'
@@ -45,8 +45,9 @@ class ManufacturersController < ApplicationController
   end
 
   def destroy
-    Manufacturer.find_by_slug(params[:id]).destroy
-    flash[:success] = "Manufacturer destroyed."
+    @manufacturer = Manufacturer.find_by_slug(params[:id])
+    @manufacturer.destroy
+    flash[:success] = "Manufacturer destroyed. #{undo_link}"
     redirect_to manufacturers_url
   end
 

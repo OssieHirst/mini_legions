@@ -1,29 +1,50 @@
-<%= form_for(@sculptor) do |f| %>
   <% if @sculptor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sculptor.errors.count, "error") %> prohibited this sculptor from being saved:</h2>
+  <div class="row">
+    <div class="span7">
+      <div id="error_explanation">
+        <h2><%= pluralize(@line.errors.count, "error") %> prohibited this sculptor from being saved:</h2>
 
-      <ul>
-      <% @sculptor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <div class="controls"><ul>
+          <% @sculptor.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </div>
       </ul>
     </div>
+    </div>
+  </div><br />
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
+ <div class="row">
+    <div class="span7">
+     <div class="control-group">
+        <%= f.label :first_name, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :first_name %>
+      </div>
+     </div>
+    </div>
+ </div>
+  <div class="row">
+    <div class="span7">
+     <div class="control-group">
+    <%= f.label :last_name, class: "control-label" %>
+    <div class="controls">
     <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :biog %><br />
+      </div>
+     </div>
+    </div>
+ </div>
+ <div class="row">
+    <div class="span7">
+     <div class="control-group">
+    <%= f.label :biog, class: "control-label" %>
+    <div class="controls">
     <%= f.text_area :biog %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      </div>
+     </div>
+    </div>
+ </div>
+  
+  
+

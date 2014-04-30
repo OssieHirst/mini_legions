@@ -1,0 +1,51 @@
+<br /><br />
+<h1>Sculptor history</h1>
+
+<table class="table table-hover">
+	<% @sculptor.versions.reverse.each do |version| %>
+		<tr>
+			<td>
+					<% if version.whodunnit != nil %>
+						<%= gravatar_for version.user %>
+						<%= link_to  version.user.username, user_path(version.user) %>
+					<% end %>
+			</td>
+			<td>
+				<strong>
+					<%= version.event.titleize %>d
+				</strong><br />
+				<% if version.comment.present? %>
+					<span class="submission_notes">
+						"<%= version.comment %>"
+					</span>
+				<% else %>
+					<span class="no_submission_notes">
+						Automatic update or restore.
+					</span>
+				<% end %>
+			</td>
+			<td>
+				<% version.changeset.except(:updated_at, :created_at, :id).each do |key, value| %>
+  						<%= "#{key.titleize}:" %>
+  				<span class="old_version">
+  						<%= value.first %>
+  				</span>
+  						"<%= value.last %>"
+  						<br />
+				<% end %>
+			</td>
+			<td>
+				<div class="nowrap">
+					<%= time_ago_in_words(version.created_at) %> ago
+				</div>
+			</td>
+			<td>
+				<% if version.next %>
+					<div class="nowrap"><i class="fa fa-undo"></i>
+						<%= link_to("Restore", revert_version_path(version.next), :method => :post) %>
+					</div>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>

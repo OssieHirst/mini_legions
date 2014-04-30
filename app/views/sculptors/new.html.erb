@@ -1,5 +1,16 @@
+<% provide(:title, 'Add sculptor') %>
 <h1>New sculptor</h1>
 
-<%= render 'form' %>
+<div class="row">
+	<div class="span8 offset2">
+		<%= form_for(@sculptor, :html => { :class => "form-horizontal"} ) do |f| %>
+			<%= render 'form', f: f %>
+	<div style="float: right;">
+    <%= f.submit "Add sculptor", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+	</div>
+</div>
 
 <%= link_to 'Back', sculptors_path %>

@@ -1,6 +1,22 @@
-<h1>Editing sculptor</h1>
+<% provide(:title, 'Edit sculptor') %>
+<h1>Edit sculptor</h1>
 
-<%= render 'form' %>
+<div class="row">
+	<div class="span8 offset2">
+		<%= form_for(@sculptor, :html => { :class => "form-horizontal"} ) do |f| %>
+			<%= render 'form', f: f %>
+			<%= render 'shared/comment', f: f %>
+		<div style="float: right;">
+   		 <%= f.submit "Submit changes", class: "btn btn-primary" %>
+  		</div>
+		<% end %>
 
+	</div>
+</div>
+
+<%= render 'history' if @sculptor.versions.any? %>
+
+
+<br /><br /><br /><br />
 <%= link_to 'Show', @sculptor %> |
-<%= link_to 'Back', sculptors_path %>
+<%= link_to 'Back', lines_path %>

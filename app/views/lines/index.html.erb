@@ -23,8 +23,8 @@
     <th>Manufacturer</th>
     <th>Description</th>
     <% if current_user.try(:admin?) %>
-    <th>Edit</th>
-    <th>Delete</th>
+        <th>Edit</th>
+        <th>Delete</th>
     <% end %>
  <%= render @lines %>
 </table>
