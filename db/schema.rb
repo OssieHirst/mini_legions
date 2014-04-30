@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424130303) do
+ActiveRecord::Schema.define(version: 20140430115010) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140424130303) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.text     "description"
   end
 
   add_index "manufacturers", ["slug"], name: "index_manufacturers_on_slug"

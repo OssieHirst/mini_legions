@@ -1,11 +1,17 @@
 <% provide(:title, @manufacturer.name) %>
 <h1><%= @manufacturer.name %></h1>
-
-<h4>Miniature product lines</h4>
-<% @manufacturer.lines.roots.each do |line| %>
-<%= line_sublink_with_count(line) %>
-<br />
-<% end %>
+<div class="row">
+	<div class="span3">
+		<h4>Product lines</h4>
+		<% @manufacturer.lines.roots.each do |line| %>
+			<%= line_sublink_with_count(line) %>
+			<br />
+		<% end %>
+	</div>
+	<div class="span8">
+		<%= @manufacturer.description %> <%= link_to 'Edit', edit_manufacturer_path(@manufacturer) if current_user.try(:admin?) %>
+	</div>
+</div>
 
 <br /><br /><br />
 <h4>Miniatures (<%= @manufacturer.miniatures.count %>)</h4>

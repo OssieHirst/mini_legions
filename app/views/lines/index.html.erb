@@ -1,32 +1,31 @@
-<h1>Listing lines</h1>
+<% provide(:title, 'Product lines') %>
+<h1>Product lines</h1>
 
+<form class="form">
+    <div class = "form-inline">
+        <%= search_form_for @search, :html => {:method => :post} do |f| %>
+        <div class="input-append">
+            <%= f.text_field :name_cont, class: "span3" %>
+        <%= f.submit "Search", class: "btn" %>
+        </div>
+        <% end %>
+        <div class="float-right">
+            <% if current_user.try(:admin?) %>
+                <%= link_to 'Add line', new_line_path, class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</form>
+<%= will_paginate %>
 <table border="0" cellpadding="10" class="table table-condensed table-hover">
-  <tr>
-    <th>Name</th>
+    <th><%= sort_link(@search, :name, "Line") %></th>
+    <th>Parent</th>
     <th>Manufacturer</th>
     <th>Description</th>
-    <th>Ancestry</th>
     <% if current_user.try(:admin?) %>
-    <th></th>
-    <th></th>
+    <th>Edit</th>
+    <th>Delete</th>
     <% end %>
-  </tr>
-
-<% @lines.each do |line| %>
-  <tr>
-    <td><%= link_to line.name, line %></td>
-    <td><%= line.manufacturer.name %></td>
-    <td><%= line.description %></td>
-    <td><%= line.ancestry %></td>
-    <% if current_user.try(:admin?) %>
-    <td><%= link_to 'Edit', edit_line_path(line) %></td>
-    <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
-<% end %>
+ <%= render @lines %>
 </table>
-
-<br />
-<% if current_user.try(:admin?) %>
-<%= link_to 'New line', new_line_path %>
-<% end %>
+<%= will_paginate %>

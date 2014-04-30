@@ -1,6 +1,5 @@
 class ManufacturersController < ApplicationController
-	before_action :user_signed_in?, only: [:new, :create, :edit, :update]
-	before_action :admin_user,     only: :destroy
+	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
 
   def show
     @manufacturer = Manufacturer.find_by_slug(params[:id])
@@ -15,8 +14,10 @@ class ManufacturersController < ApplicationController
 
   def update
     @manufacturer = Manufacturer.find_by_slug(params[:id])
+    #Add Submission notes
+    @manufacturer.reload.versions.last.update(comment: params[:comment]) if @manufacturer.versions.exists?
     if @manufacturer.update_attributes(manufacturer_params)
-      flash[:success] = "Manufacturer updated"
+      flash[:success] = "Manufacturer updated. #{undo_link}"
       redirect_to @manufacturer
     else
       render 'edit'
@@ -51,11 +52,19 @@ class ManufacturersController < ApplicationController
 
 private
     def manufacturer_params
-      params.require(:manufacturer).permit(:name, :slug)
+      params.require(:manufacturer).permit(:name, :slug, :description, :comment)
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      if current_user != nil
+        redirect_to(root_url) unless current_user.admin?
+      else
+        redirect_to(root_url)
+      end
+    end
+
+    def undo_link
+      view_context.link_to("undo", revert_version_path(@manufacturer.versions.last), :method => :post)
     end
 
     def signed_in_user

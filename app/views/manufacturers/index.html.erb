@@ -1,30 +1,36 @@
-<% provide(:title, 'All Manufacturers') %>
-<h1>All Manufacturers</h1>
+<% provide(:title, 'Manufacturers') %>
+<h1>Manufacturers</h1>
 
-<%= search_form_for @search do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont %>
-  </div>
-  <%= f.submit "Search", class: "btn btn-medium btn-primary" %>
-<% end %>
+<form class="form">
+	<div class = "form-inline">
+		<%= search_form_for @search, :html => {:method => :post} do |f| %>
+  	 	<div class="input-append">
+    		<%= f.text_field :name_cont, class: "span3" %>
+  		<%= f.submit "Search", class: "btn" %>
+  		</div>
+		<% end %>
+		<div class="float-right">
+			<% if current_user.try(:admin?) %>
+				<%= link_to 'Add manufacturer', new_manufacturer_path, class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</form>
 
 <%= will_paginate %>
 
 <table border="0" cellpadding="10" class="table table-hover">
-<th align="left">
-	<%= sort_link(@search, :name, "Manufacturer") %></th>
-<% if current_user.try(:contributor?) %><th>Edit</th><% end %>
-<% if current_user.try(:admin?) %><th>Delete</th><% end %>
-
+	<th align="left">
+		<%= sort_link(@search, :name, "Manufacturer") %>
+	</th>
+	<th>Miniatures</th>
+	<th>Product Lines</th>
+	<th>Description</th>
+	<% if current_user.try(:admin?) %><th>Edit</th><% end %>
+	<% if current_user.try(:admin?) %><th>Delete</th><% end %>
 
 
  <%= render @manufacturers %>
 
 </table>
 <%= will_paginate %>
-
-<% if current_user.try(:admin?) %>
-  <%= link_to 'New manufacturer', new_manufacturer_path %>
-  <% end %>
-

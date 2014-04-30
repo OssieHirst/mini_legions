@@ -1,6 +1,20 @@
+<% provide(:title, 'Edit manufacturer') %>
 <h1>Editing manufacturer</h1>
 
-<%= render 'form' %>
+<div class="row">
+	<div class="span8 offset2">
+		<%= form_for(@manufacturer, :html => { :class => "form-horizontal"} ) do |f| %>
+			<%= render 'form', f: f %>
+			<%= render 'shared/comment', f: f %>
+		<div style="float: right;">
+			<%= f.submit "Submit changes", class: "btn btn-primary" %>
+  </div>
+		<% end %>
+	</div>
+</div>
+
+<%= render 'history' if @manufacturer.versions.any? %>
+
 
 <%= link_to 'Show', @manufacturer %> |
 <%= link_to 'Back', manufacturers_path %>

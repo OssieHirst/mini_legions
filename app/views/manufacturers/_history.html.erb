@@ -1,8 +1,8 @@
 <br /><br />
-<h1>Line history</h1>
+<h1>Manufacturer history</h1>
 
 <table class="table table-hover">
-	<% @line.versions.reverse.each do |version| %>
+	<% @manufacturer.versions.reverse.each do |version| %>
 		<tr>
 			<td>
 					<% if version.whodunnit != nil %>
@@ -26,27 +26,11 @@
 			</td>
 			<td>
 				<% version.changeset.except(:updated_at, :created_at, :id).each do |key, value| %>
-  					<% if key == "ancestry" %>
-  						Parent line:
-  					<% else %>
   						<%= "#{key.titleize}:" %>
-  					<% end %>
   				<span class="old_version">
-  					<% if key == "manufacturer_id" %>
-  						<%= Manufacturer.find(value.first).name if version.event != "create" %>
-  					<% elsif key == "ancestry" %>
-  						<%= Line.find(value.first.split('/').last).name if version.event != "create" %>
-  					<% else %>
   						<%= value.first %>
-  					<% end %>
   				</span>
-  					<% if key == "manufacturer_id" %>
-  						"<%= Manufacturer.find(value.last).name %>"
-  					<% elsif key == "ancestry" %>
-  						"<%= Line.find(value.last.split('/').last).name %>"
-  					<% else %>
   						"<%= value.last %>"
-  					<% end %>
   						<br />
 				<% end %>
 			</td>

@@ -1,0 +1,10 @@
+  <tr>
+    <td><%= link_to line.name, line %></td>
+    <td><%= line.parent.name if line.parent != nil %></td>
+    <td><%= line.manufacturer.name %></td>
+    <td><%= truncate(line.description, length: 140) %></td>
+    <% if current_user.try(:admin?) %>
+    <td><%= link_to 'Edit', edit_line_path(line) %></td>
+    <td><%= link_to 'Delete', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>

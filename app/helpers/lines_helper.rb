@@ -11,6 +11,4 @@ module LinesHelper
   		return string
 	end
 
-
-
 end

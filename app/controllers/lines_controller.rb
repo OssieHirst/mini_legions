@@ -45,7 +45,9 @@ class LinesController < ApplicationController
   end
 
   def index
-    @lines = Line.paginate(page: params[:page], :order => "name ASC")
+    @search = Line.search(params[:q])
+    @search.sorts = 'name asc' if @search.sorts.empty?  
+    @lines = @search.result.paginate(page: params[:page])
   end
 
   def create

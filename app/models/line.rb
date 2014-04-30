@@ -5,10 +5,6 @@ class Line < ActiveRecord::Base
   has_ancestry
   has_paper_trail :meta => { :comment => :comment }
   validates :name, presence: true, length: { maximum: 50 }
- 
-
-
-
   attr_accessor :comment
 
 end

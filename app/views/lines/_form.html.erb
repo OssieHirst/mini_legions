@@ -1,13 +1,14 @@
   <% if @line.errors.any? %>
   <div class="row">
     <div class="span7">
-    <div id="error_explanation">
-      <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
+      <div id="error_explanation">
+        <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
 
-      <div class="controls"><ul>
-      <% @line.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %></div>
+        <div class="controls"><ul>
+          <% @line.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </div>
       </ul>
     </div>
     </div>

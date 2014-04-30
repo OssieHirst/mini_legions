@@ -6,7 +6,7 @@
     <%= link_to line.name, line %> &gt;
   <% end %> <%= @line.name %>
 </div>
-<div class="indexcontent"><%= @line.description %> <%= link_to 'Edit product line', edit_line_path(@line) if current_user.try(:admin?) %><br />
+<div class="indexcontent"><%= @line.description %> <%= link_to 'Edit', edit_line_path(@line) if current_user.try(:admin?) %><br />
   <% if @line.children.any? %><strong>Sub-lines:</strong><% end %>
 
   <% @line.children.sort { |a,b| a.name <=> b.name }.each do |line| %>

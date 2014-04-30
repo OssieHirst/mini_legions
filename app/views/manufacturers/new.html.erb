@@ -1,5 +1,15 @@
+<% provide(:title, 'Add manufacturer') %>
 <h1>New manufacturer</h1>
+<div class="row">
+	<div class="span8 offset2">
+		<%= form_for(@manufacturer) do |f| %>
+			<%= render 'form', f: f %>
+			<div style="float: right;">
+			<%= f.submit "Add manufacturer", class: "btn btn-primary" %>
+  </div>
+		<% end %>
+	</div>
+</div>
 
-<%= render 'form' %>
 
 <%= link_to 'Back', manufacturers_path %>
