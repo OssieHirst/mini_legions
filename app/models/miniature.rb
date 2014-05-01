@@ -24,6 +24,7 @@ class Miniature < ActiveRecord::Base
   scope :indiv, where(set: false)
   scope :multi, where(set: true)
   PartialDate = Struct.new(:year, :month, :day)
+
   
   def name=(s)
     super s.titleize
