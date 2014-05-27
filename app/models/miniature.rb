@@ -24,6 +24,8 @@ class Miniature < ActiveRecord::Base
   scope :indiv, where(set: false)
   scope :multi, where(set: true)
   PartialDate = Struct.new(:year, :month, :day)
+  has_paper_trail :meta => { :comment => :comment }
+  attr_accessor :comment
 
   
   def name=(s)

@@ -1,13 +1,39 @@
 <% provide(:title, 'Edit miniature') %>
-<h1>Edit miniature listing</h1>
 
-<div class="row">
-  <div class="span8 offset2">
-    <%= form_for(@miniature) do |f| %>
-                <%= render 'fields', f: f %>
-      <div style="float: right;"><%= f.submit "Save changes", class: "btn btn-large btn-primary" %></div>
-    <% end %>
-  </div>
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#edit">Edit Miniature</a></li>
+  <li><a href="#miniature">Miniature changes</a></li>
+  <li><a href="#manufacturer">Manufacturer changes</a></li>
+  <li><a href="#sculptor">Sculptor changes</a></li>
+</ul>
+ 
+<div class="tab-content">
+	<div class="tab-pane active" id="edit">
+		<h1>Edit miniature listing</h1>
+		<div class="row">
+  			<div class="span8 offset2">
+    			<%= form_for(@miniature) do |f| %>
+                	<%= render 'fields', f: f %>
+                	<%= render 'shared/comment', f: f %>
+      				<div style="float: right;"><%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      				</div>
+    			<% end %>
+  			</div>
+		</div>
+	</div>
+  <div class="tab-pane" id="miniature"><%= render 'history' if @miniature.versions.any? %></div>
+  <div class="tab-pane" id="manufacturer"><%= render 'mfr_history' %></div>
+  <div class="tab-pane" id="sculptor"><%= render 'sclp_history' %></div>
 </div>
+ 
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
 
-
+<br /><br />
+<%= link_to 'Show', @miniature %> |
+<%= link_to 'All miniatures', miniatures_path %>

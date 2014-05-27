@@ -37,6 +37,7 @@ MiniLegions::Application.routes.draw do
    end
   end
   resources :productions
+  resources :versions
   resources :imagevotes
   resources :sizes
   resources :minilines

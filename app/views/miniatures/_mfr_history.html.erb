@@ -1,0 +1,29 @@
+<table class="table table-hover">
+	<% @production_versions.reverse.each do |version| %>
+		<tr>
+			<td>
+					<% if version.whodunnit != nil %>
+						<%= gravatar_for version.user %>
+						<%= link_to  version.user.username, user_path(version.user) %>
+					<% end %>
+			</td>
+			<td>
+				<% if version.event == "create" %>
+					<strong>Added</strong> <% if exp = version.object_changes.match(/manufacturer_id:\n- \n- (\d+)/) %>
+ 							<%= Manufacturer.find(exp[1]).name %>
+				<% end %>
+				<% elsif version.event == "destroy" %>
+					<strong>Removed</strong> <% if exp = version.object.match(/\nmanufacturer_id: (\d+)/) %>
+ 							<%= Manufacturer.find(exp[1]).name %>
+							<% end %>
+				<% end %>
+			</td>
+			<td>
+				<div class="nowrap">
+					<%= time_ago_in_words(version.created_at) %> ago
+				</div>
+			</td>
+		</tr>
+		
+	<% end %>
+</table>

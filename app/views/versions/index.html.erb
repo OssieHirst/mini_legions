@@ -1,0 +1,33 @@
+<% provide(:title, 'Database activity') %>
+<h1>Database activity</h1>
+
+<form class="form">
+	<div class = "form-inline">
+		<%= search_form_for @search, :html => {:method => :post} do |f| %>
+  	 	<div class="input-append">
+    		<%= f.text_field :object_changes_cont, class: "span3" %>
+  		<%= f.submit "Search", class: "btn" %>
+  		</div>
+		<% end %>
+	</div>
+</form>
+
+<%= will_paginate %>
+
+<table border="0" cellpadding="10" class="table table-hover table-condensed">
+	<th align="left">
+		id
+	</th>
+	<th>User</th>
+	<th>Item</th>
+	<th>Item id</th>
+	<th>Event</th>
+	
+	<th>Changes</th>
+	<th>Time</th>
+
+
+ <%= render @versions %>
+
+</table>
+<%= will_paginate %>

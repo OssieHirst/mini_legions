@@ -1,0 +1,118 @@
+<tr>
+  <td>
+    <%= version.id %>
+  </td>
+  <td>
+    <% if version.whodunnit != nil %>
+            <%= gravatar_for version.user %>
+            <%= link_to  version.user.username, user_path(version.user) %>
+          <% end %>
+  </td>
+  <td>
+   <%= version.item_type %>
+   </td>
+   <td>
+   <%= version.item_id %>
+   </td>
+   <td>
+   <strong>
+          <%= version.event.titleize %>d
+        </strong><br />
+        <% if version.comment.present? %>
+          <span class="submission_notes">"<%= version.comment %>"
+          </span>
+        <% else %>
+          <span class="no_submission_notes">
+            Automatic update or restore.
+          </span>
+        <% end %>
+   </td>
+   <% if version.object_changes == nil %>
+   <td>
+    Deleted
+  </td>
+  <% else %>
+
+  <% if version.item_type == "Production" %>
+    <td>
+      <% if version.event == "destroy" %>
+        <% if exp = version.object.match(/\nmanufacturer_id: (\d+)/) %>
+        <strong>Removed</strong> <%= Manufacturer.find(exp[1]).name %>
+        <% end %>
+        <% if exp = version.object.match(/\nminiature_id: (\d+)/) %>
+        from <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) %>
+        <% end %>
+      <% end %>
+      <% if version.event == "create" %>
+          <strong>Added</strong> <% if exp = version.object_changes.match(/manufacturer_id:\n- \n- (\d+)/) %>
+              <%= Manufacturer.find(exp[1]).name %>
+                                <% end %> to <% if exp = version.object_changes.match(/miniature_id:\n- \n- (\d+)/) %>
+              <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) %>
+                                <% end %>
+      <% end %>
+    </td>
+
+    <% elsif version.item_type == "Sculpting"  %>
+    <td>
+      <% if version.event == "destroy" %>
+        <% if exp = version.object.match(/\nsculptor_id: (\d+)/) %>
+        <strong>Removed</strong> <%= Sculptor.find(exp[1]).fullname %>
+        <% end %>
+        <% if exp = version.object.match(/\nminiature_id: (\d+)/) %>
+        from <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) %>
+        <% end %>
+      <% end %>
+      <% if version.event == "create" %>
+          <strong>Added</strong> <% if exp = version.object_changes.match(/sculptor_id:\n- \n- (\d+)/) %>
+              <%= Sculptor.find(exp[1]).fullname %>
+                                <% end %> to <% if exp = version.object_changes.match(/miniature_id:\n- \n- (\d+)/) %>
+              <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) %>
+                                <% end %>
+      <% end %>
+    </td>
+    <% elsif version.item_type == "Line"  %>
+    <td>
+    <% PaperTrail.serializer.load(version.object_changes).except(:updated_at, :created_at, :id).each do |key, value| %>
+    <% if key == "ancestry" %>
+              Parent line:
+            <% else %>
+              <%= "#{key.titleize}:" %>
+            <% end %>
+          <span class="old_version">
+            <% if key == "manufacturer_id" %>
+              <%= Manufacturer.find(value.first).name if version.event != "create" %>
+            <% elsif key == "ancestry" %>
+              <%= Line.find(value.first.split('/').last).name if version.event != "create" %>
+            <% else %>
+              <%= value.first %>
+            <% end %>
+          </span>
+            <% if key == "manufacturer_id" %>
+              "<%= Manufacturer.find(value.last).name %>"
+            <% elsif key == "ancestry" %>
+              "<%= Line.find(value.last.split('/').last).name %>"
+            <% else %>
+              "<%= value.last %>"
+            <% end %><br />
+    <% end %>
+
+  </td>
+    <% else %>
+  <td>
+    <% PaperTrail.serializer.load(version.object_changes).except(:updated_at, :created_at, :id).each do |key, value| %>
+              <%= "#{key.titleize}:" %>
+          <span class="old_version">
+              <%= value.first %>
+          </span>
+              "<%= value.last %>"
+              <br />
+        <% end %>
+
+  </td>
+  <% end %>
+  <% end %>
+  <td>
+    <%= time_ago_in_words(version.created_at) %> ago
+  </td>
+  	
+</tr>

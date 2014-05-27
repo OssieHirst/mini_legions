@@ -1,4 +1,12 @@
 <% provide(:title, 'Edit manufacturer') %>
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#edit">Edit product line</a></li>
+  <li><a href="#changes">Manufacturer changes</a></li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="edit">
 <h1>Editing manufacturer</h1>
 
 <div class="row">
@@ -12,9 +20,19 @@
 		<% end %>
 	</div>
 </div>
+</div>
+<div class="tab-pane" id="changes"><%= render 'history' if @manufacturer.versions.any? %></div>
+</div>
 
-<%= render 'history' if @manufacturer.versions.any? %>
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
+
+
 
 
 <%= link_to 'Show', @manufacturer %> |
-<%= link_to 'Back', manufacturers_path %>
+<%= link_to 'All manufacturers', manufacturers_path %>
