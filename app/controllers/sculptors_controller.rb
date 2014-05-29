@@ -1,4 +1,6 @@
 class SculptorsController < ApplicationController
+  before_filter :authenticate_user!
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
   def show
   	@sculptor = Sculptor.find(params[:id])
     @search = @sculptor.miniatures.search(params[:q])

@@ -1,4 +1,5 @@
 class ManufacturersController < ApplicationController
+  before_filter :authenticate_user!
 	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
 
   def show

@@ -1,4 +1,5 @@
 class MiniaturesController < ApplicationController
+   before_filter :authenticate_user!
    before_action :contributor, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
 
