@@ -105,7 +105,7 @@ class MiniaturesController < ApplicationController
     @production_versions = Version.where(:item_type => Production).where("object like ? or object_changes like ?", "%miniature_id: #{@miniature.id}%", "%miniature_id:
 - 
 - #{@miniature.id}%")
-     @sculpting_versions = Version.where(:item_type => Sculpting).where("object like ? or object_changes like ?", "%miniature_id: #{@miniature.id}%", "%miniature_id:
+    @sculpting_versions = Version.where(:item_type => Sculpting).where("object like ? or object_changes like ?", "%miniature_id: #{@miniature.id}%", "%miniature_id:
 - 
 - #{@miniature.id}%")
   end
@@ -191,7 +191,7 @@ class MiniaturesController < ApplicationController
   def destroy
     Miniature.find(params[:id]).destroy
     flash[:success] = "Miniature destroyed. #{undo_link}"
-    redirect_to miniatures_url
+    redirect_to @miniatures
   end
 
 private
@@ -212,7 +212,7 @@ private
     end
 
     def undo_link
-      view_context.link_to("undo", revert_version_path(@miniature.versions.last), :method => :post)
+      view_context.link_to("undo", revert_version_path(@miniature.versions.last), :method => :post) if @miniature.versions
     end
 
     def signed_in_user

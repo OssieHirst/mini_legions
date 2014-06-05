@@ -47,7 +47,7 @@
           <strong>Added</strong> <% if exp = version.object_changes.match(/manufacturer_id:\n- \n- (\d+)/) %>
               <%= Manufacturer.find(exp[1]).name %>
                                 <% end %> to <% if exp = version.object_changes.match(/miniature_id:\n- \n- (\d+)/) %>
-              <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) %>
+              <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) if Miniature.exists?(exp[1]) %>
                                 <% end %>
       <% end %>
     </td>
@@ -66,7 +66,7 @@
           <strong>Added</strong> <% if exp = version.object_changes.match(/sculptor_id:\n- \n- (\d+)/) %>
               <%= Sculptor.find(exp[1]).fullname %>
                                 <% end %> to <% if exp = version.object_changes.match(/miniature_id:\n- \n- (\d+)/) %>
-              <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) %>
+              <%= link_to Miniature.find(exp[1]).name, Miniature.find(exp[1]) if Miniature.exists?(exp[1]) %>
                                 <% end %>
       <% end %>
     </td>

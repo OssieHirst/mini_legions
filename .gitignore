@@ -20,3 +20,7 @@
 
 # Ignore images folder
 /public/system/
+
+# Ignore production env
+/config/environments/production.rb
+
