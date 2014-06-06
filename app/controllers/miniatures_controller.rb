@@ -140,7 +140,7 @@ class MiniaturesController < ApplicationController
         @miniature.sizes.build(:scale_id => scale)
       end
       ## Delete old_scales [5,6]
-      Size.delete_all(:scale_id => old_scales)
+      Size.where(:miniature_id => @miniature.id).destroy_all(:scale_id => old_scales)
     end
     if params[:manufacturers][:id]
       ## Convert ["", "1","2","4","8"] to [1,2,4,8]
@@ -156,7 +156,7 @@ class MiniaturesController < ApplicationController
         @miniature.productions.build(:manufacturer_id => manufacturer)
       end
       ## Delete old_manufacturers [5,6]
-      Production.destroy_all(:manufacturer_id => old_manufacturers)
+      Production.where(:miniature_id => @miniature.id).destroy_all(:manufacturer_id => old_manufacturers)
     end
     if params[:sculptors][:id]
       ## Convert ["", "1","2","4","8"] to [1,2,4,8]
@@ -172,7 +172,7 @@ class MiniaturesController < ApplicationController
         @miniature.sculptings.build(:sculptor_id => sculptor)
       end
       ## Delete old_sculptors [5,6]
-      Sculpting.destroy_all(:sculptor_id => old_sculptors)
+      Sculpting.where(:miniature_id => @miniature.id).destroy_all(:sculptor_id => old_sculptors)
     end
     if @miniature.update_attributes(miniature_params.merge(date_mask: mask))
       flash[:success] = "Miniature updated. #{undo_link}"
@@ -212,7 +212,7 @@ private
     end
 
     def undo_link
-      view_context.link_to("undo", revert_version_path(@miniature.versions.last), :method => :post) if @miniature.versions
+      view_context.link_to("undo", revert_version_path(@miniature.versions.last), :method => :post) if @miniature.versions.any?
     end
 
     def signed_in_user
