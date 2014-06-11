@@ -3,9 +3,7 @@
           <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %>
       </section>
 
-      <div class="gotwant">
-        You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist
-      </div>
+     
        <div class="gotwant">
         You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Got').count %> in your collection
         <ul class="icons">
@@ -23,11 +21,24 @@
                   </td>
                   <td>
                     <%= collection.name %><br >
-                    <%= collection.progress %>
+                    <%= collection.progress %> 
             </li>
                   </td>
                 </tr>
               </table>
             <% end %>
+        </ul>
+      </div>
+       <div class="gotwant">
+        You have <%= current_user.collections.where(miniature_id: @miniature).where(status: 'Want').count %> in your wantlist<br />
+        <ul class="wants">
+          <% current_user.collections.where(miniature_id: @miniature).where(status: 'Want').each do |collection| %>
+              <li>1 <%= collection.progress %> 
+                  <%= link_to ' <i class="fa fa-times"></i>'.html_safe, collection, :confirm => 'Are you sure you want to remove this item from your wantlist?', :method => :delete %> 
+                  <div class="right_side">
+                    <%= link_to 'edit ', collection %> 
+                  </div>
+              </li>
+          <% end %>
         </ul>
       </div>

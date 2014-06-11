@@ -1,7 +1,6 @@
 <% provide(:title, @user.name ) %>
 <h1><% if current_user?(@user) %>Your<% else %>
-	<%= @user.name %>'s<% end %> collection</h1>
-
+	<%= @user.name %>'s<% end %> <% if params[:status] == 'Got' %>collection<% elsif params[:status] == 'Want' %>wantlist<% end %></h1>
 
 
 <%= will_paginate %>
@@ -12,6 +11,7 @@
 <th align="left"><%= sort_link(@search, :manufacturer_name, "Manufacturer") %></th>
 <th align="left"><%= sort_link(@search, :progress, "Progress") %></th>
 <th align="left"><%= sort_link(@search, :created_at, "Date added") %></th>
+<% if params[:status] == 'Want' %><th align="left">Remove</th><% end %>
 
   <%= render @collections %>
 </table>

@@ -52,8 +52,13 @@ class CollectionsController < ApplicationController
   def destroy
     @collection = Collection.find(params[:id])
     @collection.destroy
-    flash[:success] = "Removed from collection"
-    redirect_to user_path(current_user)
+    if @collection.status == 'Got'
+      flash[:success] = "Removed from collection"
+      redirect_to user_path(current_user)
+    elsif @collection.status == 'Want'
+      flash[:success] = "Removed from wantlist"
+      redirect_to :back
+    end 
   end
 
   private
