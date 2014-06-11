@@ -189,9 +189,10 @@ class MiniaturesController < ApplicationController
   end
 
   def destroy
-    Miniature.find(params[:id]).destroy
+    @miniature = Miniature.find(params[:id])
+    @miniature.destroy
     flash[:success] = "Miniature destroyed. #{undo_link}"
-    redirect_to @miniatures
+    redirect_to miniatures_path
   end
 
 private
@@ -212,7 +213,7 @@ private
     end
 
     def undo_link
-      view_context.link_to("undo", revert_version_path(@miniature.versions.last), :method => :post) if @miniature.versions.any?
+      view_context.link_to("undo", revert_version_path(@miniature.versions.last), :method => :post) if @miniature.versions.last
     end
 
     def signed_in_user
