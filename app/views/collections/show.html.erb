@@ -1,4 +1,4 @@
-<% provide(:title, [@miniature.name, @user.name].join(' by ')) %>
+<% provide(:title, [@miniature.name.html_safe, @user.name].join(' by ')) %>
 
 <div class="row">
 

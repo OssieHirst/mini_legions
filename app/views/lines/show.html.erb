@@ -1,4 +1,4 @@
-<% provide(:title, @line.name) %>
+<% provide(:title, @line.name.html_safe) %>
 <h1><%= @line.name %></h1>
 <div id="breadcrumbs">
   <%= link_to @line.manufacturer.name, @line.manufacturer %> &gt;

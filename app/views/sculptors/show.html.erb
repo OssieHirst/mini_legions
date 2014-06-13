@@ -1,4 +1,4 @@
-<% provide(:title, @sculptor.fullname) %>
+<% provide(:title, @sculptor.fullname.html_safe) %>
 	<h1><%= @sculptor.fullname %></h1>
 		<div class="indexcontent">
 
