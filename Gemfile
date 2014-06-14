@@ -27,6 +27,7 @@ gem 'bootstrap-multiselect-rails4', '~> 0.0.1'
 gem 'devise'
 gem 'paper_trail', '3.0.2'
 gem 'randumb'
+gem 'redcarpet'
 
 
 group :development, :test do
