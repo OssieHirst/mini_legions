@@ -96,14 +96,14 @@ MiniLegions::Application.configure do
   # To make devise play nice with heroku
   config.assets.initialize_on_precompile = false
 
-  config.action_mailer.default_url_options = { :host => 'your.websitedomain.com' }
+  config.action_mailer.default_url_options = { :host => 'minilegions.com' }
   ActionMailer::Base.smtp_settings = {
   :address        => "smtp.sendgrid.net",
   :port           => "25",
   :authentication => :plain,
   :user_name      => ENV['SENDGRID_USERNAME'],
   :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => ENV['minilegions.com']
+  :domain         => ENV['minilegions.com'],
   :enable_starttls_auto => true
 }
   
