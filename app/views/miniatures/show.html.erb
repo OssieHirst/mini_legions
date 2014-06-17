@@ -117,6 +117,15 @@ $(document).ready(function() {
        <%= content_setmini_links_with_quantity(@miniature) %>
 
      </table>
+<% elsif (@miniature.multipart?) && (@miniature.set != true) %>
+  This multi-part kit can be used to assemble one of the following miniatures:
+   <br />
+      
+     <table id="contents_table">
+
+       <%= content_setmini_links_with_quantity(@miniature) %>
+
+     </table>
 <% elsif @miniature.contents.any? %>
    <strong>Sets containing <%= @miniature.name %>:</strong>
 
