@@ -23,9 +23,9 @@
           <% end %><br />
        <div class="minilabel">Product code:</div> <%= @miniature.pcode %><br />
        <div class="minilabel">Release date:</div> <%= @miniature.release_date_display unless @miniature.release_date.blank? %><br />
-       <div class="minilabel">Sculpted by:</div> <% @miniature.sculptors.each do |sculptor| %>
+       <div class="minilabel">Sculpted by:</div> <table><td><% @miniature.sculptors.each do |sculptor| %>
         <%= link_to sculptor.fullname, sculptor_path(sculptor) %><br />
-          <% end %>
+          <% end %></td></table>
           <br />
           <% if current_user.try(:contributor?) %>
           <%= render 'admin_line' %>
