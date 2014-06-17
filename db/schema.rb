@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140430115010) do
+ActiveRecord::Schema.define(version: 20140617123012) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20140430115010) do
     t.boolean  "random",       default: false
     t.integer  "quantity"
     t.integer  "date_mask",    default: 0
+    t.boolean  "multipart",    default: false
   end
 
   add_index "miniatures", ["created_at"], name: "index_miniatures_on_created_at"

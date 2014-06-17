@@ -96,9 +96,11 @@ $(document).ready(function() {
 <% if @miniature.set? %>
     <h3>Contents:</h3>
       <% if @miniature.random? %>
-      This set of <%= @miniature.quantity %> contains a random assortment of the following miniatures.
+      This set of <%= @miniature.quantity %> contains a random assortment of the following miniatures:
+      <% elsif @miniature.multipart? %>
+      This multi-part kit can be used to assemble <%= @miniature.quantity %> of the following miniatures:
       <% else %>
-      This set of <%= @miniature.quantity %> contains the following miniatures.
+      This set of <%= @miniature.quantity %> contains the following miniatures:
       <% end %><br />
       
      <table id="contents_table">
@@ -106,8 +108,16 @@ $(document).ready(function() {
        <%= content_setmini_links_with_quantity(@miniature) %>
 
      </table>
-<% elsif @miniature.contents.any? %>
+<% elsif (@miniature.random?) && (@miniature.set != true) %>
+    This miniature is a random selection from the following: 
+    <br />
+      
+     <table id="contents_table">
 
+       <%= content_setmini_links_with_quantity(@miniature) %>
+
+     </table>
+<% elsif @miniature.contents.any? %>
    <strong>Sets containing <%= @miniature.name %>:</strong>
 
          <%= content_miniset_links_with_quantity(@miniature) %><br /><br />

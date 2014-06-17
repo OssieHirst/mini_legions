@@ -76,6 +76,16 @@ p {
 
 /* header */
 
+.pull-left {
+  padding-left: 10px;
+}
+
+.navbar-inner {
+   border-bottom: none;
+   border-top: none;
+}
+
+
 #logo {
   float: left;
   font-size: 1.9em;

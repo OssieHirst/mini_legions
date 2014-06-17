@@ -197,7 +197,7 @@ class MiniaturesController < ApplicationController
 
 private
     def miniature_params
-      params.require(:miniature).permit(:name, :release_date, :date_mask, :material, :pcode, :notes, :quantity, :random, :set, :comment, productions_attributes: [:id, :manufacturer_id, :miniature_id], sizes_attributes: [:id, :scale_id, :miniature_id], sculptings_attributes: [:id, :sculptor_id, :miniature_id], minilines_attributes: [:id, :line_id, :miniature_id])
+      params.require(:miniature).permit(:name, :release_date, :date_mask, :material, :pcode, :notes, :quantity, :random, :set, :multipart, :comment, productions_attributes: [:id, :manufacturer_id, :miniature_id], sizes_attributes: [:id, :scale_id, :miniature_id], sculptings_attributes: [:id, :sculptor_id, :miniature_id], minilines_attributes: [:id, :line_id, :miniature_id])
     end
 
     def admin_user
