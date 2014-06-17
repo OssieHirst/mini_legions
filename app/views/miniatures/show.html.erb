@@ -41,6 +41,9 @@
        <% if @miniature.set? %>
        <code>Set id: <%= @miniature.id %></code><br /><br />
         <%= link_to "Edit set", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
+        <% elsif @miniature.multipart? %>
+       <code>Kit id: <%= @miniature.id %></code><br /><br />
+        <%= link_to "Edit kit", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
        <% else %>
        <code>Miniature id: <%= @miniature.id %></code><br /><br />
        <%= link_to "Edit miniature", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
