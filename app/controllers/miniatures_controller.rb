@@ -94,6 +94,18 @@ class MiniaturesController < ApplicationController
     end
   end
 
+  def clone
+    @miniature = Miniature.find(params[:id]) # find original object
+    @all_scales = Scale.all
+    @all_manufacturers = Manufacturer.all
+    @all_sculptors = Sculptor.all
+    @size = @miniature.sizes.build
+    @production = @miniature.productions.build
+    @sculpting = @miniature.sculptings.build
+    @miniature = Miniature.new(@miniature.attributes) # initialize duplicate (not saved)
+    render :new # render same view as "new", but with @miniature attributes already filled in
+  end
+
   def edit
     @miniature = Miniature.find(params[:id])
     @all_scales = Scale.all

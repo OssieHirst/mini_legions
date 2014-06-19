@@ -22,6 +22,7 @@ MiniLegions::Application.routes.draw do
     end
     member do
       get :minisets, :setminis
+      get :clone
     end
   end
   resources :manufacturers do
@@ -64,6 +65,7 @@ MiniLegions::Application.routes.draw do
   match 'reply_form', to: 'microposts#_reply_form', via: 'get'
   match 'in_collection', to: 'miniatures#in_collection', via: 'get'
   post 'versions/:id/revert' => 'versions#revert', :as => 'revert_version'
+  match 'clone', to: 'miniatures#clone', via: 'get'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

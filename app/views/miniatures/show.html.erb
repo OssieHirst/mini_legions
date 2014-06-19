@@ -38,17 +38,22 @@
        <%= @miniature.notes %>
        <br /><br />
        
-       <% if @miniature.set? %>
+       <div class="inline"><% if @miniature.set? %>
        <code>Set id: <%= @miniature.id %></code><br /><br />
-        <%= link_to "Edit set", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
+        <%= link_to "Edit set", edit_miniature_path if current_user.try(:contributor?) %>
         <% elsif @miniature.multipart? %>
        <code>Kit id: <%= @miniature.id %></code><br /><br />
-        <%= link_to "Edit kit", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
+        <%= link_to "Edit kit", edit_miniature_path if current_user.try(:contributor?) %>
        <% else %>
        <code>Miniature id: <%= @miniature.id %></code><br /><br />
-       <%= link_to "Edit miniature", edit_miniature_path if current_user.try(:contributor?) %><br /><br />
+       <%= link_to "Edit miniature", edit_miniature_path if current_user.try(:contributor?) %>
        <% end %>
+
+        | <%= link_to 'Clone miniature', clone_miniature_path if current_user.superadmin? %></div>
        </section>
+
+
+
       <section>
         <%= render 'stats' %>
       </section>
