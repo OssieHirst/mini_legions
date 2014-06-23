@@ -44,6 +44,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Collection", user_collections_path(current_user, :status => "Got") %></li>
+                <li><%= link_to "Wantlist", user_collections_path(current_user, :status => "Want") %></li>
                 <li><%= link_to "Settings", edit_user_registration_path %></li>
                 <li class="divider"></li>
                 <li>

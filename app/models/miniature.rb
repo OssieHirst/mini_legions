@@ -21,8 +21,8 @@ class Miniature < ActiveRecord::Base
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :material, presence: true
   validates_date :release_date, :allow_blank => true
-  scope :indiv, where(set: false)
-  scope :multi, where(set: true)
+  scope :indiv, -> { where(set: false) }
+  scope :multi, -> { where(set: true) }
   PartialDate = Struct.new(:year, :month, :day)
   has_paper_trail :meta => { :comment => :comment }
   attr_accessor :comment
