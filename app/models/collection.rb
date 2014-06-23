@@ -16,11 +16,13 @@ class Collection < ActiveRecord::Base
 
 	has_attached_file :photo,  :styles => { 
 		:original => "1024x1024", 
-		:medium => "615x615#",
-		:thumb => "205x205#",
+		:medium => " ",
+		:thumb => " ",
 		:icon => " " },
 		:convert_options => {
-    	:icon => '-resize "140x140^" +repage -gravity Center -crop "64x64+0-5"'},
+    	:icon => '-resize "80x64^" +repage -gravity Center -crop "64x64+0-5"', 
+    	:medium => '-resize "615" +repage -gravity Center -crop "615x615+0+0"', 
+    	:thumb => '-resize "205x180^" +repage -gravity Center -crop "205x180+0+0"'},
     	:retina => true,
 		:url => "/system/collections/photos/:id/:style/mlc_:id.:extension",
   		:path => ":rails_root/public/system/collections/photos/:id/:style/mlc_:id.:extension" 
