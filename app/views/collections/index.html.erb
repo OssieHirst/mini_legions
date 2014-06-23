@@ -2,6 +2,17 @@
 <h1><% if current_user?(@user) %>Your<% else %>
 	<%= @user.name %>'s<% end %> <% if params[:status] == 'Got' %>collection<% elsif params[:status] == 'Want' %>wantlist<% end %></h1>
 
+	<form class="form">
+			<div class = "form-inline">
+			<%= search_form_for @search, :html => {:method => :post} do |f| %>
+  	 			<div class="input-append">
+    				<%= f.text_field :name_or_miniature_name_cont, class: "span3" %>
+  					<%= f.submit "Search", class: "btn" %>
+  	    		</div>
+			<% end %>
+			</div>
+		</form>
+
 
 <%= will_paginate %>
 <table border="0" cellpadding="10" class="table table-hover">
