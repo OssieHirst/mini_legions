@@ -47,8 +47,8 @@ $(document).ready(function() {
 </script>
 
 <% paintedfeed.each do |collection| %>
-    <div class="photo1">
-          <%= link_to image_tag(collection.photo.url(:medium), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+    <div class="picfeed">
+          <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
           <p><%= link_to collection.name.presence || collection.miniature.name, collection %> </p>
         </div><br />

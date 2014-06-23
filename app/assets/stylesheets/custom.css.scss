@@ -37,6 +37,29 @@ textarea {
   }
 }
 
+.picfeed {
+  position: relative; 
+  width: 100%; /* for IE 6 */
+  margin-left: 35px;
+  p { 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 4px;
+  font-size: smaller;
+  color: #FFF;
+  margin: 0;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.5);
+  a {
+    color: #FFF;
+    text-decoration:underline;
+  }
+  }
+}
+
+
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -253,7 +276,8 @@ aside {
 }
 
 .before_picfeed {
-  margin-bottom: 15px;
+  margin-left: 35px;
+  margin-bottom: 5px;
 }
 
 
