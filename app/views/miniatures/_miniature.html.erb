@@ -5,9 +5,7 @@
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
       <% end %></div></td> 
       <td><div class="indexsmall"><% miniature.lines.where.not(id: @line).each do |line| %>
-        <%= link_to line.root.name, line.root %>
-          <% if line != line.root %>
-            : <%= link_to line.name, line_path(line) %>
+        <%= link_to line.root.name, line.root %><% if line != line.root %>: <%= link_to line.name, line_path(line) %>
           <% end %><br />
       <% end %></div></td> 
   <td><%= miniature.pcode %></td>
