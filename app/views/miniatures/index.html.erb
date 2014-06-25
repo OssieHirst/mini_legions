@@ -21,10 +21,10 @@
 <table border="0" cellpadding="10" class="table table-semicondensed table-hover">
 	<th align="left"><%= sort_link(@search, :name, "Name") %></th>
 	<th align="left"><%= sort_link(@search, :material, "Material") %></th>
-	<th align="left"><%= sort_link(@search, 'manufacturers.name', "Manufacturer") %></th>
-	<th align="left"><%= sort_link(@search, 'lines.name', "Line") %></th>
+	<th align="left"><%= sort_link(@search, 'manufacturers_name', "Manufacturer") %></th>
+	<th align="left"><%= sort_link(@search, 'lines_name', "Line") %></th>
 	<th align="left"><%= sort_link(@search, :pcode, "Code") %></th>
-	<th align="left"><%= sort_link(@search, 'sculptors.last_name', "Sculpt") %></th>
+	<th align="left"><%= sort_link(@search, 'sculptors_last_name', "Sculpt") %></th>
 	<th align="left"><%= sort_link(@search, :release_date, "Release") %></th>
 		<% if user_signed_in? %>
 	<th align="left"><i class="fa fa-check-square-o fa-lg"></i></th>
