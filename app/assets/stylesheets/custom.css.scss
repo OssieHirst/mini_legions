@@ -23,7 +23,7 @@ body {
 }
 
 section {
-  overflow: auto;
+  overflow: hidden;
 }
 
 textarea {
@@ -41,6 +41,7 @@ textarea {
   position: relative; 
   width: 100%; /* for IE 6 */
   margin-left: 35px;
+  overflow-x: hidden;
   p { 
   position: absolute;
   left: 0;
