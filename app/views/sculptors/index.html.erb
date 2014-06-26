@@ -1,6 +1,19 @@
 <% provide(:title, 'All sculptors') %>
 
 <h1>Sculptors</h1>
+
+<div class="links_wrapper">
+    <div class ="model_links">
+        <%= link_to "Miniatures", miniatures_path %>
+    </div>
+    <div class ="model_links">
+        <%= link_to "Manufacturers", manufacturers_path %>
+    </div>
+    <div class ="model_links">
+        <%= link_to "Product Lines", lines_path %>
+    </div>
+</div>
+
 <form class="form">
     <div class = "form-inline">
       <%= search_form_for @search, :html => {:method => :post} do |f| %>

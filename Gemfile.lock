@@ -118,6 +118,7 @@ GEM
       spork (>= 0.8.4)
     haml (4.0.5)
       tilt
+    has_scope (0.5.1)
     hike (1.2.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -322,6 +323,7 @@ DEPENDENCIES
   growl (= 1.0.3)
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
+  has_scope
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   magnific-popup-rails

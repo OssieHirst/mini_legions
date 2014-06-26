@@ -1,0 +1,83 @@
+</div>
+<aside class="span4">
+  <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#info">Info</a></li>
+          <li><a href="#edit">Edit</a></li>
+        </ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="info">
+    <section><h5><i><%= @collection.name %></i> </h5>
+        <% if @collection.status == 'Want' %>
+          You want this miniature, <%= @collection.progress %>
+        <% elsif @collection.progress == 'Painted' %>
+          <h5>Painted by <%= link_to @collection.user.name, @user %></h5>
+        <% else %>
+          Owned by <%= link_to @collection.user.name, @user %>
+        <% end %>
+
+         <%= "GOLD" if @collection.is_gold %> <%= "SILVER" if @collection.is_silver %>
+      <br /><br />
+<% if @collection.progress != 'Painted' && @collection.status != 'Want' %>
+      Progress: <%= @collection.progress %><br /><br />
+<% end %>
+
+<% if @collection.notes.present? %>
+<div class="sitestats">
+<span class="bqstart">&#8220;</span><%= @collection.notes %><span class="bqend">&#8221;</span></div>
+<br /><br />
+<% end %>
+
+     <%= link_to "Miniature page", @miniature %><br />
+     <%= link_to "Your collection", user_collections_path(@user, got: true) if @collection.status == 'Got' %>
+     <%= link_to "Your wantlist", user_collections_path(@user, want: true) if @collection.status == 'Want' %>
+    </section>
+ <% if @collection.status != 'Want' %>
+    <section>
+      Post an update about this miniature
+    <%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.
+  object %>
+  <div class="field">
+   <%= f.text_area :content, :value => "Check out this #{@miniature.name}: #{request.original_url}",
+   :onKeyDown => "countCharacters(this, document.getElementById('charCounterLabel'), 140);", 
+   :onKeyUp => "countCharacters(this, document.getElementById('charCounterLabel'), 140);" %>
+  </div>
+  <table>
+    <td>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+</td><td>
+  <div class="field">
+    <span id="charCounterLabel"> 140</span>
+  </div></td>
+</table>
+<% end %>
+</section>
+<% end %>
+    <section>
+      <% if @collection.progress == 'Unpainted' || @collection.progress =='N/A' || @collection.progress =='Unassambled' %>
+        <br /><br />
+      <% else %>
+        <%= render 'painted' %>
+      <% end %>
+
+    </div>
+    <div class="tab-pane" id="edit">
+      <% if @collection.status == 'Want' %>
+        <%= render 'want' %>
+      <% else %>
+        <%= render 'gotorhad' %>
+      <% end %>
+
+     <%= link_to raw("<i class='fa fa-trash-o'></i> Remove from collection"), @collection, :confirm => 'Are you sure you want to remove this? Photos and notes will be lost and it cannot be undone!', method: :delete %>
+    </div>
+</div>
+
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
+    </section>
+</aside>

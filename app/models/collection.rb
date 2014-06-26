@@ -10,6 +10,11 @@ class Collection < ActiveRecord::Base
 	validates :name, length: { maximum: 25 }
 	validates :notes, length: { maximum: 280 }
 	scope :desc, -> { order("photo_updated_at DESC") }
+	scope :painted, -> { where(progress: 'Painted') }
+	scope :got, -> { where(status: 'Got') }
+	scope :want, -> { where(status: 'Want') }
+	scope :gold, -> { where(is_gold: true) }
+	scope :silver, -> { where(is_silver: true) }
 	retina!
 	before_destroy :cache_miniature
 	after_destroy :set_gold_and_silver

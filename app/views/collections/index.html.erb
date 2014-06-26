@@ -1,6 +1,12 @@
 <% provide(:title, @user.name ) %>
 <h1><% if current_user?(@user) %>Your<% else %>
-	<%= @user.name %>'s<% end %> <% if params[:status] == 'Got' %>collection<% elsif params[:status] == 'Want' %>wantlist<% end %></h1>
+	<%= @user.name %>'s<% end %>    <% if current_scopes[:got].present? && current_scopes[:painted].present? %>
+       painted miniatures
+       <% elsif current_scopes[:want].present? %>
+       wantlist
+       <% elsif current_scopes[:got].present? %>
+       collection
+    <% end %></h1>
 
 	<form class="form">
 			<div class = "form-inline">
@@ -10,8 +16,10 @@
   					<%= f.submit "Search", class: "btn" %>
   	    		</div>
 			<% end %>
+       <div class="collection_count"><%= @collections.count %> items</div>
 			</div>
 		</form>
+
 
 
 <%= will_paginate %>

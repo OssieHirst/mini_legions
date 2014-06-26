@@ -1,12 +1,17 @@
 class CollectionsController < ApplicationController
   before_action :user_signed_in?
+  has_scope :got, :type => :boolean
+  has_scope :want, :type => :boolean
+  has_scope :painted, :type => :boolean
+  has_scope :gold, :type => :boolean
+  has_scope :silver, :type => :boolean
 
 
   respond_to :html, :js
 
   def index
     @user = User.find_by_username(params[:user_id])
-    @search = @user.collections.where(status: params[:status]).search(params[:q])
+    @search = apply_scopes(@user.collections).search(params[:q])
     @search.sorts = 'created_at desc' if @search.sorts.empty?  
     @collections = @search.result.paginate(page: params[:page])
   end
@@ -36,6 +41,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @miniature = @collection.miniature
     @user = @collection.user
+    @micropost  = current_user.microposts.build
   end
 
   def create

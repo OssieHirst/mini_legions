@@ -4,7 +4,7 @@
 
   <div class="span8">
       <h3><%= @collection.miniature.name %> </h3>
-      <% if @collection.photo.exists? %>
+        <% if @collection.photo.exists? %>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -25,33 +25,15 @@ $(document).ready(function() {
 });
 </script>
 
-      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %><br />
-      <i><%= @collection.name %></i> Painted by <%= link_to @collection.user.name, @user %> <%= "GOLD" if @collection.is_gold %> <%= "SILVER" if @collection.is_silver %>
-      <% end %><br /><br />
+      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+        <% end %>
+      
 
-        <%= @collection.notes %>
-
-
-
-    </div>
-  <aside class="span4">
-    <section>
-
-
-     <% if current_user?(@user) %>
-     
-     <%= render 'listed' %>
-     
-      <% else %>
-      In <%= link_to @collection.user.name, @user %>'s collection<br /><br />
-      Progress: <%= @collection.progress %>
-     <% end %><br /><br />
-     <%= link_to 'See full Miniature details', @miniature %><br />
-     <%= link_to 'See user collection', user_collections_path(@user, :status => "Got") %><br /><br />
-
-     <%= link_to raw("<i class='fa fa-trash-o'></i> Remove from collection"), @collection, :confirm => 'Are you sure you want to remove this? Photos and notes will be lost and it cannot be undone!', method: :delete , class: "btn btn-med btn-primary" %>
-
-    </section>
-  </aside>
+<% if current_user?(@user) %>
+  <%= render 'yours' %>
+<% else %>
+  <%= render 'theirs' %>
+<% end %>
    
-</div>
+  </div>
+

@@ -9,10 +9,3 @@
   <%= f.text_area :notes %>
      	<%= f.submit "Update", class: "btn btn-med btn-primary" %>
      <% end %><br />
-
-
-<% if @collection.progress == 'Unpainted' || @collection.progress =='N/A' || @collection.progress =='Unassambled' %>
-    <br /><br />
-    <% else %>
-    <%= render 'painted' %>
-<% end %>

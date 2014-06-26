@@ -28,6 +28,7 @@ gem 'devise'
 gem 'paper_trail', '3.0.2'
 gem 'randumb'
 gem 'redcarpet'
+gem 'has_scope'
 
 
 group :development, :test do

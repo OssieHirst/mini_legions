@@ -365,6 +365,17 @@ input {
   }
 }
 
+.links_wrapper {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.model_links {
+  display:inline;
+  font-size: larger;
+  padding: 50px;
+}
+
+
 .gotcircle {
   color: #02CC5A;
   font-size: 0.8em;
@@ -397,6 +408,28 @@ input {
   overflow: hidden;
   white-space: nowrap;
 }
+
+/* Collections */
+
+.collection_count {
+  display: inline;
+  font-size: larger;
+  float: right;
+}
+
+.bqstart {
+  display: inline;
+  font-size: 300%;
+  color: #FF0000;
+  float: left;
+ }
+
+ .bqend {
+  display: inline;
+  font-size: 300%;
+  color: #FF0000;
+  float: right;
+ }
 
 /* Miniatures show */
 

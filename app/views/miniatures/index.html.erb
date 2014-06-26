@@ -1,5 +1,18 @@
 <% provide(:title, 'All miniatures') %>
 <h1>All miniatures</h1>
+
+<div class="links_wrapper">
+	<div class ="model_links">
+		<%= link_to "Manufacturers", manufacturers_path %>
+	</div>
+	<div class ="model_links">
+		<%= link_to "Product Lines", lines_path %>
+	</div>
+	<div class ="model_links">
+		<%= link_to "Sculptors", sculptors_path %>
+	</div>
+</div>
+
 		<form class="form">
 			<div class = "form-inline">
 			<%= search_form_for @search, :html => {:method => :post} do |f| %>
@@ -8,6 +21,7 @@
   					<%= f.submit "Search", class: "btn" %>
   	    		</div>
 			<% end %>
+			
 				<div class="float-right">
 					<% if current_user.try(:contributor?) %>
 						<%= link_to 'Add new miniature', new_miniature_path, class: "btn btn-primary" %>

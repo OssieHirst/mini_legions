@@ -1,0 +1,54 @@
+</div>
+  <aside class="span4">
+    <section>
+      <br /><h5><i><%= @collection.name %></i> </h5>
+      	<% if @collection.status == 'Want' %>
+      		Wanted by <%= @collection.user.name %>, <%= @collection.progress %>
+      	<% elsif @collection.progress == 'Painted' %>
+      		<h5>Painted by <%= link_to @collection.user.name, @user %></h5>
+      	<% else %>
+      	<br />Owned by <%= link_to @collection.user.name, @user %>
+      	<% end %><br />
+
+      	 <%= "GOLD" if @collection.is_gold %> <%= "SILVER" if @collection.is_silver %>
+      <br /><br />
+<% if @collection.progress != 'Painted' && @collection.status != 'Want' %>
+      Progress: <%= @collection.progress %><br /><br />
+<% end %>
+
+<% if @collection.notes.present? %>
+<div class="sitestats">
+<span class="bqstart">&#8220;</span><%= @collection.notes %><span class="bqend">&#8221;</span></div>
+<br /><br />
+<% end %>
+
+     <%= link_to "Miniature page", @miniature %><br />
+     <%= link_to "#{@user.name}'s collection", user_collections_path(@user, got: true) if @collection.status == 'Got' %>
+     <%= link_to "#{@user.name}'s wantlist", user_collections_path(@user, want: true) if @collection.status == 'Want' %>
+
+
+     </section>
+ <% if @collection.status != 'Want' %>
+    <section>
+      Post an update about this miniature
+    <%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.
+  object %>
+  <div class="field">
+   <%= f.text_area :content, :value => "Check out this #{@miniature.name}: #{request.original_url}",
+   :onKeyDown => "countCharacters(this, document.getElementById('charCounterLabel'), 140);", 
+   :onKeyUp => "countCharacters(this, document.getElementById('charCounterLabel'), 140);" %>
+  </div>
+  <table>
+    <td>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+</td><td>
+  <div class="field">
+    <span id="charCounterLabel"> 140</span>
+  </div></td>
+</table>
+<% end %>
+</section>
+<% end %>
+
+  </aside>
