@@ -36,3 +36,15 @@
 </table>
 
 <%= will_paginate %>
+
+<div class="empty_collection">
+<% if @collections.empty? && @user == current_user %>
+  <% if current_scopes[:got].present? && current_scopes[:painted].present? %>
+       You haven't marked any of your collection as Painted yet.<br /><br /> To mark a miniature as painted, click on an item in <%= link_to "your collection", user_collections_path(current_user, got: true) %> and then click on the Edit tab on the right.
+  <% elsif current_scopes[:want].present? %>
+       Your wantlist is currently empty. <%= link_to "Find some miniatures", miniatures_path %> you're after and click on <i class="fa fa-check-square-o"></i> <a href="">add to collection or wantlist</a>.
+  <% elsif current_scopes[:got].present? %>
+       Your collection is currently empty. <%= link_to "Find some miniatures", miniatures_path %> you own and click on <i class="fa fa-check-square-o"></i> <a href="">add to collection or wantlist</a>.
+  <% end %>
+<% end %>
+</div>
