@@ -39,7 +39,7 @@
   <%= render 'shared/error_messages', object: f.
   object %>
   <div class="field">
-   <%= f.text_area :content, :value => "Check out this #{@miniature.name}: #{request.original_url}",
+   <%= f.text_area :content, :value => "Check out my #{@miniature.name}: #{request.original_url}",
    :onKeyDown => "countCharacters(this, document.getElementById('charCounterLabel'), 140);", 
    :onKeyUp => "countCharacters(this, document.getElementById('charCounterLabel'), 140);" %>
   </div>
