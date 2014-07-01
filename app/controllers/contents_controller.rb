@@ -21,6 +21,13 @@ class ContentsController < ApplicationController
       redirect_to(root_url) unless current_user.admin?
   end
 
+  def destroy
+    @content = Content.find(params[:id])
+    @content.destroy
+    flash[:success] = "Miniature removed from set."
+    redirect_to @content.miniset
+  end
+
   def signed_in_user
     unless signed_in?
         store_location
