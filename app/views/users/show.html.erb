@@ -59,9 +59,9 @@ $(document).ready(function() {
     <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
       <h3>Updates (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
+      <table class="microposts">
         <%= render @microposts %>
-      </ol>
+      </table>
       <%= will_paginate @microposts %>
     <% end %>
   </aside>

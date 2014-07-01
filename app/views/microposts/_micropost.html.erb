@@ -1,12 +1,13 @@
-<li>
-	<%= gravatar_for @user %>
+	<tr>
+    <td width="48px"><%= gravatar_for @user %></td>
+    <td>
 	<span class="user">
-      <%= link_to @user.name, @user %></span> <span class="postinfo">@<%= link_to @user.username, @user %></span>
+      <%= link_to @user.name, @user %></span> <span class="username">@<%= link_to @user.username, @user %></span>
   <span class="content"><%= markdown.render(wrap(micropost.content)).html_safe %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
   <% if current_user?(micropost.user) %>
   <%= render partial: 'shared/delete_link', locals: { object: micropost } %>
-  <% end %>
-</li>
+  <% end %></td>
+</tr>

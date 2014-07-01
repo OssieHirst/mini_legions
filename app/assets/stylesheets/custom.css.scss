@@ -622,7 +622,7 @@ li {
     border-top: 1px solid #e8e8e8;
   }
   td {
-    padding: 10px 10px 5px 0;
+    padding: 8px 10px 2px 0;
     vertical-align: top;
   }
 }
@@ -633,6 +633,14 @@ li {
   color: $grayLight;
   display: inline;
   font-size: smaller;
+  a {
+   color: $grayLight;
+  }
+}
+
+.username {
+  color: $grayLight;
+  display: inline;
   a {
    color: $grayLight;
   }
