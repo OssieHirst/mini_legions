@@ -29,7 +29,7 @@ class Collection < ActiveRecord::Base
     	:icon => '-resize "80x64^" +repage -gravity Center -crop "64x64+0-5"', 
     	:medium => '-resize "615" +repage -gravity Center -crop "615x615+0+0"', 
     	:thumb => '-resize "205x180^" +repage -gravity Center -crop "205x180+0+0"',
-    	:feed_thumb => '-resize "300x220^" +repage -gravity Center -crop "300x220+0+0"'},
+    	:feed_thumb => '-resize "300x180^" +repage -gravity Center -crop "300x180+0+0"'},
     	:retina => true,
 		:url => "/system/collections/photos/:id/:style/mlc_:id.:extension",
   		:path => ":rails_root/public/system/collections/photos/:id/:style/mlc_:id.:extension" 
