@@ -3,35 +3,35 @@
 		<table>
 			<tr>
 				<td><%= @miniatures.indiv.count %></td>
-				<td>&nbsp; miniatures listed</td>
+				<td>&nbsp; Miniatures listed</td>
 			</tr>
 			<tr>
 				<td><%= @miniatures.multi.count %></td>
-				<td>&nbsp; sets listed</td>
+				<td>&nbsp; Sets listed</td>
 			</tr>
 			<tr>
 				<td><%= @users.count %></td>
-				<td>&nbsp; <%= link_to "users", users_path %></td>
+				<td>&nbsp; <%= link_to "Users signed up", users_path %></td>
 			</tr>
 			<tr>
 				<td><%= @manufacturers.count %></td>
-				<td>&nbsp; <%= link_to "manufacturers", manufacturers_path %></td>
+				<td>&nbsp; <%= link_to "Manufacturers", manufacturers_path %></td>
 			</tr>
 			<tr>
 				<td><%= @lines.count %></td>
-				<td>&nbsp; <%= link_to "product lines", lines_path %></td>
+				<td>&nbsp; <%= link_to "Product lines", lines_path %></td>
 			</tr>
 			<tr>
 				<td><%= @sculptors.count %></td>
-				<td>&nbsp; <%= link_to "sculptors", sculptors_path %></td>
+				<td>&nbsp; <%= link_to "Sculptors", sculptors_path %></td>
 			</tr>
 			<tr>
 				<td><%= @collections.where("photo_file_size IS NOT NULL").count %></td>
-				<td>&nbsp; photos uploaded</td>
+				<td>&nbsp; Photos uploaded</td>
 			</tr>
 			<tr>
 				<td><%= @imagevotes.count %></td>
-				<td>&nbsp; painting votes cast</td>
+				<td>&nbsp; Painting votes cast</td>
 			</tr>
 		</table>
 </div> 
