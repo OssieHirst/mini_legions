@@ -1,5 +1,11 @@
 <% provide(:title, [@miniature.name.html_safe, @user.name].join(' by ')) %>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+    </script>
+
 <div class="row">
 
   <div class="span8">
@@ -29,11 +35,7 @@ $(document).ready(function() {
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
         <% end %>
   <% elsif current_user?(@user) && @collection.progress == 'Painted' %>
-    <script type="text/javascript">
-    $(document).ready(function() {
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-});
-    </script>
+    
 
   <br /><br />
           <div class="big_text">Upload a photo of your painting<br /><br />
