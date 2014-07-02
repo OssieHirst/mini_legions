@@ -60,7 +60,11 @@ textarea {
   }
 }
 
-
+.tooltip_style {
+  a { 
+    color: $grayLight;
+  }
+}
 
 /* typography */
 
@@ -317,6 +321,10 @@ input, textarea, select, .uneditable-input {
   padding: 10px;
   margin-bottom: 15px;
   @include box_sizing;
+}
+
+select, .uneditable-input {
+  padding: 4px;
 }
 
 input {

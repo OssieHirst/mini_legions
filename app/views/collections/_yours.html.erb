@@ -57,8 +57,8 @@
     <section>
       <% if @collection.progress == 'Unpainted' || @collection.progress =='N/A' || @collection.progress =='Unassambled' %>
         <br /><br />
-      <% else %>
-        <%= render 'painted' %>
+      <% elsif @collection.photo? %>
+        <%= render 'replace_photo' %>
       <% end %>
 
     </div>

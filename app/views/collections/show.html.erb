@@ -25,9 +25,24 @@ $(document).ready(function() {
 });
 </script>
 
+  <% if @collection.photo? %>
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
         <% end %>
-      
+  <% elsif current_user?(@user) && @collection.progress == 'Painted' %>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+    </script>
+
+  <br /><br />
+          <div class="big_text">Upload a photo of your painting<br /><br />
+            <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="No text or logos on image. If you're uploading a composite or multiple-view image, please no more than three frames and they must be arranged horizontally not vertically. This will help keep the site looking nice.">Image guidelines <i class="fa fa-question-circle"></i></a></span><br /><br />
+    <%= form_for @collection, :html => { :multipart => true } do |f| %>
+      <%= f.file_field :photo %><br />
+      <%= f.submit "Add Photo", class: "btn btn-large btn-primary" %>
+     <% end %></div>
+  <% end %>
 
 <% if current_user?(@user) %>
   <%= render 'yours' %>

@@ -1,4 +1,10 @@
-    Replace photo <span class="no_submission_notes">No logos or text on photo please</span>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+    </script>
+
+    Upload replacement photo <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="No text or logos on image. If you're uploading a composite or multiple-view image, please no more than three frames and they must be arranged horizontally not vertically. This will help keep the site looking nice.">Image guidelines <i class="fa fa-question-circle"></i></a></span>
     <%= form_for @collection, :html => { :multipart => true } do |f| %>
      	<%= f.file_field :photo %>
      	<%= f.submit "Replace Photo", data: { confirm: "This will delete the current image, are you sure?" }, class: "btn btn-med btn-primary" %>

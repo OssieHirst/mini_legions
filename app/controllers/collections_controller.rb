@@ -20,6 +20,7 @@ class CollectionsController < ApplicationController
   def new
     @collection = Collection.new(@miniature)
     @miniature_id = params[:miniature_id]
+    @miniature = Miniature.find(params[:miniature_id])
   end
 
   def destroy_original

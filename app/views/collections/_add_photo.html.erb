@@ -1,5 +1,5 @@
-    Upload a photo of your painting<span class="no_submission_notes">No logos or text on photo please</span>
+    Upload a photo of your painting<div class="no_submission_notes">No logos or text on photo please</div>
     <%= form_for @collection, :html => { :multipart => true } do |f| %>
-     	<%= f.file_field :photo %>
+     	<%= f.file_field :photo %><br />
      	<%= f.submit "Add Photo", class: "btn btn-large btn-primary" %>
      <% end %>
