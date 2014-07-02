@@ -9,7 +9,11 @@
     <% end %></h1>
 
 
-
+        <div class="float-left_spaced">
+          <% if @user == current_user %>
+            <%= link_to 'Add to collection', miniatures_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
 
 
 <%= will_paginate %>
