@@ -15,7 +15,9 @@
         <% else %>
           Owned by <%= link_to @collection.user.name, @user %>
         <% end %>
-        <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="This miniature has been converted or modified using parts from other sets or miniatures."><%= "Conversion" if @collection.conversion? %> <i class="fa fa-question-circle"></i></a></span>
+        <% if @collection.conversion? %>
+        <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="This miniature has been converted or modified using parts from other sets or miniatures.">Conversion <i class="fa fa-question-circle"></i></a></span>
+        <% end %>
         
 
          <%= "GOLD" if @collection.is_gold %> <%= "SILVER" if @collection.is_silver %>
