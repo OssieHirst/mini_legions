@@ -8,7 +8,7 @@
   <div class="form-inputs">
     <%= f.label :name, "Name or Username (You don't need to use your real name)" %>
     <%= f.text_field :name %>
-    <%= f.label :username, "@username (unique, one word, no spaces)", :required => true %>
+    <%= f.label :username, "@username (unique, one word, no spaces, the @ will be added)", :required => true %>
     <%= f.text_field :username %>
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
