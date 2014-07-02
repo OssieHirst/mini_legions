@@ -10,10 +10,11 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.label :name %>
+    <%= f.label :name, "Username (can be anything)" %>
     <%= f.text_field :name %>
-    <%= f.label :username, :required => true %>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email, :autofocus => true %>
+    <%= f.label :username, "User @handle (unique, one word, no spaces)", :required => true %>
     <%= f.text_field :username %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
