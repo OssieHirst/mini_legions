@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617123012) do
+ActiveRecord::Schema.define(version: 20140702122241) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140617123012) do
     t.integer  "imagevotes_count",   default: 0
     t.boolean  "is_gold",            default: false
     t.boolean  "is_silver",          default: false
+    t.boolean  "conversion",         default: false
   end
 
   add_index "collections", ["imagevotes_count"], name: "index_collections_on_imagevotes_count"
