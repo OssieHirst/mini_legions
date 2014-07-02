@@ -48,10 +48,10 @@ $(document).ready(function() {
 
 <% paintedfeed.each do |collection| %>
     <div class="picfeed">
-          <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+          <%= link_to image_tag(collection.photo.url(:feed_thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
           <p><%= link_to collection.name.presence || collection.miniature.name, collection %> </p>
-        </div><br />
+        </div>
 <% end %>
 </section>
   </aside>

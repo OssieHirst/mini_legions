@@ -40,7 +40,7 @@ textarea {
 .picfeed {
   position: relative; 
   width: 100%; /* for IE 6 */
-  margin-left: 35px;
+  margin-bottom: 15px;
   overflow-x: hidden;
   p { 
   position: absolute;
@@ -49,7 +49,7 @@ textarea {
   padding: 4px;
   font-size: smaller;
   color: #FFF;
-  width: 197px;
+  width: 297px;
   margin: 0;
   background: rgb(0, 0, 0); /* fallback color */
   background: rgba(0, 0, 0, 0.5);
@@ -282,7 +282,6 @@ aside {
 }
 
 .before_picfeed {
-  margin-left: 35px;
   margin-bottom: 5px;
 }
 
