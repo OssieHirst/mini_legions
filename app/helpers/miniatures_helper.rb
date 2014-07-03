@@ -24,7 +24,7 @@ module MiniaturesHelper
       @miniature = Miniature.find(content.setmini)
       if @miniature.collections.empty?
         image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
-      elsif @miniature.collections.first.photo.url != nil 
+      elsif @miniature.collections.first.photo_file_name != nil
         image_tag(@miniature.collections.first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
       else
         image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
