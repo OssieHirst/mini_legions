@@ -14,10 +14,19 @@ module MiniaturesHelper
 	end
 
 	def content_setmini_link_with_quantity(content)
-      string = (tag "td"), (link_to image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset"), content.setmini), (link_to content.setmini.name, content.setmini)
+      string = (tag "td"), (link_to top_pic(content), content.setmini), (link_to content.setmini.name, content.setmini)
       string << " x#{content.quantity}" if content.quantity.present?
       string <<  delete_link(content) if current_user.admin
       return string 
+  end
+
+  def top_pic(content)
+      @miniature = Miniature.find(content.setmini)
+      if @miniature.collections.first.photo.url != nil 
+        image_tag(@miniature.collections.first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
+      else
+        image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
+      end
   end
 
   def delete_link(content)
