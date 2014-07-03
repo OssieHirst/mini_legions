@@ -22,7 +22,9 @@ module MiniaturesHelper
 
   def top_pic(content)
       @miniature = Miniature.find(content.setmini)
-      if @miniature.collections.first.photo.url != nil 
+      if @miniature.collections.empty?
+        image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
+      elsif @miniature.collections.first.photo.url != nil 
         image_tag(@miniature.collections.first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
       else
         image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
