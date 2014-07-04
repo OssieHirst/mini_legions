@@ -101,7 +101,8 @@ $(document).ready(function() {
 
     <p class="clear"><%= render 'vote' if @miniature.collections.where("photo_file_name IS NOT NULL").any? %></p>  
  <br />
-<% if @miniature.set? %>
+
+<% if @miniature.set? && @miniature.reverse_contents.present? %>
     <h3>Contents:</h3>
       <% if @miniature.random? %>
       This set of <%= @miniature.quantity %> contains a random assortment of the following miniatures:
@@ -116,7 +117,7 @@ $(document).ready(function() {
        <%= content_setmini_links_with_quantity(@miniature) %>
 
      </table>
-<% elsif (@miniature.random?) && (@miniature.set != true) %>
+<% elsif (@miniature.random?) && (@miniature.set != true) && @miniature.reverse_contents.present? %>
     This miniature is a random selection from the following: 
     <br />
       
@@ -125,7 +126,7 @@ $(document).ready(function() {
        <%= content_setmini_links_with_quantity(@miniature) %>
 
      </table>
-<% elsif (@miniature.multipart?) && (@miniature.set != true) %>
+<% elsif (@miniature.multipart?) && (@miniature.set != true) && @miniature.reverse_contents.present? %>
   This multi-part kit can be used to assemble one of the following miniatures:
    <br />
       
