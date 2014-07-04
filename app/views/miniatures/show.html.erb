@@ -145,7 +145,7 @@ $(document).ready(function() {
       <% end %>
 
 <% else %>
-    <% if current_user.try(:contributor?) %>
+    <% if current_user.try(:contributor?) && @miniature.set != true %>
           <%= link_to "Add to set", new_content_path(:setmini_id => @miniature.id) %>
     <% end %>
 <% end %>
