@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   <br /><br />
           <div class="big_text">Upload a photo of your painting<br /><br />
-            <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="No text or logos on image. If you're uploading a composite or multiple-view image, please no more than three frames and they must be arranged horizontally not vertically. This will help keep the site looking nice.">Image guidelines <i class="fa fa-question-circle"></i></a></span><br /><br />
+            <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="Only upload pictures of miniatures you painted yourself. No text or logos on image. If you're uploading a composite or multiple-view image, please no more than three frames and they must be arranged horizontally not vertically. This will help keep the site looking nice.">Image guidelines <i class="fa fa-question-circle"></i></a></span><br /><br />
     <%= form_for @collection, :html => { :multipart => true } do |f| %>
       <%= f.file_field :photo %><br />
       <%= f.submit "Add Photo", class: "btn btn-large btn-primary" %>
