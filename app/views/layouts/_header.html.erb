@@ -31,9 +31,17 @@
                 <li><%= link_to "Users", users_path %></li>
               </ul>
             </li>
-
-            
-
+            <% else %>
+              <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Browse <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Product Lines", lines_path %></li>
+                <li><%= link_to "Sculptors", sculptors_path %></li>
+                <li><%= link_to "Users", users_path %></li>
+              </ul>
+            </li>
             <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
