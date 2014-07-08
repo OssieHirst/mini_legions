@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @search = User.search(params[:q])
+    @search.sorts = 'username asc' if @search.sorts.empty?  
+    @users = @search.result.paginate(page: params[:page])
   end
 
   def create

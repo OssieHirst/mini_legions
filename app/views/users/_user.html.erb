@@ -1,7 +1,12 @@
-<li>
-  <%= gravatar_for user %>
-  <%= link_to user.name, user %>
-  <%= link_to "delete", user, method: :delete,
-              data: { confirm: "You sure?" } if not_admin?(user) %><br />
-  @<%= user.username %>
-</li>
+<tr>
+  <td width="60px"><%= gravatar_for user %></td>
+  <td><%= link_to user.name, user %><br />
+      @<%= user.username %></td>
+  <td><%= user.collections.got.count %></td>
+  <td><%= user.painterscore %></td>
+  
+  <% if current_user.try(:admin?) %>
+  	<td><%= link_to "delete", user, method: :delete,
+              data: { confirm: "You sure?" } if not_admin?(user) %></td>
+  <% end %>
+

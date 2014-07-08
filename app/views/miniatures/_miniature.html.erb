@@ -30,5 +30,5 @@
   </td>  
   <td><% if current_user.try(:admin?) %>
   <%= link_to "delete", miniature, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+                                  data: { confirm: "This will delete all record of this Miniature from the database. Only delete if you are sure it is either wholly inaccurate or a duplicate. Otherwise edit it instead." } %>
   <% end %></td></tr>
