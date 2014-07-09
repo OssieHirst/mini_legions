@@ -1,0 +1,35 @@
+ <% provide(:title, 'Getting Started') %>  
+<div class="row">
+	<div class="span10 offset1">
+		<img src="https://s3.amazonaws.com/minilegions/system/stock/silhouette_with_logo_780.jpg">
+		<br /><br />
+
+		<h1>Getting Started</h1>
+
+		<div class="big_black">First thing is to sign up for your free account.		<br /><br />
+
+
+    		<%= link_to 'Sign Up', new_user_registration_path, class: "btn-large btn-primary" %></div><br /><br />
+
+
+		<div class="display"><h1>Add to your collection</h1>
+
+<p>Once signed up you can browse the database of Miniatures and add any Miniatures you own to your collection.
+<%= link_to 'How to add to collection', add_to_collection_path, class: "btn-large btn" %></p>
+		</div><br /><br />
+
+			<h1>Follow other users</h1>
+
+			<div class="big_black">Click the follow button on a user's profile page to get their updates on painting, collecting and gaming. <br />Post updates for your own followers to see.<br /><br />
+
+			<%= link_to 'Browse users', users_path, class: "btn-large btn" %></div><br /><br />
+
+		<div class="display"><h1>Vote</h1>
+
+			<p>You can vote for the best painted example of each miniature. The more votes you get the higher your Painterscore goes.
+			<%= link_to 'How voting works', how_to_vote_path, class: "btn-large btn" %></p>
+		</div>
+
+
+	</div>
+</div>

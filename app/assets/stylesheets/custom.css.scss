@@ -466,6 +466,11 @@ input {
   float: left;
 }
 
+.vote_button {
+  float: right;
+  margin-right: 5px;
+}
+
 .photo1 {
   position: relative; 
   width: 100%; /* for IE 6 */
@@ -691,6 +696,38 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+/* Getting Started */
+
+.display {
+  background-image:url('https://s3.amazonaws.com/minilegions/system/stock/display.jpg');
+  height: 249px;
+  padding: 20px;
+  margin-bottom: 20px;
+  p {
+    color: $white;
+    text-align: center;
+    font-size: x-large;
+    padding: 20px;
+  }
+  h1 {
+    color: $white;
+    margin-bottom: 10px;
+  }
+  .btn {
+    margin: 20px;
+  }
+}
+
+.big_black {
+  text-align: center;
+  font-size: x-large;
+  line-height: 200%;
+}
+
+.bordered_image {
+  border: 2px solid $black;
 }
 
 /* miscellaneous */
