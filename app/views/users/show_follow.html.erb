@@ -20,9 +20,15 @@
   <div class="span8">
     <h3><%= @title %></h3>
     <% if @users.any? %>
+      <% @users.each do |user| %>
       <ul class="users">
-        <%= render @users %>
+        <li><%= gravatar_for user %>
+<%= link_to user.name, user %>
+      @<%= user.username %></li>
+
+
       </ul>
+      <% end %>
       <%= will_paginate %>
     <% end %>
   </div>

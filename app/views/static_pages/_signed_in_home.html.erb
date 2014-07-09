@@ -8,8 +8,15 @@
         <%= render 'shared/stats' %>
 
     </section>
+    <% if current_user.collections.count < 5 || current_user.followed_users.count < 3 || current_user.voted_count < 3 %>
     <section>
-      <%= render 'shared/site_stats' %>
+      <div class="button_wrapper">
+      <%= link_to 'Getting Started', getting_started_path, class: "btn-large btn-info" %>
+    </div>
+    </section>
+    <% end %>
+    <section>
+      <%= render 'shared/site_stats' if current_user.try(:admin?) %>
     </section>
   </aside>
   <aside class="span4">

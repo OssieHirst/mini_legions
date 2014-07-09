@@ -48,8 +48,9 @@
        <code>Miniature id: <%= @miniature.id %></code><br /><br />
        <%= link_to "Edit miniature", edit_miniature_path if current_user.try(:contributor?) %>
        <% end %>
-
-        | <%= link_to 'Clone miniature', clone_miniature_path if current_user.superadmin? %></div>
+       <% if current_user.superadmin? %>
+        | <%= link_to 'Clone miniature', clone_miniature_path  %></div>
+        <% end %>
        </section>
 
 
