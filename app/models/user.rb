@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def painterscore
     gold = self.collections.where(:is_gold => true).count * 25
-    silver = self.collections.where(:is_silver => true).count * 5
+    silver = self.collections.where(:is_silver => true).count * 10
     totalvotes = self.vote_count
     gold+silver+totalvotes
   end
