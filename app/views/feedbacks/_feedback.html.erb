@@ -1,0 +1,10 @@
+<tr>
+	<td><%= feedback.id %></td>
+    <td><%= feedback.user.username %><br />
+    	<%= feedback.user.email %></td>
+    <td><%= feedback.nature %></td>
+    <td><%= feedback.content %></td>
+    <td><%= link_to truncate(feedback.url, :length => 40), feedback.url %></td>
+    <td width="80px"><%= best_in_place feedback, :status, type: :select, :collection => [["New", "New"], ["Emailed", "Emailed"], ["Flagged", "Flagged"], ["Closed", "Closed"]]%></td>
+    <td><%= time_ago_in_words(feedback.created_at) %> ago</td>
+</tr>

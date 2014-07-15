@@ -29,7 +29,7 @@ gem 'paper_trail', '3.0.2'
 gem 'randumb'
 gem 'redcarpet'
 gem 'has_scope'
-
+gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :imagevotes, foreign_key: "voted_id"
   has_many :imagevotes, foreign_key: "voter_id"
+  has_many :feedbacks
   validates :username, presence: true,
                        length: { maximum: 15 },
                        uniqueness: { case_sensitive: false }

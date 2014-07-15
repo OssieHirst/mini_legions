@@ -37,6 +37,24 @@ textarea {
   }
 }
 
+#floating_link {
+     position: fixed;
+     bottom: 0px;
+     left: 0px;
+     display: block;
+     width: 115px;
+     height: 30px;
+     font-size: larger;
+     padding-top: 10px;
+     font-weight: bold;
+     color: $white;
+     background-color: #DB020D;
+     text-align: center;
+     box-shadow: 10px 10px 5px #888888;
+     border-radius: 0 25px 0 0;
+     overflow: hidden;
+}
+
 .picfeed {
   position: relative; 
   width: 100%; /* for IE 6 */
@@ -738,6 +756,18 @@ aside {
 
 }
 
+/* Feedback */
+
+.feedback_links {
+  list-style: none;
+  text-align: right;
+  margin: 0;
+  li {
+    display: inline;
+    margin-left: 20px;
+  }
+}
+
 /* miscellaneous */
 
 
@@ -819,11 +849,21 @@ aside {
 .mfp-no-margins .mfp-figure:after {
   top: 0;
   bottom: 0;
+
 }
 /* padding for main container */
 .mfp-no-margins .mfp-container {
   padding: 0;
   border: 0;
+}
+
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
 }
 
 /* 

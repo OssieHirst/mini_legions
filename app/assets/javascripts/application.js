@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require best_in_place
 //= require_tree .
 //= require retina
 //= require magnific-popup

@@ -9,6 +9,7 @@ MiniLegions::Application.routes.draw do
     end
   end
   resources :microposts, only: [:create, :destroy]
+  resources :feedbacks
   resources :relationships, only: [:create, :destroy]
   resources :miniatures do
     collection do

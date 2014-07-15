@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702122241) do
+ActiveRecord::Schema.define(version: 20140715135744) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 20140702122241) do
   add_index "contents", ["miniset_id", "setmini_id"], name: "index_contents_on_miniset_id_and_setmini_id", unique: true
   add_index "contents", ["miniset_id"], name: "index_contents_on_miniset_id"
   add_index "contents", ["setmini_id"], name: "index_contents_on_setmini_id"
+
+  create_table "feedbacks", force: true do |t|
+    t.integer  "user_id"
+    t.string   "nature"
+    t.string   "content"
+    t.string   "url"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id"
 
   create_table "imagevotes", force: true do |t|
     t.integer  "collection_id"

@@ -1,0 +1,60 @@
+<% provide(:title, 'Feedback') %>
+<h1>Feedback</h1>
+<ul class="feedback_links"> 
+	<li>All:</li>
+	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true) %></li>
+	<li><%= link_to "Comments", feedbacks_path(comment: true) %></li>
+	<li><%= link_to "Help", feedbacks_path(help_me: true) %></li>
+	<li><%= link_to "Ideas/Requests", feedbacks_path(idea_request: true) %></li>
+</ul>
+<ul class="feedback_links"> 
+	<li>New:</li>
+	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, new_feedback: true) %></li>
+	<li><%= link_to "Comments", feedbacks_path(comment: true, new_feedback: true) %></li>
+	<li><%= link_to "Help", feedbacks_path(help_me: true, new_feedback: true) %></li>
+	<li><%= link_to "Ideas/Requests", feedbacks_path(idea_request: true, new_feedback: true) %></li>
+</ul>
+<ul class="feedback_links"> 
+	<li>Emailed:</li>
+	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, emailed: true) %></li>
+	<li><%= link_to "Comments", feedbacks_path(comment: true, emailed: true) %></li>
+	<li><%= link_to "Help", feedbacks_path(help_me: true, emailed: true) %></li>
+	<li><%= link_to "Ideas/Requests", feedbacks_path(idea_request: true, emailed: true) %></li>
+</ul>
+<ul class="feedback_links"> 
+	<li>Flagged:</li>
+	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, flagged: true) %></li>
+	<li><%= link_to "Comments", feedbacks_path(comment: true, flagged: true) %></li>
+	<li><%= link_to "Help", feedbacks_path(help_me: true, flagged: true) %></li>
+	<li><%= link_to "Ideas/Requests", feedbacks_path(idea_request: true, flagged: true) %></li>
+</ul>
+<ul class="feedback_links"> 
+	<li>Closed:</li>
+	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, closed: true) %></li>
+	<li><%= link_to "Comments", feedbacks_path(comment: true, closed: true) %></li>
+	<li><%= link_to "Help", feedbacks_path(help_me: true, closed: true) %></li>
+	<li><%= link_to "Ideas/Requests", feedbacks_path(idea_request: true, closed: true) %></li>
+</ul>
+<form class="form">
+    <div class = "form-inline">
+        <%= search_form_for @search, :html => {:method => :post} do |f| %>
+        <div class="input-append">
+            <%= f.text_field :content_cont, class: "span3" %>
+        <%= f.submit "Search", class: "btn" %>
+        </div>
+        <% end %>
+    </div>
+</form>
+
+<%= will_paginate %>
+<table border="0" cellpadding="10" class="table table-condensed table-hover">
+    <th>id</th>
+    <th>User</th>
+    <th>Nature</th>
+    <th>Feedback</th>
+    <th>Url</th>
+    <th>Status</th>
+    <th><%= sort_link(@search, :created_at, "Time", default_order: :desc) %></th>
+  <%= render @feedbacks %>
+</table>
+<%= will_paginate %>
