@@ -16,7 +16,7 @@ module MiniaturesHelper
 	def content_setmini_link_with_quantity(content)
       string = (tag "td"), (link_to top_pic(content), content.setmini), (link_to content.setmini.name, content.setmini)
       string << " x#{content.quantity}" if content.quantity.present?
-      string <<  delete_link(content) if current_user.admin
+      string <<  delete_link(content) if user_signed_in? && current_user.admin
       return string 
   end
 
