@@ -7,7 +7,7 @@
  	<%= f.hidden_field :miniature_id, :value => @miniature.id %>
    
     <%= f.label :line_id, 'Select product line' %><br />
-    <%= f.select :line_id, mfr_lines(@miniature), include_blank: true %>
+    <%= f.select :line_id, @lines, include_blank: true %>
 
   
   <%= f.submit "Add", class: "btn btn-large btn-primary" %>

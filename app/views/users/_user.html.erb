@@ -5,7 +5,7 @@
   <td><%= user.collections.got.count %></td>
   <td><%= user.painterscore %></td>
   
-  <% if current_user.try(:admin?) %>
+  <% if user_signed_in? && current_user.admin? %>
   <td><%= time_ago_in_words(user.created_at) %> ago</td>
   	<td><%= user.sign_in_count %></td>
   	<td><%= time_ago_in_words(user.last_sign_in_at) %> ago</td>
