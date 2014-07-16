@@ -4,7 +4,7 @@ module UsersHelper
   end
 
   def not_admin?(user)
-  current_user.admin? && !current_user?(user)
+    current_user.admin? && !current_user?(user)
   end
   
   # Returns the Gravatar (http://gravatar.com/) for the given user.
