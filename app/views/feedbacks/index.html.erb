@@ -2,6 +2,7 @@
 <h1>Feedback</h1>
 <ul class="feedback_links"> 
 	<li>All:</li>
+	<li><%= link_to "Nofilter", feedbacks_path %></li>
 	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true) %></li>
 	<li><%= link_to "Comments", feedbacks_path(comment: true) %></li>
 	<li><%= link_to "Help", feedbacks_path(help_me: true) %></li>
@@ -9,6 +10,7 @@
 </ul>
 <ul class="feedback_links"> 
 	<li>New:</li>
+	<li><%= link_to "Nofilter", feedbacks_path(new_feedback: true) %></li>
 	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, new_feedback: true) %></li>
 	<li><%= link_to "Comments", feedbacks_path(comment: true, new_feedback: true) %></li>
 	<li><%= link_to "Help", feedbacks_path(help_me: true, new_feedback: true) %></li>
@@ -16,6 +18,7 @@
 </ul>
 <ul class="feedback_links"> 
 	<li>Emailed:</li>
+	<li><%= link_to "Nofilter", feedbacks_path(emailed: true) %></li>
 	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, emailed: true) %></li>
 	<li><%= link_to "Comments", feedbacks_path(comment: true, emailed: true) %></li>
 	<li><%= link_to "Help", feedbacks_path(help_me: true, emailed: true) %></li>
@@ -23,6 +26,7 @@
 </ul>
 <ul class="feedback_links"> 
 	<li>Flagged:</li>
+	<li><%= link_to "Nofilter", feedbacks_path(flagged: true) %></li>
 	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, flagged: true) %></li>
 	<li><%= link_to "Comments", feedbacks_path(comment: true, flagged: true) %></li>
 	<li><%= link_to "Help", feedbacks_path(help_me: true, flagged: true) %></li>
@@ -30,6 +34,7 @@
 </ul>
 <ul class="feedback_links"> 
 	<li>Closed:</li>
+	<li><%= link_to "Nofilter", feedbacks_path(closed: true) %></li>
 	<li><%= link_to "Errors/Bugs", feedbacks_path(error_bug: true, closed: true) %></li>
 	<li><%= link_to "Comments", feedbacks_path(comment: true, closed: true) %></li>
 	<li><%= link_to "Help", feedbacks_path(help_me: true, closed: true) %></li>
