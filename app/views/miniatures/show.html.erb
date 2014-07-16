@@ -48,7 +48,7 @@
        <code>Miniature id: <%= @miniature.id %></code><br /><br />
        <%= link_to "Edit miniature", edit_miniature_path if current_user.try(:contributor?) %>
        <% end %>
-       <% if current_user.superadmin? %>
+       <% if user_signed_in? && current_user.superadmin? %>
         | <%= link_to 'Clone miniature', clone_miniature_path  %></div>
         <% end %>
        </section>
@@ -100,7 +100,7 @@ $(document).ready(function() {
     </div>
 <% end %><br />
 
-    <p class="clear"><%= render 'vote' if @miniature.collections.where("photo_file_name IS NOT NULL").any? %></p>  
+    <p class="clear"><%= render 'vote' if @miniature.collections.where("photo_file_name IS NOT NULL").any? && user_signed_in? %></p>  
  <br />
 
 <% if @miniature.set? && @miniature.reverse_contents.present? %>

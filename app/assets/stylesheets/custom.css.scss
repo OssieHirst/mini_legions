@@ -770,6 +770,14 @@ aside {
 
 /* miscellaneous */
 
+.help_text {
+  list-style: none;
+  font-size: 1.2em;
+  line-height: 150%;
+  li {
+    margin-bottom: 10px;
+  }
+}
 
 .indexcontent {
   width: 60%;

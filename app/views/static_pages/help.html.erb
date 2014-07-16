@@ -1,7 +1,28 @@
  <% provide(:title, 'Help') %>  
    <h1>Help</h1>
-    How...
-    <ul>
-    	<li><%= link_to "to add to your collection.", add_to_collection_path %></li>
-    	<li><%= link_to "painter voting works.", how_to_vote_path %></li>
+<div class="row">
+	<div class="span4 offset4">
+    	<div class="help_text">How...<br /><br />
+    <ul class="help_text">
+    	<li><%= link_to "...to add to your collection.", add_to_collection_path %></li>
+    	<li><%= link_to "...painter voting works.", how_to_vote_path %></li>
     </ul>
+<br /><br />
+	<% if user_signed_in? %>
+    	What would you like help with?<br />
+    	Let us know via our <a href="#feedback-popup" class="open-popup-link">feedback</a> form.
+
+		<div id="feedback-popup" class="white-popup mfp-hide">
+			<%= render 'shared/feedback_form' %>
+		</div>
+    <% end %>
+		</div>
+	</div>
+</div>
+
+ <script>
+$('.open-popup-link').magnificPopup({
+  type:'inline',
+  midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+});
+</script>

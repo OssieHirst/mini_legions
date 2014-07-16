@@ -1,5 +1,4 @@
-class UsersController < ApplicationController
-  before_filter :authenticate_user!   
+class UsersController < ApplicationController 
    before_action :user_signed_in?, only: [:index, :edit, :update, :destroy, :following, :followers]
    before_action :correct_user,   only: [:edit, :update]  
    before_action :admin_user,     only: :destroy

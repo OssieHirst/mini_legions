@@ -1,5 +1,4 @@
 class CollectionsController < ApplicationController
-  before_action :user_signed_in?
   has_scope :got, :type => :boolean
   has_scope :want, :type => :boolean
   has_scope :painted, :type => :boolean
@@ -42,7 +41,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @miniature = @collection.miniature
     @user = @collection.user
-    @micropost  = current_user.microposts.build
+    @micropost  = current_user.microposts.build if user_signed_in?
   end
 
   def create

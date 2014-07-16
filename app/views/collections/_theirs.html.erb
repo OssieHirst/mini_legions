@@ -13,7 +13,8 @@
         <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="This miniature has been converted or modified using parts from other sets or miniatures.">Conversion <i class="fa fa-question-circle"></i></a></span>
         <% end %>
 
-      	 <%= "GOLD" if @collection.is_gold %> <%= "SILVER" if @collection.is_silver %>
+      	 <%= image_tag("https://s3.amazonaws.com/minilegions/system/stock/gold.png", :retina => true) if @collection.is_gold %>
+          <%= image_tag("https://s3.amazonaws.com/minilegions/system/stock/silver.png", :retina => true) if @collection.is_silver %>
       <br /><br />
 <% if @collection.progress != 'Painted' && @collection.status != 'Want' %>
       Progress: <%= @collection.progress %><br /><br />
@@ -31,7 +32,7 @@
 
 
      </section>
- <% if @collection.status != 'Want' %>
+ <% if @collection.status != 'Want' && user_signed_in? %>
     <section>
       Post an update about this miniature
     <%= form_for(@micropost) do |f| %>
