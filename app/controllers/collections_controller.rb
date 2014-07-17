@@ -13,7 +13,6 @@ class CollectionsController < ApplicationController
     @collections = @search.result.paginate(page: params[:page])
   end
 
-
   def new
     @collection = Collection.new(@miniature)
     @miniature_id = params[:miniature_id]

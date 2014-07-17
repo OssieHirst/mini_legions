@@ -1,0 +1,36 @@
+<% provide(:title, 'Gallery') %>  
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.image-popup-no-margins').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 200 // don't foget to change the duration also in CSS
+    }
+  });
+});
+</script>
+
+   <h1>Gallery</h1>
+<div class="row">
+	<div class="span12">
+
+		<table id="image_table">
+			<% @gallery_items.each do |collection| %>
+				<td><div class="votephotos">
+					<%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
+
+     				<p><%= link_to ['Painted by', collection.user.name].join(' '), collection %></p>
+         		</div></td>
+			<% end %>
+
+ 		</table>
+ 	</div>
+</div>
