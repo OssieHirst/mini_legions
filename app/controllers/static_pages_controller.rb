@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
 
   def gallery
     @user = User.find_by_username(params[:user_id])
-    @gallery_items = Collection.where('photo_file_name is not null').paginate(page: params[:page])
+    @gallery_items = Collection.where('photo_file_name is not null').paginate(page: params[:page], :per_page => 28)
   end
   
 end

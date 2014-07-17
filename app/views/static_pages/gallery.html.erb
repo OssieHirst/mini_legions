@@ -22,6 +22,7 @@ $(document).ready(function() {
 <div class="row">
 	<div class="span12">
 
+		<%= will_paginate @gallery_items %>
 		<table id="image_table">
 			<% @gallery_items.each do |collection| %>
 				<td><div class="votephotos">
@@ -30,7 +31,5 @@ $(document).ready(function() {
      				<p><%= link_to ['Painted by', collection.user.name].join(' '), collection %></p>
          		</div></td>
 			<% end %>
-
  		</table>
- 	</div>
-</div>
+		<%= will_paginate @gallery_items %>
