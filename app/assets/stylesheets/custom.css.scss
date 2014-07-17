@@ -592,6 +592,19 @@ li {
 #contents_table  { display: block; }
 #contents_table  td {display: inline-block; }
 
+
+/* Gallery */
+
+#gallery_table  { 
+  display: block;
+  margin-left: 55px;
+}
+#gallery_table  td {display: inline-block; }
+
+.line_up_with_gallery {
+  margin-left: 55px;
+}
+
 /* Image Vote */
 
 #image_table  { display: block; }

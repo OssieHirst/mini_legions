@@ -21,7 +21,7 @@ $(document).ready(function() {
    <h1>Gallery</h1>
 <div class="row">
 	<div class="span12">
-		<table id="image_table">
+		<table id="gallery_table">
 			<% @gallery_items.each do |collection| %>
 				<td><div class="votephotos">
 					<%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
@@ -30,4 +30,4 @@ $(document).ready(function() {
          		</div></td>
 			<% end %>
  		</table>
-		<%= will_paginate @gallery_items %>
+		<div class="line_up_with_gallery"><%= will_paginate @gallery_items %></div>
