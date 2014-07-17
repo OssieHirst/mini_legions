@@ -30,6 +30,7 @@ gem 'randumb'
 gem 'redcarpet'
 gem 'has_scope'
 gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
+gem 'devise_lastseenable', '~> 0.0.4'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

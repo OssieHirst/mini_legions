@@ -8,7 +8,7 @@
   <% if current_user.try(:admin?) %>
   <td><%= time_ago_in_words(user.created_at) if user.created_at != nil %> ago</td>
   	<td><%= user.sign_in_count if user.sign_in_count  != nil %></td>
-  	<td><%= time_ago_in_words(user.last_sign_in_at) if user.last_sign_in_at != nil %> ago</td>
+  	<td><%= time_ago_in_words(user.last_seen) if user.last_seen != nil %> ago</td>
   	<td><%= link_to "delete", user, method: :delete,
               data: { confirm: "You sure?" } if user.admin == false %></td>
   <% end %>

@@ -13,7 +13,6 @@
         <%= link_to sculptor.initial_fullname, sculptor_path(sculptor) %><br /><% end %></div></td>
   <td><%= miniature.release_date_display unless miniature.release_date.blank? %></td>
   <td>
-        
       <% if miniature.collections.where(user_id: current_user).where(status: 'Got').any? %>
       <span class="fa-stack gotcircle">
     <i class="fa fa-circle fa-stack-2x gotcircle"></i>
