@@ -78,6 +78,12 @@ textarea {
   }
 }
 
+.splash_picfeed {
+  display: inline-block;
+  padding: 6px;
+  margin: 0;
+}
+
 .tooltip_style {
   a { 
     color: $grayLight;
@@ -777,6 +783,10 @@ aside {
   li {
     margin-bottom: 10px;
   }
+}
+
+.hero-unit {
+  margin-top: 15px
 }
 
 .indexcontent {
