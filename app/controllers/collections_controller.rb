@@ -4,9 +4,7 @@ class CollectionsController < ApplicationController
   has_scope :painted, :type => :boolean
   has_scope :gold, :type => :boolean
   has_scope :silver, :type => :boolean
-
-
-  respond_to :html, :js
+  respond_to :html, :json
 
   def index
     @user = User.find_by_username(params[:user_id])
@@ -48,10 +46,10 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(collection_params)
     if @collection.save
       flash[:success] = "Miniature added"
-      redirect_to @collection
+      redirect_to :back
     else
       flash[:success] = "Did not work!!!"
-      render 'new'
+      redirect_to :back
     end
   end
 

@@ -1,6 +1,7 @@
 class MiniaturesController < ApplicationController
    before_action :contributor, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
+   before_filter :set_collection
 
    def ancestry_options(items, &block)
       return ancestry_options(items){ |i| "#{'&nbsp; &nbsp; &nbsp;' * i.depth} #{i.name}".html_safe } unless block_given?
@@ -24,13 +25,13 @@ class MiniaturesController < ApplicationController
     @miniature = Miniature.find(params[:miniature_id])
    end
 
-   def import
-     Miniature.import(params[:file])
-     redirect_to miniatures_path, notice: "Miniatures imported."
-   end
-
   def show
     @miniature = Miniature.find(params[:id])
+  end
+
+  def set_collection
+    @miniature_id = params[:id]
+    @collection = Collection.new(miniature: @miniature)
   end
 
   def new

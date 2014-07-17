@@ -1,7 +1,20 @@
-<section>
-        <i class="fa fa-check-square-o"></i> 
-          <%= link_to "Add to collection or wantlist", new_collection_path(:miniature_id => @miniature) %>
+      <section>
+        <i class="fa fa-check-square-o"></i>
+        <a href="#collection-popup" class="open-popup-link">
+          Add to collection or wantlist</a>
       </section>
+
+      <div id="collection-popup" class="white-popup mfp-hide">
+        <%= render 'collections/pop_form' %>
+      </div>
+
+<script>
+$('.open-popup-link').magnificPopup({
+  type:'inline',
+  midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+});
+</script>
+
 
      
        <div class="gotwant">
