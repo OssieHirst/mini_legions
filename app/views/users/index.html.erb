@@ -21,7 +21,7 @@
     <% if current_user.try(:admin?) %>
         <th><%= sort_link(@search, :created_at, "Joined", default_order: :desc) %></th>
         <th><%= sort_link(@search, :sign_in_count, "Signins", default_order: :desc) %></th>
-        <th><%= sort_link(@search, :last_sign_in_at, "Last seen", default_order: :desc) %></th>
+        <th><%= sort_link(@search, :last_seen, "Last seen", default_order: :desc) %></th>
         <th>admin</th>
     <% end %>
   <%= render @users %>
