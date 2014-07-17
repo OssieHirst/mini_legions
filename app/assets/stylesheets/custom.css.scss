@@ -595,6 +595,14 @@ li {
 
 /* Gallery */
 
+.smaller_h1 {
+  h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 0px;
+  }
+}
+
 #gallery_table  { 
   display: block;
   margin-left: 55px;
