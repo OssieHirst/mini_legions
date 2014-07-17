@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   def home
     if user_signed_in?
       @micropost  = current_user.microposts.build
-      @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 20)
+      @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 12)
       @miniatures = Miniature.all(params[:id])
       @users = User.all(params[:id])
       @manufacturers = Manufacturer.all(params[:id])
