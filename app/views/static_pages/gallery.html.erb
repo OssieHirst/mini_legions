@@ -21,8 +21,6 @@ $(document).ready(function() {
    <h1>Gallery</h1>
 <div class="row">
 	<div class="span12">
-
-		<%= will_paginate @gallery_items %>
 		<table id="image_table">
 			<% @gallery_items.each do |collection| %>
 				<td><div class="votephotos">
