@@ -1,0 +1,9 @@
+<% if @collection.imagevotes.where(:voter_id => current_user).any? %>
+	You have voted for this <%= @collection.miniature.name %>. <%= link_to "Vote again.", edit_imagevote_path(:miniature_id => @collection.miniature, :voter_id => current_user.id) %>
+
+<% elsif @collection.miniature.imagevotes.where(:voter_id => current_user).any? %>
+You voted for a different <%= @collection.miniature.name %>. <%= link_to "Vote again.", edit_imagevote_path(:miniature_id => @collection.miniature, :voter_id => current_user.id) %>
+<% else %>
+	You haven't voted for the best painted <%= @collection.miniature.name %>. <%= link_to "Vote now.", new_imagevote_path(:miniature_id => @collection.miniature, :voter_id => current_user.id) %>
+<% end %>
+<br /><br />

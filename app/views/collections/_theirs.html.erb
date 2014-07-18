@@ -16,6 +16,9 @@
       	 <%= image_tag("https://s3.amazonaws.com/minilegions/system/stock/gold.png", :retina => true) if @collection.is_gold %>
           <%= image_tag("https://s3.amazonaws.com/minilegions/system/stock/silver.png", :retina => true) if @collection.is_silver %>
       <br /><br />
+
+<%= render 'vote' if user_signed_in? && @collection.photo_file_name != nil %>
+
 <% if @collection.progress != 'Painted' && @collection.status != 'Want' %>
       Progress: <%= @collection.progress %><br /><br />
 <% end %>
