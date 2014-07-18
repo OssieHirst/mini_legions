@@ -24,7 +24,7 @@ class ImagevotesController < ApplicationController
   		@imagevote.voted_id = @collection.user_id
   		if @imagevote.save
   			flash[:success] = "Vote accepted."
-  			redirect_to @imagevote
+  			redirect_to @imagevote.miniature
   		else
   			flash[:alert] = "Vote not accepted."
         flash[:alert] << @imagevote.errors[:vote].first unless @imagevote.errors[:vote].nil?
