@@ -29,6 +29,7 @@ class LinesController < ApplicationController
 
   def edit
     @line = Line.find(params[:id])  
+    @lines = ancestry_options(Line.where(manufacturer_id: @line.manufacturer(:id)).arrange(:order => 'name')) {|i| "#{'&nbsp; &nbsp;' * i.depth} #{i.name}".html_safe }
   end
 
   def update
@@ -53,8 +54,8 @@ class LinesController < ApplicationController
   def create
     @line = Line.new(line_params)
     if @line.save
-      flash[:success] = "Line added. #{undo_link}"
-      redirect_to lines_path
+      flash[:success] = "Line added but there's one more thing... #{undo_link}"
+      redirect_to edit_line_path(@line)
     else
       render 'new'
     end

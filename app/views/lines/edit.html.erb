@@ -7,12 +7,26 @@
 
 <div class="tab-content">
 	<div class="tab-pane active" id="edit">
-		<h1>Edit product line</h1>
+		<%  if @line.created_at > 5.minutes.ago %>
+			<h1>...and now we add the parent line</h1>
+		<% else %>
+			<h1>Edit product line</h1>
+		<% end %>
 			<div class="row">
 				<div class="span8 offset2">
 		<%= form_for(@line, :html => { :class => "form-horizontal"} ) do |f| %>
-			<%= render 'form', f: f %>
-			<%= render 'shared/comment', f: f %>
+			<%= render 'form', f: f if @line.created_at < 5.minutes.ago %>
+			<div class="row">
+    			<div class="span7">
+     				<div class="control-group">
+    					<%= f.label :parent_id, class: "control-label" %>
+    					<div class="controls">
+    						<%= f.select :parent_id, @lines, include_blank: true %>
+    					</div>
+     				</div>
+    			</div>
+ 			</div>
+			<%= render 'shared/comment', f: f if @line.created_at < 5.minutes.ago %>
 		<div style="float: right;">
    		 <%= f.submit "Submit changes", class: "btn btn-primary" %>
   		</div>

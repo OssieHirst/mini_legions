@@ -4,7 +4,7 @@ class MinilinesController < ApplicationController
   def new
     @miniline = Miniline.new(@miniature)
     @miniature = Miniature.find(params[:miniature_id])
-    @lines = ancestry_options(Line.all.arrange(:order => 'name')) {|i| "#{'&nbsp; &nbsp;' * i.depth} #{i.name}".html_safe }
+    @lines = ancestry_options(Line.where(manufacturer_id: @miniature.manufacturers.pluck(:id)).arrange(:order => 'name')) {|i| "#{'&nbsp; &nbsp;' * i.depth} #{i.name}".html_safe }
   end
 
   def create

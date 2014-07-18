@@ -45,15 +45,6 @@
      </div>
     </div>
  </div>
-  <div class="row">
-    <div class="span7">
-     <div class="control-group">
-    <%= f.label :parent_id, class: "control-label" %>
-    <div class="controls">
-    <%= f.select :parent_id, ("<option></option>" + options_from_collection_for_select(Line.all, :id, :name, @line.parent_id)).html_safe %>
-    </div>
-     </div>
-    </div>
- </div>
+  
   
 
