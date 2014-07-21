@@ -17,11 +17,9 @@
                 	<%= render 'fields', f: f %>
                 	<%= render 'shared/comment', f: f %>
 
-                    <% if @miniature.unpainted? %>
-                      <%= render 'replace_unpainted', f: f %>
-                    <% else %>
-                      <%= render 'upload_unpainted', f: f %>
-                    <% end %>
+                  <div style="float: right;">
+                    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+                  </div>
     			<% end %>
   			</div>
 		</div>
