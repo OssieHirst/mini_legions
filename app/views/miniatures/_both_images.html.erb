@@ -1,0 +1,18 @@
+
+
+<div class="tab-content">
+  <div class="tab-pane active" id="painted">
+  		<%= render 'painted' %>
+  </div>
+  <div class="tab-pane" id="unpainted">
+        <%= render 'unpainted' %>
+  </div>
+</div>
+
+
+ <script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>

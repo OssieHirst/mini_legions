@@ -145,3 +145,22 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+    </script>
+<div class="control-group">
+    <span class="tooltip_style control-label"><a href="#" data-toggle="tooltip" title="Upload a single frame image of either the unpainted miniature or the sprue(s), ideally on a black or white background. Please only upload photos you have taken or else we may get in copyright trouble. There is only one unpainted photo per miniature.">Image guidelines <i class="fa fa-question-circle"></i></a></span>
+  </div>
+
+  <div class="row">  
+    <div class="span8">
+      <div class="control-group">
+        <%= f.label :unpainted, 'Attach unpainted or sprue picture', class: "control-label" %>
+        <div class="controls">
+          <%= f.file_field :unpainted %>
+        </div>
+      </div>
+    </div>
+  </div>

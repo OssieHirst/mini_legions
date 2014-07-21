@@ -27,6 +27,20 @@ class Miniature < ActiveRecord::Base
   has_paper_trail :meta => { :comment => :comment }
   attr_accessor :comment
 
+  has_attached_file :unpainted,  :styles => { 
+    :original => "1024x1024", 
+    :medium => " ",
+    :icon => " " },
+    :convert_options => {
+    :icon => '-resize "80x64^" +repage -gravity Center -crop "64x64+0-5"', 
+    :medium => '-resize "615" +repage -gravity Center -crop "615x615+0+0"'},
+    :url => "/system/miniatures/unpainted/:id/:style/mlc_:id.:extension",
+    :path => ":rails_root/public/system/miniatures/unpainted/:id/:style/mlc_:id.:extension" 
+
+    validates_attachment_size :unpainted, :less_than => 2.megabytes
+    validates_attachment_content_type :unpainted, :content_type => ['image/jpeg', 'image/png']
+
+
   
   def name=(s)
     super s.titleize

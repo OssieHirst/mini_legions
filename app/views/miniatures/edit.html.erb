@@ -13,11 +13,15 @@
 		<h1>Edit miniature listing</h1>
 		<div class="row">
   			<div class="span8 offset2">
-    			<%= form_for(@miniature, :html => { :class => "form-horizontal"} ) do |f| %>
+    			<%= form_for(@miniature, :html => { :class => "form-horizontal", :multipart => true } ) do |f| %>
                 	<%= render 'fields', f: f %>
                 	<%= render 'shared/comment', f: f %>
-      				<div style="float: right;"><%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-      				</div>
+
+                    <% if @miniature.unpainted? %>
+                      <%= render 'replace_unpainted', f: f %>
+                    <% else %>
+                      <%= render 'upload_unpainted', f: f %>
+                    <% end %>
     			<% end %>
   			</div>
 		</div>

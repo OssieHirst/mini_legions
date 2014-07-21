@@ -3,15 +3,16 @@
 <div class="row">
   <aside class="span4">
     <section>
-      
-       <h1><%= @miniature.name %><br />
+       <h1><%= @miniature.name %>
         <% if @miniature.set? %>
           <div class="subh1">
             Set of <%= @miniature.quantity %>
           </div>
-        <% end %>
-       </h1><br />
-       <div class="minilabel">Material:</div> <%= @miniature.material %><br /> 
+        <% end %></h1><br />
+
+        <% if @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? %>
+       <div class="minilabel">Show:</div><ul class="nav nav-tabs nav-tabs-clean" id="myTab"><a href="#painted">Painted</a> | <a href="#unpainted">Unpainted</a></ul>
+       <div class="minilabel">Material:</div> <%= @miniature.material %><br /><% end %>
 
        <div class="minilabel"><%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>:</div> 
        <% @miniature.manufacturers.each do |manufacturer| %>
@@ -81,27 +82,14 @@ $(document).ready(function() {
   });
 });
 </script>
-<% @miniature.collections.where("photo_file_name IS NOT NULL").take(1).each do |collection| %>  
-<div class="photo1">
 
-      <%= link_to image_tag(collection.photo.url(:medium), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
-
-      <p><%= link_to collection.name.presence || @miniature.name, collection %> painted by <%= link_to collection.user.name, collection.user %></p>
-   </div>
+<% if @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? == false %>
+  <%= render 'unpainted' %>
+<% elsif @miniature.collections.where("photo_file_name IS NOT NULL") != nil && @miniature.unpainted.blank? %>
+  <%= render 'painted' %>
+<% elsif @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? %>
+  <%= render 'both_images' %>
 <% end %>
-   
-<% @miniature.collections.where("photo_file_name IS NOT NULL").drop(1).take(3).each do |collection| %>
-
-    <div class="photos234">
-      <li>
-      
-        <%= link_to image_tag(collection.photo.url(:thumb), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
-      </li>
-    </div>
-<% end %><br />
-
-    <p class="clear"><%= render 'vote' if @miniature.collections.where("photo_file_name IS NOT NULL").any? && user_signed_in? %></p>  
- <br />
 
 <% if @miniature.set? && @miniature.reverse_contents.present? %>
     <h3>Contents:</h3>
@@ -153,3 +141,4 @@ $(document).ready(function() {
   </div>  
    
 </div>
+

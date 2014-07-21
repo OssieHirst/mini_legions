@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717132358) do
+ActiveRecord::Schema.define(version: 20140721102759) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -122,11 +122,15 @@ ActiveRecord::Schema.define(version: 20140717132358) do
     t.datetime "updated_at"
     t.string   "pcode"
     t.string   "notes"
-    t.boolean  "set",          default: false
-    t.boolean  "random",       default: false
+    t.boolean  "set",                    default: false
+    t.boolean  "random",                 default: false
     t.integer  "quantity"
-    t.integer  "date_mask",    default: 0
-    t.boolean  "multipart",    default: false
+    t.integer  "date_mask",              default: 0
+    t.boolean  "multipart",              default: false
+    t.string   "unpainted_file_name"
+    t.string   "unpainted_content_type"
+    t.integer  "unpainted_file_size"
+    t.datetime "unpainted_updated_at"
   end
 
   add_index "miniatures", ["created_at"], name: "index_miniatures_on_created_at"

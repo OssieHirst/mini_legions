@@ -484,6 +484,17 @@ input {
 
 /* Miniatures show */
 
+.nav-tabs-clean {
+  font-weight: normal;
+  list-style: none;
+  margin-bottom: 0;
+  border-bottom: 0;
+  margin-top: 0px;
+  li {
+    font-size: smaller;
+  }
+}
+
 .minilabel {
   width: 150px;
   display:inline;
