@@ -12,8 +12,8 @@
 
         <% if @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? %>
        <div class="minilabel">Show:</div><ul class="nav nav-tabs nav-tabs-clean" id="myTab"><a href="#painted">Painted</a> | <a href="#unpainted">Unpainted</a></ul>
-       <div class="minilabel">Material:</div> <%= @miniature.material %><br /><% end %>
-
+       <% end %>
+       <div class="minilabel">Material:</div> <%= @miniature.material %><br />
        <div class="minilabel"><%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>:</div> 
        <% @miniature.manufacturers.each do |manufacturer| %>
         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
