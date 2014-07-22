@@ -24,12 +24,10 @@ module MiniaturesHelper
       @miniature = Miniature.find(content.setmini)
       if @miniature.collections.where("photo_file_name IS NOT NULL").any? == false && @miniature.unpainted.blank?
         image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
-      elsif @miniature.collections.first.photo_file_name != nil
+      elsif @miniature.collections.where("photo_file_name IS NOT NULL").any?
         image_tag(@miniature.collections.first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
       elsif @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? == false
         image_tag(@miniature.unpainted.url(:icon), :class => "curvediconminiset")
-      else
-        image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
       end
   end
 
