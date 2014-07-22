@@ -28,6 +28,8 @@ module MiniaturesHelper
         image_tag(@miniature.collections.first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
       elsif @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? == false
         image_tag(@miniature.unpainted.url(:icon), :class => "curvediconminiset")
+      else
+        image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
       end
   end
 
