@@ -1,5 +1,4 @@
 class Collection < ActiveRecord::Base
-	default_scope { order('imagevotes_count DESC') }
 	belongs_to :miniature
 	belongs_to :user
     has_many :imagevotes, dependent: :destroy
@@ -9,7 +8,6 @@ class Collection < ActiveRecord::Base
 	validates :progress, presence: true
 	validates :name, length: { maximum: 25 }
 	validates :notes, length: { maximum: 280 }
-	scope :desc, -> { order("photo_updated_at DESC") }
 	scope :painted, -> { where(progress: 'Painted') }
 	scope :got, -> { where(status: 'Got') }
 	scope :want, -> { where(status: 'Want') }

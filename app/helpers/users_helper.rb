@@ -27,7 +27,7 @@ module UsersHelper
   end
 
   def paintedfeed
-    pics = @user.collections.where('photo_updated_at >= ?', 6.months.ago)
+    pics = @user.collections.where('photo_updated_at >= ?', 6.months.ago).order(photo_updated_at: :desc)
       pics.take(8)
   end
   
