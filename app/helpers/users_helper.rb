@@ -28,7 +28,7 @@ module UsersHelper
 
   def paintedfeed
     pics = @user.collections.where('photo_updated_at >= ?', 6.months.ago)
-      pics.take(5)
+      pics.take(8)
   end
   
 end
