@@ -25,7 +25,7 @@ module MiniaturesHelper
       if @miniature.collections.where("photo_file_name IS NOT NULL").any? == false && @miniature.unpainted.blank?
         image_tag("https://s3.amazonaws.com/minilegions/system/stock/barbarian.gif", :retina => true, :class => "curvediconminiset")
       elsif @miniature.collections.where("photo_file_name IS NOT NULL").any?
-        image_tag(@miniature.collections.order(imagevotes_count: :desc).first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
+        image_tag(@miniature.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc).first.photo.url(:icon), :retina => true, :class => "curvediconminiset")
       elsif @miniature.unpainted? && @miniature.collections.where("photo_file_name IS NOT NULL").any? == false
         image_tag(@miniature.unpainted.url(:icon), :class => "curvediconminiset")
       end
