@@ -14,6 +14,7 @@ class CollectionsController < ApplicationController
     else
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @collections = @search.result.paginate(page: params[:page])
+    end
   end
 
   def new
