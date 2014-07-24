@@ -9,12 +9,8 @@ class CollectionsController < ApplicationController
   def index
     @user = User.find_by_username(params[:user_id])
     @search = apply_scopes(@user.collections).search(params[:q])
-    if painted: true 
-      @search.sorts = 'photo_updated_at desc' if @search.sorts.empty?  
-    else
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @collections = @search.result.paginate(page: params[:page])
-    end
   end
 
   def new
