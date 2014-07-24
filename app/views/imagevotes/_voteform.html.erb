@@ -1,6 +1,6 @@
 
   <%= form_for(@imagevote) do |f| %>
-  <% @miniature.collections(:photo).each do |collection| %>
+  <% @miniature.collections(:photo).order(imagevotes_count: :desc).each do |collection| %>
 
     <% if collection.photo.exists? %>
       <td><div class="votephotos">

@@ -1,4 +1,4 @@
-<% @miniature.collections.where("photo_file_name IS NOT NULL").take(1).each do |collection| %>  
+<% @miniature.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc).take(1).each do |collection| %>  
 <div class="photo1">
 
       <%= link_to image_tag(collection.photo.url(:medium), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
@@ -7,7 +7,7 @@
    </div>
 <% end %>
    
-<% @miniature.collections.where("photo_file_name IS NOT NULL").drop(1).take(3).each do |collection| %>
+<% @miniature.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc).drop(1).take(3).each do |collection| %>
 
     <div class="photos234">
       <li>
