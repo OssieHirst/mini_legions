@@ -1,5 +1,6 @@
 class ContentsController < ApplicationController
-	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
+	before_action :admin_user,     only: [:edit, :update, :destroy]
+  before_action :contributor_user,     only: [:new, :create]
 
   def new
     @content = Content.new(@miniature)
@@ -19,6 +20,10 @@ class ContentsController < ApplicationController
 
   def admin_user
       redirect_to(root_url) unless current_user.admin?
+  end
+
+  def contributor_user
+      redirect_to(root_url) unless current_user.contributor?
   end
 
   def destroy
