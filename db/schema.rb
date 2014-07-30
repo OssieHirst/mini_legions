@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721102759) do
+ActiveRecord::Schema.define(version: 20140730135206) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20140721102759) do
   create_table "sculptors", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "biog"
+    t.text     "biog",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
