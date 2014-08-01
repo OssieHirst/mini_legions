@@ -36,6 +36,9 @@ $(document).ready(function() {
 
 <%= link_to 'Share on Facebook', "https://www.facebook.com/dialog/share?
   app_id=352750284878791&href=#{request.original_url}&redirect_uri=#{request.original_url}" %>
+<meta name="title" content="#{provide(:title, [@miniature.name.html_safe, @user.name].join(' by '))}" />
+<meta name="description" content="#{@collection.notes}" />
+<link rel="image_src" href="#{image_tag(@collection.photo.url(:medium)}" />
 
 
   <% end %>
