@@ -32,8 +32,13 @@ $(document).ready(function() {
 </script>
 
   <% if @collection.photo? %>
-      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
-        <% end %>
+      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %><br />
+
+<%= link_to 'Share on Facebook', "https://www.facebook.com/dialog/share?
+  app_id=352750284878791&href=#{request.original_url}&redirect_uri=#{request.original_url}" %>
+
+
+  <% end %>
   <% elsif current_user?(@user) && @collection.progress == 'Painted' %>
     
 
