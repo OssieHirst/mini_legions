@@ -1,5 +1,10 @@
 <% provide(:title, @miniature.name.html_safe) %>
-
+<% content_for :head do %>
+        <meta property="og:title" content="<%= @miniature.name %>"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<%= request.original_url %>"/>
+        <meta property="og:description" content="<%= @miniature.notes %>"/>
+<% end %>
 <div class="row">
   <aside class="span4">
     <section>
