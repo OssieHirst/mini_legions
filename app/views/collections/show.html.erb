@@ -32,13 +32,20 @@ $(document).ready(function() {
 </script>
 
   <% if @collection.photo? %>
-      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %><br />
+      <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
-<%= link_to 'Share on Facebook', "https://www.facebook.com/dialog/share?
-  app_id=352750284878791&href=#{request.original_url}&redirect_uri=#{request.original_url}" %>
-<meta name="title" content="#{provide(:title, [@miniature.name.html_safe, @user.name].join(' by '))}" />
-<meta name="description" content="#{@collection.notes}" />
-<link rel="image_src" href="#{@collection.photo.url(:medium)}" />
+<div class="share-buttons">
+  <%= link_to "https://www.facebook.com/dialog/share?
+  app_id=352750284878791&href=#{request.original_url}&redirect_uri=#{request.original_url}", class: "btn btn-info" do %>
+    <i class="fa fa-facebook"> </i> Share on Facebook
+  <% end %>
+
+  <meta property="og:title" content="<%= [@miniature.name.html_safe, @user.name].join(' by ') %>"/>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.original_url %>"/>
+  <meta property="og:image" content="<%= @collection.photo.url(:thumb) %>"/>
+
+</div>
 
 
   <% end %>
