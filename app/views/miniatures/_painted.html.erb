@@ -1,4 +1,12 @@
-<% @miniature.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc).take(1).each do |collection| %>  
+<% @miniature.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc).take(1).each do |collection| %>
+		<% content_for :head do %>
+		    <meta property="og:title" content="<%= @miniature.name %>"/>
+		    <meta property="og:type" content="website" />
+		    <meta property="og:url" content="<%= request.original_url %>"/>
+		    
+		    <meta property="og:image" content="<%= collection.photo.url(:medium) %>"/>
+		    
+		<% end %>
 <div class="photo1">
 
       <%= link_to image_tag(collection.photo.url(:medium), :retina => true), collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
@@ -17,5 +25,8 @@
     </div>
 <% end %><br />
 
+<p class="clear">
+  <%= render 'social' %>
+</p>
     <p class="clear"><%= render 'vote' if @miniature.collections.where("photo_file_name IS NOT NULL").any? && user_signed_in? %></p>  
  <br />
