@@ -33,7 +33,7 @@ $(document).ready(function() {
 
   <% if @collection.photo? %>
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
-      
+
 <div class="share-buttons">
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -55,6 +55,7 @@ $(document).ready(function() {
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= request.original_url %>"/>
     <meta property="og:image" content="<%= @collection.photo.url(:medium) %>"/>
+    <meta property="og:description" content="<%= @collection.notes %>"/>
     
   <% end %>
 </div>
