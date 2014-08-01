@@ -56,6 +56,9 @@ $(document).ready(function() {
     <meta property="og:url" content="<%= request.original_url %>"/>
     <meta property="og:image" content="<%= @collection.photo.url(:medium) %>"/>
     <meta property="og:description" content="<%= @collection.notes %>"/>
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="<%= @collection.notes %>">
+    <meta name="twitter:image:src" content="<%= @collection.photo.url(:medium) %>">
     
   <% end %>
 </div>
