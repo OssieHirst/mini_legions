@@ -40,10 +40,13 @@ $(document).ready(function() {
     <i class="fa fa-facebook"> </i> Share on Facebook
   <% end %>
 
-  <meta property="og:title" content="<%= [@miniature.name.html_safe, @user.name].join(' by ') %>"/>
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="<%= request.original_url %>"/>
-  <meta property="og:image" content="<%= @collection.photo.url(:thumb) %>"/>
+  <% content_for :head do %>
+    <meta property="og:title" content="<%= [@miniature.name.html_safe, @user.name].join(' by ') %>"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>"/>
+    <meta property="og:image" content="<%= @collection.photo.url(:thumb) %>"/>
+  <% end %>
+  
 
 </div>
 
