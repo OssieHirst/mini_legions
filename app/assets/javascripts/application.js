@@ -11,14 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
-//= require turbolinks
 //= require best_in_place
 //= require_tree .
 //= require retina
 //= require magnific-popup
 //= require bootstrap-multiselect
+//= require turbolinks
 
 /* Count the number of characters in a micropost. */
 function countCharacters(textField, charCountLabel, maxLength) {

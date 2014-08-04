@@ -32,6 +32,7 @@ gem 'has_scope'
 gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 gem 'devise_lastseenable', '~> 0.0.4'
 gem 'newrelic_rpm'
+gem 'jquery-turbolinks'
 
 
 group :development, :test do
