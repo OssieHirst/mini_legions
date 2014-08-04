@@ -1,8 +1,6 @@
 <% @miniature.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc).take(1).each do |collection| %>
 		<% content_for :head do %>
 		    <meta property="og:image" content="<%= collection.photo.url(:medium) %>"/>
-		    <meta name="twitter:image:src" content="<%= collection.photo.url(:medium) %>">
-
 		<% end %>
 <div class="photo1">
 
