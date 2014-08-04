@@ -3,4 +3,5 @@
 
 <% content_for :head do %>
 		    <meta property="og:image" content="<%= @miniature.unpainted.url(:medium) %>"/>
+		    <meta name="twitter:image:src" content="<%= @miniature.unpainted.url(:medium) %>">
 <% end %>
