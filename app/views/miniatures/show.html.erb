@@ -21,8 +21,8 @@
        <div class="minilabel">Material:</div> <%= @miniature.material %><br />
        <div class="minilabel"><%= simple_pluralize(@miniature.manufacturers.count, 'Manufacturer') %>:</div> 
        <% @miniature.manufacturers.each do |manufacturer| %>
-        <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
-          <% end %><br /> 
+         <%= link_to manufacturer.name, manufacturer_path(manufacturer) %><br />
+          <% end %>
 
        <div class="minilabel"><%= simple_pluralize(@miniature.scales.count, 'Scale')%>:</div> <% @miniature.scales.each do |scale| %>
         <%= scale.name %>

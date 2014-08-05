@@ -59,3 +59,10 @@
 		<%= link_to 'Add new miniature', new_miniature_path, class: "btn btn-primary" %>
 	<% end %>
 </div><br />
+<% if current_user.try(:superadmin?) %>
+	Import Miniatures
+	<%= form_tag import_miniatures_path, multipart: true do %>
+  		<%= file_field_tag :file %>
+  		<%= submit_tag "Import", class: "btn btn-primary" %>
+	<% end %>
+<% end %>

@@ -1,6 +1,7 @@
 class MiniaturesController < ApplicationController
    before_action :contributor, only: [:new, :create, :edit, :update]
    before_action :admin_user,     only: :destroy
+   before_action :superadmin_user, only: :import
    before_filter :set_collection
 
    def ancestry_options(items, &block)
@@ -13,6 +14,11 @@ class MiniaturesController < ApplicationController
         result += ancestry_options(sub_items, &block)
       end
       result
+   end
+
+   def import
+    Miniature.import(params[:file])
+    redirect_to miniatures_path, notice: "Miniatures imported."
    end
 
    def in_collection
@@ -222,6 +228,10 @@ private
 
     def contributor
       redirect_to(root_url) unless user_signed_in? && current_user.contributor?
+    end
+
+    def superadmin_user
+      redirect_to(root_url) unless user_signed_in? && current_user.superadmin?
     end
 
     def undo_link
