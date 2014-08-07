@@ -34,6 +34,8 @@
 
 <table border="0" cellpadding="10" class="table table-condensed table-hover">
   <th><%= sort_link(@search, :last_name, "Name") %></th>
+  <% if current_user.try(:superadmin?) %><th>id</th>
+  <% end %>
   <th>Miniatures</th>
   <th>Biog</th>
   <% if current_user.try(:admin?) %>
