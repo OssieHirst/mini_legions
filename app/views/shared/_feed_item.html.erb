@@ -1,6 +1,6 @@
 
     <tr id="<%= feed_item.id %>">
-      <td width="48px"><%= gravatar_for feed_item.user %></td>
+      <td ><div style="width: 48px;"><%= gravatar_for feed_item.user %></div></td>
       <td>
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %></span> <span class="username">@<%= link_to feed_item.user.username, feed_item.user %></span>
