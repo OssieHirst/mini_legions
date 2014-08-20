@@ -61,7 +61,7 @@ class Miniature < ActiveRecord::Base
 
   def set_gold_and_silver
     self.collections.update_all(:is_gold => false, :is_silver => false)
-    top_collections = self.collections.order(imagevotes_count: :desc).limit(4)
+    top_collections = self.collections.where('photo_file_name is not null').order(imagevotes_count: :desc).limit(4)
     gold = top_collections.shift 
     gold.update_attribute :is_gold, true if gold
     top_collections.each {|s| s.update_attribute :is_silver, true}

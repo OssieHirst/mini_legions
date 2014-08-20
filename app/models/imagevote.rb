@@ -15,7 +15,7 @@ class Imagevote < ActiveRecord::Base
 
 	def cannot_vote_for_self
 		if voter_id == voted_id
-		errors.add(:vote, "You cannot vote for your self!")
+		errors.add(:vote, "You cannot vote for yourself!")
 		end
 	end
 
