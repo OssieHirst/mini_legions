@@ -77,6 +77,10 @@ class Miniature < ActiveRecord::Base
     end
   end
 
+  def top_voted
+    self.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc)
+  end
+
   def get_date_select_opt
     opt = { :start_year => Date.current.year, :end_year => 1970, include_blank: true }
     if self.date_mask == 0 || self.release_date == nil

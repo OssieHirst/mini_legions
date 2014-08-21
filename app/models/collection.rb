@@ -15,6 +15,7 @@ class Collection < ActiveRecord::Base
 	scope :silver, -> { where(is_silver: true) }
 	retina!
 	before_destroy :cache_miniature
+	after_update :set_gold_and_silver
 	after_destroy :set_gold_and_silver
 
 	has_attached_file :photo,  :styles => { 
