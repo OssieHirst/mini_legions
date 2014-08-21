@@ -27,6 +27,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     if @collection.update_attributes(collection_params)
       flash[:notice] = "Successfully updated collection item."
+      @collection.miniature.set_gold_and_silver
       redirect_to @collection
     else
       flash[:notice] = "That update did not work."
