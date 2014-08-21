@@ -77,8 +77,12 @@ class Miniature < ActiveRecord::Base
     end
   end
 
-  def top_voted
-    self.collections.where("photo_file_name IS NOT NULL").order(imagevotes_count: :desc)
+  def gold
+    self.collections.where(is_gold: true)
+  end
+
+  def silver
+    self.collections.where(is_silver: true)
   end
 
   def get_date_select_opt
