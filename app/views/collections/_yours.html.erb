@@ -71,7 +71,7 @@
       <% if @collection.status == 'Want' %>
         <%= render 'want' %>
       <% else %>
-        <%= render 'gotorhad' %>
+        <%= render 'got' %>
       <% end %>
 
      <%= link_to raw("<i class='fa fa-trash-o'></i> Remove from collection"), @collection, :confirm => 'Are you sure you want to remove this? Photos and notes will be lost and it cannot be undone!', method: :delete %>

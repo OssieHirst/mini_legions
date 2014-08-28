@@ -1,6 +1,6 @@
 <%= form_for @collection do |f| %>
     <%= f.label :status %>
-    <%= f.select :status, options_for_select(["Got", "Want", "Had"], :selected => @collection.status) %>
+    <%= f.select :status, options_for_select(["Got", "Want"], :selected => @collection.status) %>
     <%= f.label :progress, 'Condition you want it in' %>
     <%= f.select :progress, options_for_select(["Unpainted", "Painted", "Assembled", "Unassambled", "Work In progress", "N/A"], :selected => @collection.progress) %>
   <%= f.label :notes, 'Notes' %>

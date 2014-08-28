@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730135206) do
+ActiveRecord::Schema.define(version: 20140821145513) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -27,16 +27,20 @@ ActiveRecord::Schema.define(version: 20140730135206) do
     t.string   "video"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "imagevotes_count",   default: 0
-    t.boolean  "is_gold",            default: false
-    t.boolean  "is_silver",          default: false
-    t.boolean  "conversion",         default: false
+    t.integer  "imagevotes_count",    default: 0
+    t.boolean  "is_gold",             default: false
+    t.boolean  "is_silver",           default: false
+    t.boolean  "conversion",          default: false
+    t.string   "painter",             default: "owner"
+    t.integer  "ml_painter_id"
+    t.string   "non_ml_painter_name"
   end
 
   add_index "collections", ["imagevotes_count"], name: "index_collections_on_imagevotes_count"
   add_index "collections", ["is_gold"], name: "index_collections_on_is_gold"
   add_index "collections", ["is_silver"], name: "index_collections_on_is_silver"
   add_index "collections", ["miniature_id"], name: "index_collections_on_miniature_id"
+  add_index "collections", ["ml_painter_id"], name: "index_collections_on_ml_painter_id"
   add_index "collections", ["progress"], name: "index_collections_on_progress"
   add_index "collections", ["status"], name: "index_collections_on_status"
   add_index "collections", ["user_id", "miniature_id"], name: "index_collections_on_user_id_and_miniature_id"
