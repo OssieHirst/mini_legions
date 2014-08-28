@@ -35,20 +35,35 @@ $(document).ready(function() {
       <%= link_to image_tag(@collection.photo.url(:medium), :retina => true), @collection.photo.url(:original), :retina => true, :class => "image-popup-no-margins" %>
 
 <div class="share-buttons">
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="fb-root"></div>
+      <script>
+   (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+     window.fbAsyncInit = function(){  // this gets triggered when FB object gets initialized
+            console.log("FB Object initiated");
+            FB.XFBML.parse(); // now we can safely call parse method
+       };
+
+</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"); twttr.widgets.load();</script>
+    
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text="<%= [@miniature.name.html_safe, @user.name].join(' by ') %>" data-via="minilegions">Tweet</a>
 
-<div class="fb-share-button" data-href="#{request.original_url}" data-width="110"></div>
 
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"); twttr.widgets.load();</script>
+
+<div class="fb-share-button" data-href="#{request.original_url}" data-width="110"></div>
+      
+
+
+
+
 
   <% content_for :head do %>
     <meta property="og:title" content="<%= [@miniature.name.html_safe, @user.name].join(' by ') %>"/>
@@ -69,9 +84,19 @@ $(document).ready(function() {
 
   <br /><br />
           <div class="big_text">Upload a photo of your painting<br /><br />
-            <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="Only upload pictures of miniatures you painted yourself. No text or logos on image. If you're uploading a composite or multiple-view image, please no more than three frames and they must be arranged horizontally not vertically. This will help keep the site looking nice.">Image guidelines <i class="fa fa-question-circle"></i></a></span><br /><br />
+            <span class="tooltip_style"><a href="#" data-toggle="tooltip" title="Only upload pictures of miniatures you own yourself. No text or logos on image. If you're uploading a composite or multiple-view image, please no more than three frames and they must be arranged horizontally not vertically. This will help keep the site looking nice.">Image guidelines <i class="fa fa-question-circle"></i></a></span><br /><br />
     <%= form_for @collection, :html => { :multipart => true } do |f| %>
       <%= f.file_field :photo %><br />
+
+        <div class="form-inline"><%= f.label :conversion  %>
+
+            <%= f.check_box :conversion %><span class="tooltip_style"><a href="#" data-toggle="tooltip" title="Tick if this miniature was converted using parts not originally supplied with it. You can detail the conversion in the notes."> <i class="fa fa-question-circle"></i></a></span><br />
+        </div>
+
+            
+
+              
+
       <%= f.submit "Add Photo", class: "btn btn-large btn-primary" %>
      <% end %></div>
   <% end %>

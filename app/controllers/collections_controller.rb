@@ -68,7 +68,7 @@ class CollectionsController < ApplicationController
   private
 
     def collection_params
-      params.require(:collection).permit(:user_id, :miniature_id, :status, :progress, :photo, :name, :notes, :video, :conversion)
+      params.require(:collection).permit(:user_id, :miniature_id, :status, :progress, :photo, :name, :notes, :video, :conversion, :painter, :ml_painter, :non_ml_painter)
     end
 end
 
