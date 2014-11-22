@@ -47,7 +47,7 @@ class Miniature < ActiveRecord::Base
   end
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
+    CSV.foreach(file.path, :encoding => 'windows-1251:utf-8', headers: true) do |row|
       symbolized_row = row.to_hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
       @miniature = Miniature.create symbolized_row.except(:scale_id, :manufacturer_id, :sculptor_id, :sculptor_id2, :sculptor_id3, :line_id)
       @miniature.sizes.create(:scale_id => symbolized_row[:scale_id])
