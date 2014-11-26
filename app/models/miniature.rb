@@ -50,14 +50,14 @@ class Miniature < ActiveRecord::Base
     CSV.foreach(file.path, :encoding => 'windows-1251:utf-8', headers: true) do |row|
       symbolized_row = row.to_hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
       @miniature = Miniature.create symbolized_row.except(:scale_id, :manufacturer_id, :sculptor_id, :sculptor_id2, :sculptor_id3, :sculptor_id4, :sculptor_id5, :line_id)
-      @miniature.sizes.create(:scale_id => symbolized_row[:scale_id])
-      @miniature.productions.create(:manufacturer_id => symbolized_row[:manufacturer_id])
-      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id])
-      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id2])
-      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id3])
-      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id4])
-      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id5])
-      @miniature.minilines.create(:line_id => symbolized_row[:line_id])
+      @miniature.sizes.create(:scale_id => symbolized_row[:scale_id]) if symbolized_row[:scale_id].present?
+      @miniature.productions.create(:manufacturer_id => symbolized_row[:manufacturer_id]) if symbolized_row[:manufacturer_id].present?
+      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id]) if symbolized_row[:sculptor_id].present? 
+      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id2]) if symbolized_row[:sculptor_id2].present? 
+      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id3]) if symbolized_row[:sculptor_id3].present? 
+      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id4]) if symbolized_row[:sculptor_id4].present? 
+      @miniature.sculptings.create(:sculptor_id => symbolized_row[:sculptor_id5]) if symbolized_row[:sculptor_id5].present? 
+      @miniature.minilines.create(:line_id => symbolized_row[:line_id]) if symbolized_row[:line_id].present?
     end
   end
 
