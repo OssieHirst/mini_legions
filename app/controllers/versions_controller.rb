@@ -7,7 +7,7 @@ class VersionsController < ApplicationController
     else
       @version.item.destroy
     end
-    redirect_to Miniature.find(@version.item_id), :notice => "Undid #{@version.event}"
+    redirect_to :back, :notice => "Undid #{@version.event}"
   end
 
   def index

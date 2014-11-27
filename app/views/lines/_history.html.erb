@@ -30,7 +30,7 @@
   				<span class="old_version">
   					<% if key == "manufacturer_id" %>
   						<%= Manufacturer.find(value.first).name if version.event != "create" %>
-  					<% elsif key == "ancestry" %>
+  					<% elsif key == "ancestry" && value.last == nil %>
   						<%= Line.find(value.first.split('/').last).name if version.event != "create" %>
   					<% else %>
   						<%= value.first %>
@@ -38,7 +38,7 @@
   				</span>
   					<% if key == "manufacturer_id" %>
   						"<%= Manufacturer.find(value.last).name %>"
-  					<% elsif key == "ancestry" %>
+  					<% elsif key == "ancestry" && value.first == nil %>
   						"<%= Line.find(value.last.split('/').last).name %>"
   					<% else %>
   						"<%= value.last %>"
