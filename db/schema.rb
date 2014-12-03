@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821145513) do
+ActiveRecord::Schema.define(version: 20141203111117) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20140821145513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pcode"
-    t.string   "notes"
+    t.text     "notes"
     t.boolean  "set",                    default: false
     t.boolean  "random",                 default: false
     t.integer  "quantity"
