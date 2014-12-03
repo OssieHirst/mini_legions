@@ -5,7 +5,7 @@ module StaticPagesHelper
     end
 
     def splash_picfeed
-		pics = Collection.where('photo_updated_at >= ?', 2.weeks.ago).order(imagevotes_count: :desc, photo_updated_at: :desc)
+		pics = Collection.where('photo_updated_at >= ?', 4.weeks.ago).order(imagevotes_count: :desc, photo_updated_at: :desc)
     	pics.take(6)
     end
 
