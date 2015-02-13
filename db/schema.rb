@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203111117) do
+ActiveRecord::Schema.define(version: 20150212173754) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20141203111117) do
   add_index "collections", ["status"], name: "index_collections_on_status"
   add_index "collections", ["user_id", "miniature_id"], name: "index_collections_on_user_id_and_miniature_id"
   add_index "collections", ["user_id"], name: "index_collections_on_user_id"
+
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "contents", force: true do |t|
     t.integer  "miniset_id"

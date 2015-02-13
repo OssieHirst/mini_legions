@@ -790,6 +790,26 @@ aside {
   }
 }
 
+/* comments */
+
+.comments {
+  margin: 10px 0 0 0;
+
+  tr {
+    border-top: 1px solid #e8e8e8;
+  }
+  td {
+    padding: 8px 10px 2px 0;
+    vertical-align: top;
+  }
+}
+
+.comments_count {
+  font-weight: bold;
+  font-size: large ;
+}
+
+
 /* Getting Started */
 
 .display {

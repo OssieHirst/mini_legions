@@ -1,5 +1,7 @@
 
 MiniLegions::Application.routes.draw do
+  get "comments/index"
+  get "comments/new"
   devise_for :users
   resources :users do
     resources :collections
@@ -44,6 +46,7 @@ MiniLegions::Application.routes.draw do
   resources :sizes
   resources :minilines
   resources :contents
+  resources :comments
   resources :scales
   resources :sculptors do
     collection do
@@ -51,6 +54,7 @@ MiniLegions::Application.routes.draw do
     end
   end
   resources :collections do
+    resources :comments
     member do
       get :miniatures
       get :users

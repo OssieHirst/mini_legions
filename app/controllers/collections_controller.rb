@@ -40,6 +40,9 @@ class CollectionsController < ApplicationController
     @miniature = @collection.miniature
     @user = @collection.user
     @micropost  = current_user.microposts.build if user_signed_in?
+    @commentable = @collection
+    @comments = @commentable.comments
+    @comment = Comment.new if user_signed_in?
   end
 
   def create

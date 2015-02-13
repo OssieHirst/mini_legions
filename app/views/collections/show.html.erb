@@ -109,3 +109,40 @@ $(document).ready(function() {
    
   </div>
 
+  <div class="row">
+
+  <div class="span8">
+
+  <br />
+
+  <div class="comments_count">Comments (<%= @comments.count %>)<br /><br /></div>
+
+  <%= form_for [@commentable, @comment] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.text_area :content, :rows => 5 %>
+    <%= f.submit "Comment", class: "btn btn-large btn" %>
+  <% end %>
+
+  <table class="comments">
+    <% @comments.each do |c| %>
+    <tr id="<%= c.id %>">
+      <td ><div style="width: 48px;"><%= gravatar_for c.user %></div></td>
+      <td>
+    <span class="user">
+      <%= link_to c.user.name, c.user %></span> <span class="username">@<%= link_to c.user.username, c.user %></span>
+
+    <div class="content"><%= markdown.render(wrap(c.content)).html_safe %></div>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(c.created_at) %> ago</span>
+    
+      <% if current_user?(c.user) %>
+      <%= render partial: 'shared/delete_link', locals: { object: c } %><% else %>
+      <% end %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+</div>
+ 
+
