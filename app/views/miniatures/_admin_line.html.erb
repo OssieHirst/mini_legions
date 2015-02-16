@@ -1,12 +1,12 @@
   <div class="minilabel"><%= simple_pluralize(@miniature.lines.count, 'Product line') %>:</div>
   <%= link_to '<i class="fa fa-plus"></i> add'.html_safe, new_miniline_path(:miniature_id => @miniature) %>
   <br />
-  <% @miniature.lines.each do |line| %> 
-    <%= link_to line.root.name, line.root %> 
-    <% if line != line.root %>
-    &gt; <%= link_to line.name, line %>
+  <% @miniature.minilines.each do |miniline| %> 
+    <%= link_to miniline.line.root.name, miniline.line.root %> 
+    <% if miniline.line != miniline.line.root %>
+    &gt; <%= link_to miniline.line.name, miniline.line %>
     <% end %>
-  <%= link_to ' <i class="fa fa-times"></i>'.html_safe, miniline_path(:miniature_id => @miniature.id, :line_id => line.id),
+  <%= link_to ' <i class="fa fa-times"></i>'.html_safe, miniline_path(miniline),
             :confirm => 'Are you sure you want to remove this product line?', :method => :delete %>
             <br />
 <% end %>

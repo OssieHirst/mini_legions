@@ -20,7 +20,7 @@ class MinilinesController < ApplicationController
   end
 
   def destroy
-    Miniline.find_by_miniature_id_and_line_id(params[:miniature_id], params[:line_id]).destroy
+    Miniline.destroy(params[:id])
     flash[:success] = "Miniature removed from product line."
     redirect_to :back
   end
